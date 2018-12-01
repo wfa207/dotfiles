@@ -1,0 +1,7 @@
+brew "the_silver_searcher"
+brew "cmake"
+brew "npm"
+brew "pyenv"
+brew "vim"
+brew "tmux"
+brew "python"
