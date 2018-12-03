@@ -565,7 +565,6 @@ colorscheme snow
 set background=dark
 
 " Set a marker to denote when a line should break (see textwidth setting)
-highlight ColorColumn ctermbg=23 guibg=#005f5f
 set colorcolumn=140
 
 " Highlight line that the cursor is currently on
