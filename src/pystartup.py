@@ -11,9 +11,11 @@ import readline
 import rlcompleter
 import pdb
 
+'''
 from scraping_tools.http import ScrapeClient
 
 scrape_client = ScrapeClient(service='local-testing', timeout=30, retries=3)
+'''
 
 readline.parse_and_bind("tab: complete")
 
@@ -39,6 +41,7 @@ def write_file(file_path, content):
     f.close()
 
 
+'''
 def get_response(url, *args, **kwargs):
     try:
         res = scrape_client.get(url, *args, **kwargs)
@@ -79,3 +82,4 @@ def get_redirect_html_str_and_dom(url, *args, **kwargs):
     response = get_response(url, *args, **kwargs)
     html_str = response.text
     return response.url, html_str, get_dom_from_text(html_str)
+'''

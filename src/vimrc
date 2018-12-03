@@ -564,6 +564,21 @@ set t_Co=256
 colorscheme snow
 set background=dark
 
+" Set a marker to denote when a line should break (see textwidth setting)
+highlight ColorColumn ctermbg=23 guibg=#005f5f
+set colorcolumn=140
+
+" Highlight line that the cursor is currently on
+set cursorline
+
+" Flag excess whitespace
+highlight ExtraWhitespace ctermbg=190 guibg=#dfff00
+match ExtraWhitespace /\s\+$/
+
+" By default, Vim detects *.md files as Modula-2 files; this line forces all
+" *.md files to be read as markdown
+au BufNewFile,BufRead *.md set filetype=markdown
+
 " =============================
 " Airline Configuration
 " =============================
@@ -583,20 +598,6 @@ let g:airline_theme='snow_dark'
 " Enable better syntax highlighting for Python
 let python_highlight_all=1
 
-" Set a marker to denote when a line should break (see textwidth setting)
-highlight ColorColumn ctermbg=23 guibg=#005f5f
-set colorcolumn=140
-
-" Highlight line that the cursor is currently on
-set cursorline
-
-" Flag excess whitespace
-highlight ExtraWhitespace ctermbg=190 guibg=#dfff00
-match ExtraWhitespace /\s\+$/
-
-" By default, Vim detects *.md files as Modula-2 files; this line forces all
-" *.md files to be read as markdown
-au BufNewFile,BufRead *.md set filetype=markdown
 ""}}}
 " -----------------------------------------------------------
 " Mappings {{{

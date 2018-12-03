@@ -25,6 +25,9 @@ DEFAULT_COLOR="\e[0m"
 brew update
 brew bundle
 
+# Install Tmux Plugin Manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 # Install powerline-shell
 pretty_print "Installing powerline-shell\n"
 git clone https://github.com/b-ryan/powerline-shell
@@ -46,14 +49,6 @@ cd fonts
 cd ..
 rm -rf fonts
 pretty_print "Finished installing powerline fonts"
-
-# Install pipenv
-# Need to point to System/Homebrew's version of Python so pipenv exists across Py versions
-# (No need to run `pyenv global <version_num>` every time)
-pretty_print "Installing Pipenv"
-pretty_print "Note: you should be able to use pipenv across all versions of Python installed with Pyenv\n"
-PATH=/usr/local/opt/python/libexec/bin:/usr/local/bin:/usr/bin pip install pipenv
-pretty_print "Finished installing Pipenv"
 
 # Install Vim plug-in manager
 pretty_print "Installing Vim-Plug, to get plug-ins in Vim\n"
