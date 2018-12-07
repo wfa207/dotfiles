@@ -10,6 +10,7 @@ import os
 import readline
 import rlcompleter
 import pdb
+from pprint import pprint as pp
 
 '''
 from scraping_tools.http import ScrapeClient

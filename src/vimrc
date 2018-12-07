@@ -264,15 +264,29 @@ let g:ale_linters = {
 " switches to the active virtualenv with the correct system path so
 " python-language-server finds the right site packages
 
-py3 << EOF
+let s:python_v = system("python --version")[7]
+
+if s:python_v == "3"
+py3 << endpy3
 import os
 import sys
 
-if 'VIRTUAL_ENV' in os.environ:
-	project_base_dir = os.environ['VIRTUAL_ENV']
-	activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-	execfile(activate_this, dict(__file__=activate_this))
-EOF
+project_base_dir = os.environ.get('VIRTUAL_ENV')
+if project_base_dir:
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    exec(open(activate_this).read(), dict(__file__=activate_this))
+endpy3
+elseif s:python_v == "2"
+python << endpy2
+import os
+import sys
+
+project_base_dir = os.environ.get('VIRTUAL_ENV')
+if project_base_dir:
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(open(activate_this), dict(__file__=activate_this))
+endpy2
+endif
 
 " Mapping for GoTo Definition
 map <Leader>gd  :ALEGoToDefinition<CR>
@@ -539,7 +553,7 @@ au BufNewFile,BufRead *.js,*.html,*.css
 
 " Indentation options for python files
 au BufNewFile,BufRead *.py,*.pyc
-			\ set textwidth=79 |
+			\ set textwidth=120 |
 			\ set tabstop=4 |
 			\ set softtabstop=4 |
 			\ set shiftwidth=4 |
@@ -565,7 +579,7 @@ colorscheme snow
 set background=dark
 
 " Set a marker to denote when a line should break (see textwidth setting)
-set colorcolumn=140
+set colorcolumn=120
 
 " Highlight line that the cursor is currently on
 set cursorline

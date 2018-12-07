@@ -44,7 +44,7 @@ dev_pot() {
 	cd ~/Development/pot
 	pyenv local 3.6.6
 	tmux new-session -d -s ${SESSION_NAME} -n wrkspace
-	tmux send-keys -t ${SESSION_NAME}:1 'vim' C-m
+	tmux send-keys -t ${SESSION_NAME}:1.0 'pipenv run vim' C-m
 	tmux new-window -t ${SESSION_NAME}:2 -n bg_procs
 	tmux send-keys -t ${SESSION_NAME}:2 'docker-compose	up -d' C-m
 	tmux send-keys -t ${SESSION_NAME}:2 'pipenv run worker' C-m
@@ -52,6 +52,17 @@ dev_pot() {
 	tmux splitw -v 'pipenv shell python manage.py runserver'
 	tmux selectw -t ${SESSION_NAME}:1
 	tmux -2 attach -t ${SESSION_NAME}
+}
+
+dev_polls() {
+	SESSION_NAME=polls
+	cd ~/Development/practice/django/polls
+	pyenv local 3.6.6
+	tmux new-session -d -s ${SESSION_NAME} -n wrkspace
+	tmux send-keys -t ${SESSION_NAME}:1.0 'pipenv run vim' C-m
+	tmux new-window -t ${SESSION_NAME}:2 -n bg_procs
+	tmux send-keys -t ${SESSION_NAME}:2 'pipenv shell python manage.py runserver'
+	tmux -2 attach -t ${SESSION_NAME}:1
 }
 
 #}}}
