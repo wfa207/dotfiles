@@ -10,7 +10,15 @@ import os
 import readline
 import rlcompleter
 import pdb
+from lxml import etree
+import requests
+
 from pprint import pprint as pp
+
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 
 '''
 from scraping_tools.http import ScrapeClient
@@ -42,33 +50,30 @@ def write_file(file_path, content):
     f.close()
 
 
-'''
-def get_response(url, *args, **kwargs):
+def get_response(*args, **kwargs):
     try:
-        res = scrape_client.get(url, *args, **kwargs)
+        res = requests.get(*args, **kwargs)
         return res
     except Exception as e:
-        import ipdb
-        ipdb.set_trace()
+        import pdb
+        pdb.set_trace()
         raise e
 
 
-def get_html_str(url, *args, **kwargs):
-    return get_response(url, *args, **kwargs).text
+def get_html_str(*args, **kwargs):
+    return get_response(*args, **kwargs).text
 
 
 def get_dom_from_text(text):
-    from lxml import etree
-    from StringIO import StringIO
-
     return etree.parse(StringIO(text), etree.HTMLParser())
 
 
-def get_dom(url, *args, **kwargs):
-    html_str = get_html_str(url, *args, **kwargs)
+def get_dom(*args, **kwargs):
+    html_str = get_html_str(*args, **kwargs)
     return get_dom_from_text(html_str)
 
 
+'''
 def get_redirect_and_html_str(url, *args, **kwargs):
     response = get_response(url, *args, **kwargs)
     return response.url, response.text
