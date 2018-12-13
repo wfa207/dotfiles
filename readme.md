@@ -120,9 +120,21 @@ SCSS Syntax highlighting
 
 Interact with Tmux from Vim
 
+#### [VimSurround](https://github.com/tpope/vim-surround)
+
+Easily wrap text in quotations / parentheses / brackets / etc.
+
+#### [JDaddy](https://github.com/tpope/vim-jdaddy)
+
+Format JSON text to be more readable; a little buggy - doesn't work when using single quotes (`'`)
+
+#### [Vim-Test](https://github.com/janko-m/vim-test)
+
+Run tests easily from Vim through Tmux (Vimux dependency)
+
 ## Bash
 
-The `bashrc` file is basically a collection of configuration options I've accumulated while developing.
+The `bashrc` file is basically a collection of configuration options I've accumulated while working on projects.
 
 ## Tmux
 

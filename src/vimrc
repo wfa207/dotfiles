@@ -142,6 +142,15 @@ Plug 'cakebaker/scss-syntax.vim'
 " Vimux: Interact with Tmux from Vim
 Plug 'benmills/vimux'
 
+" Vim_Surround: Interact with Tmux from Vim
+Plug 'tpope/vim-surround'
+
+" J_Daddy: Format json in Vim
+Plug 'tpope/vim-jdaddy'
+
+" Vim_Test: Run tests more conveniently using Tmux & Vim
+Plug 'janko-m/vim-test'
+
 " All plugins must be added before the following line
 call plug#end()   					" Required
 
@@ -407,6 +416,19 @@ map <Leader>vr :VimuxInspectRunner<CR>
 
 " Zoom the tmux runner pane
 map <Leader>vz :VimuxZoomRunner<CR>#
+""}}}
+" -----------------------------------------------------------
+" Vim-Test {{{
+
+let test#strategy = "vimux"
+let test#python#runner = "pytest"
+
+nmap <silent> tn :TestNearest<CR>
+nmap <silent> tf :TestFile<CR>
+nmap <silent> ta :TestSuite<CR>
+nmap <silent> tl :TestLast<CR>
+nmap <silent> tg :TestVisit<CR>
+
 ""}}}
 " -----------------------------------------------------------
 " Must-Have Options"{{{
