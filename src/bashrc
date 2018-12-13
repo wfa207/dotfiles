@@ -61,7 +61,7 @@ dev_polls() {
 	tmux new-session -d -s ${SESSION_NAME} -n wrkspace
 	tmux send-keys -t ${SESSION_NAME}:1.0 'pipenv run vim' C-m
 	tmux new-window -t ${SESSION_NAME}:2 -n bg_procs
-	tmux send-keys -t ${SESSION_NAME}:2 'pipenv shell python manage.py runserver'
+	tmux send-keys -t ${SESSION_NAME}:2 'pipenv shell python manage.py runserver 7000' C-m
 	tmux -2 attach -t ${SESSION_NAME}:1
 }
 
