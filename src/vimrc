@@ -579,7 +579,6 @@ au BufNewFile,BufRead *.py,*.pyc
 			\ set tabstop=4 |
 			\ set softtabstop=4 |
 			\ set shiftwidth=4 |
-			\ set textwidth=79 |
 			\ set expandtab |
 			\ set autoindent |
 			\ set fileformat=unix |
@@ -689,5 +688,8 @@ nnoremap <C-k> <C-w>k
 
 " Navigate down
 nnoremap <C-j> <C-w>j
+
+" Macro shortcut
+nnoremap <Space> @q
 ""}}}
 " -----------------------------------------------------------
