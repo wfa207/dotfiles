@@ -151,6 +151,9 @@ Plug 'tpope/vim-jdaddy'
 " Vim_Test: Run tests more conveniently using Tmux & Vim
 Plug 'janko-m/vim-test'
 
+" Pythonsense: Smarter movement commands tailored for Python
+Plug 'jeetsukumaran/vim-pythonsense'
+
 " All plugins must be added before the following line
 call plug#end()   					" Required
 
@@ -338,6 +341,9 @@ nnoremap <C-p> :Files<CR>
 " Use Silver Searcher to search file content
 " Space here is intentional
 nnoremap <Leader>fa :Ag 
+
+" Search within a Buffer
+nnoremap <Leader>fb :BLines<CR>
 
 " Use Ale to search for references to symbol under cursor
 " nnoremap <Leader>fr :FZFFindRefs

@@ -132,6 +132,10 @@ Format JSON text to be more readable; a little buggy - doesn't work when using s
 
 Run tests easily from Vim through Tmux (Vimux dependency)
 
+#### [Pythonsense](https://github.com/jeetsukumaran/vim-pythonsense)
+
+Move more naturally and intuitively in Python files, using Vim-style movement commands
+
 ## Bash
 
 The `bashrc` file is basically a collection of configuration options I've accumulated while working on projects.
