@@ -10,8 +10,11 @@ import os
 import readline
 import rlcompleter
 import pdb
-from lxml import etree
-import requests
+try:
+    from lxml import etree
+    import requests
+except ImportError:
+    pass
 
 from pprint import pprint as pp
 
@@ -39,8 +42,9 @@ def save_history(historyPath=historyPath):
 if os.path.exists(historyPath):
     readline.read_history_file(historyPath)
 
-
 atexit.register(save_history)
+os.system("clear")
+
 del os, atexit, readline, rlcompleter, save_history, historyPath
 
 
