@@ -264,9 +264,11 @@ let g:user_emmet_settings = {
 let g:ale_sign_error = '✖' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '●'
 let g:ale_linters = {
-			\ 'python': ['pyls'],
+			\ 'python': ['pyls', 'pylint'],
 			\ 'javascript': ['tsserver']
 			\}
+
+let g:ale_python_pylint_use_global = 1
 
 " By default, VIM and python-language-server (pyls) are not aware of the
 " virtualenv; the following code detects if a virtualenv is running and

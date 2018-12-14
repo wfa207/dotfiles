@@ -59,6 +59,15 @@ dev_pot() {
 	tmux -2 attach -t ${SESSION_NAME}:1.0
 }
 
+dev_dot() {
+	SESSION_NAME=dot
+	cd ~/dotfiles
+	tmux new -d -s ${SESSION_NAME} -n wrkspace -x - -y -
+	tmux send 'vim' C-m
+	tmux splitw -h
+	tmux -2 attach -t ${SESSION_NAME}:1.0
+}
+
 dev_polls() {
 	SESSION_NAME=polls
 	cd ~/Development/practice/django/polls
@@ -122,6 +131,9 @@ alias gstap="git stash apply"
 # =============================================================================
 alias .b=". ~/.bashrc"
 alias cl="clear"
+alias dev-pot="dev_pot"
+alias dev-polls="dev_polls"
+alias dev-dot="dev_dot"
 #}}}
 # =============================================================================
 # Private Aliases#{{{
