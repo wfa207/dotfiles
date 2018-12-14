@@ -260,15 +260,26 @@ let g:user_emmet_settings = {
 " Author: w0rp (https://github.com/w0rp)
 " Description: Syntax checker plugin
 
+" Enable completion where available.
+" This setting must be set before ALE is loaded.
+let g:ale_completion_enabled = 1
+
 " Default settings recommended by syntastic contributors
 let g:ale_sign_error = '✖' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '●'
+
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+
+" Python linters previously included 'pyls'
+" I've dropped 'pyls' in favor of YCM (which relies on Jedi)
 let g:ale_linters = {
-			\ 'python': ['pyls', 'pylint'],
+			\ 'python': ['pylint'],
 			\ 'javascript': ['tsserver']
 			\}
 
 let g:ale_python_pylint_use_global = 1
+let g:airline#extensions#ale#enabled = 1
 
 " By default, VIM and python-language-server (pyls) are not aware of the
 " virtualenv; the following code detects if a virtualenv is running and
@@ -300,7 +311,9 @@ endpy2
 endif
 
 " Mapping for GoTo Definition
-map <Leader>gd  :ALEGoToDefinition<CR>
+" Dropped in favor of YCM (which relies on Jedi)
+" map <Leader>gd  :ALEGoToDefinition<CR>
+" map <Leader>fr  :ALEFindReferences<CR>
 
 ""}}}
 " -----------------------------------------------------------
@@ -326,6 +339,9 @@ nnoremap <C-p> :Files<CR>
 " Space here is intentional
 nnoremap <Leader>fa :Ag 
 
+" Use Ale to search for references to symbol under cursor
+" nnoremap <Leader>fr :FZFFindRefs
+
 " Ag customization
 command! -bang -nargs=* Ag
 			\ call fzf#vim#ag(<q-args>,
@@ -339,6 +355,13 @@ command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({
   \												       'source': 'ag --ignore .git --hidden -g .'
   \												      }, 'right:50%'), <bang>0)
+
+" ALE Find References customization
+" command! -bang -nargs=* FZFFindRefs
+"             \ call ale#references#Find(<cword>,
+"             \				  '--ignore .git --hidden',
+"             \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+"             \                         : fzf#vim#with_preview('right:50%', '?'))
 
 """}}}
 " -----------------------------------------------------------
@@ -359,6 +382,8 @@ let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 " Select previous completion
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
+" Go to definition / declaration of a variable or class
+nnoremap <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 ""}}}
 " -----------------------------------------------------------

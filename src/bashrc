@@ -39,6 +39,15 @@ fi
 # Helper Functions#{{{
 # =============================================================================
 
+dev_vimscript() {
+	SESSION_NAME=vimscript
+	cd ~/${SESSION_NAME}
+	tmux new -d -s ${SESSION_NAME} -n wrkspace -x - -y -
+	tmux send 'vim' C-m
+	tmux splitw -h
+	tmux -2 attach -t ${SESSION_NAME}:1.0
+}
+
 dev_pot() {
 	SESSION_NAME=pot
 	cd ~/Development/pot
@@ -134,6 +143,7 @@ alias cl="clear"
 alias dev-pot="dev_pot"
 alias dev-polls="dev_polls"
 alias dev-dot="dev_dot"
+alias dev-vimscript="dev_vimscript"
 #}}}
 # =============================================================================
 # Private Aliases#{{{
