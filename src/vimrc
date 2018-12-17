@@ -340,10 +340,10 @@ nnoremap <C-p> :Files<CR>
 
 " Use Silver Searcher to search file content
 " Space here is intentional
-nnoremap <Leader>fa :Ag 
+nnoremap <Leader>fa :Ag<CR>
 
 " Search within a Buffer
-nnoremap <Leader>fb :BLines<CR>
+nnoremap <Leader>ff :BLines<CR>
 
 " Use Ale to search for references to symbol under cursor
 " nnoremap <Leader>fr :FZFFindRefs
@@ -352,15 +352,19 @@ nnoremap <Leader>fb :BLines<CR>
 command! -bang -nargs=* Ag
 			\ call fzf#vim#ag(<q-args>,
 			\				  '--ignore .git --hidden',
-			\                 <bang>0 ? fzf#vim#with_preview('up:60%')
-			\                         : fzf#vim#with_preview('right:50%', '?'))
+			\                 fzf#vim#with_preview('right:50%'),
+			\				  <bang>0)
 
 " Ctrl-P customization
-" Empty dictionary to add options (passed to fzf) later on
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({
   \												       'source': 'ag --ignore .git --hidden -g .'
   \												      }, 'right:50%'), <bang>0)
+
+" BufferLine Search customization
+command! -bang -nargs=* BLines
+  \ call fzf#vim#buffer_lines(<q-args>, fzf#vim#with_preview({
+  \															 }, 'right:50%'), <bang>0)
 
 " ALE Find References customization
 " command! -bang -nargs=* FZFFindRefs
@@ -438,6 +442,15 @@ let g:multi_cursor_exit_from_insert_mode=0
 " -----------------------------------------------------------
 " Vimux {{{
 
+" Vimux's default 'VimuxZoomRunner' doesn't work properly
+" The fix below should zoom even from another zoomed pane
+function! VimuxZoomRunner()
+	if exists("g:VimuxRunnerIndex")
+		call _VimuxTmux("select-"._VimuxRunnerType()." -t ".g:VimuxRunnerIndex)
+		call _VimuxTmux("resize-pane -Z -t ".g:VimuxRunnerIndex)
+	endif
+endfunc
+
 " Prompt for a command to run
 map <Leader>vp :VimuxPromptCommand<CR>
 
@@ -448,7 +461,7 @@ map <Leader>vl :VimuxRunLastCommand<CR>
 map <Leader>vr :VimuxInspectRunner<CR>
 
 " Zoom the tmux runner pane
-map <Leader>vz :VimuxZoomRunner<CR>#
+map <Leader>vz :call VimuxZoomRunner()<CR>
 ""}}}
 " -----------------------------------------------------------
 " Vim-Test {{{
