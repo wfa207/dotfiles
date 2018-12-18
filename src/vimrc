@@ -444,7 +444,7 @@ let g:multi_cursor_exit_from_insert_mode=0
 
 " Vimux's default 'VimuxZoomRunner' doesn't work properly
 " The fix below should zoom even from another zoomed pane
-function! VimuxZoomRunner()
+function! MyVimuxZoomRunner()
 	if exists("g:VimuxRunnerIndex")
 		call _VimuxTmux("select-"._VimuxRunnerType()." -t ".g:VimuxRunnerIndex)
 		call _VimuxTmux("resize-pane -Z -t ".g:VimuxRunnerIndex)
@@ -461,7 +461,7 @@ map <Leader>vl :VimuxRunLastCommand<CR>
 map <Leader>vr :VimuxInspectRunner<CR>
 
 " Zoom the tmux runner pane
-map <Leader>vz :call VimuxZoomRunner()<CR>
+map <Leader>vz :call MyVimuxZoomRunner()<CR>
 ""}}}
 " -----------------------------------------------------------
 " Vim-Test {{{
