@@ -604,8 +604,6 @@ set pastetoggle=<F11>
 " four characters wide for all files, unless otherwise specified
 set encoding=utf-8
 set shiftwidth=4
-" set textwidth=79
-" set wrapmargin=79
 set textwidth=0
 set wrapmargin=0
 set tabstop=4
@@ -614,14 +612,18 @@ set autoindent
 
 " Indentation options for js, html, and css files
 au BufNewFile,BufRead *.js,*.html,*.css
+			\ set textwidth=119 |
+			\ set colorcolumn=120 |
 			\ set tabstop=2 |
 			\ set softtabstop=2 |
 			\ set shiftwidth=2 |
+			\ set autoindent |
 			\ set expandtab
 
 " Indentation options for python files
-au BufNewFile,BufRead *.py,*.pyc
-			\ set textwidth=120 |
+			\ set textwidth=119 |
+			\ set colorcolumn=120 |
+			\ set colorcolumn=119 |
 			\ set tabstop=4 |
 			\ set softtabstop=4 |
 			\ set shiftwidth=4 |
@@ -630,6 +632,17 @@ au BufNewFile,BufRead *.py,*.pyc
 			\ set fileformat=unix |
             \ setlocal foldmethod=indent |
             \ setlocal foldlevel=99
+
+" Indentation options for reStructuredText files
+au BufNewFile,BufRead *.rst
+			\ set textwidth=79 |
+            \ set colorcolumn=80 |
+			\ set tabstop=4 |
+			\ set softtabstop=4 |
+			\ set shiftwidth=4 |
+			\ set expandtab |
+			\ set autoindent |
+			\ set fileformat=unix |
 ""}}}
 " -----------------------------------------------------------
 " Display {{{
