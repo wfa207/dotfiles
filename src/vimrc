@@ -45,15 +45,6 @@ if !isdirectory(&dir) | call mkdir(&dir, 'p', 0700) | endif
 " -----------------------------------------------------------
 " Helper Functions {{{
 
-" Helpful functions that are mapped to specific keys; see "Mappings"
-function! NumberToggle()
-	if(&relativenumber == 1)
-		set norelativenumber
-	else
-		set relativenumber
-	endif
-endfunc
-
 ""}}}
 " -----------------------------------------------------------
 " Vim-Plug {{{
@@ -204,8 +195,8 @@ au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTre
 let NERDTreeShowHidden=1
 "
 " Toggle NERDTree menu
-map <Leader>b :NERDTreeToggle<CR>
-map <Leader>n :NERDTree<CR>
+noremap <Leader>b :NERDTreeToggle<CR>
+noremap <Leader>n :NERDTree<CR>
 
 " NERDTree split mappings are a bit counterintuitive (I decided to change them
 " to v and s for vertical and horizontal split, respectively)
@@ -315,8 +306,8 @@ endif
 
 " Mapping for GoTo Definition
 " Dropped in favor of YCM (which relies on Jedi)
-" map <Leader>gd  :ALEGoToDefinition<CR>
-" map <Leader>fr  :ALEFindReferences<CR>
+" noremap <Leader>gd  :ALEGoToDefinition<CR>
+" noremap <Leader>fr  :ALEFindReferences<CR>
 
 ""}}}
 " -----------------------------------------------------------
@@ -468,16 +459,16 @@ function! MyVimuxZoomRunner()
 endfunc
 
 " Prompt for a command to run
-map <Leader>vp :VimuxPromptCommand<CR>
+noremap <Leader>vp :VimuxPromptCommand<CR>
 
 " Run last command executed by VimuxRunCommand
-map <Leader>vl :VimuxRunLastCommand<CR>
+noremap <Leader>vl :VimuxRunLastCommand<CR>
 
 " Inspect runner pane
-map <Leader>vr :VimuxInspectRunner<CR>
+noremap <Leader>vr :VimuxInspectRunner<CR>
 
 " Zoom the tmux runner pane
-map <Leader>vz :call MyVimuxZoomRunner()<CR>
+noremap <Leader>vz :call MyVimuxZoomRunner()<CR>
 ""}}}
 " -----------------------------------------------------------
 " Vim-Test {{{
@@ -485,11 +476,11 @@ map <Leader>vz :call MyVimuxZoomRunner()<CR>
 let test#strategy = "vimux"
 let test#python#runner = "pytest"
 
-nmap <silent> tn :TestNearest<CR>
-nmap <silent> tf :TestFile<CR>
-nmap <silent> ta :TestSuite<CR>
-nmap <silent> tl :TestLast<CR>
-nmap <silent> tg :TestVisit<CR>
+nnoremap <silent> tn :TestNearest<CR>
+nnoremap <silent> tf :TestFile<CR>
+nnoremap <silent> ta :TestSuite<CR>
+nnoremap <silent> tl :TestLast<CR>
+nnoremap <silent> tg :TestVisit<CR>
 
 ""}}}
 " -----------------------------------------------------------
@@ -746,10 +737,10 @@ nnoremap <C-T> :tabnew<CR>
 nnoremap <Leader>3 :set invnumber<CR>
 
 " Ensure Enter inserts new line
-imap <CR> <CR>
+inoremap <CR> <CR>
 
 " Toggle line numbers between absolute and relative
-nnoremap <C-a> :call NumberToggle()<CR>
+nnoremap <C-a> :set relativenumber!<CR>
 
 " Easier navigation between panes
 " Navigate right
