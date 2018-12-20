@@ -39,13 +39,23 @@ fi
 # Helper Functions#{{{
 # =============================================================================
 
-dev_vimscript() {
-	SESSION_NAME=vimscript
-	cd ~/${SESSION_NAME}
+dev_vertical_half() {
+	SESSION_NAME=$1
 	tmux new -d -s ${SESSION_NAME} -n wrkspace -x - -y -
 	tmux send 'vim' C-m
 	tmux splitw -h
+	tmux resizep -Z -t ${SESSION_NAME}:1.0
 	tmux -2 attach -t ${SESSION_NAME}:1.0
+}
+
+dev_dot() {
+	cd ~/dotfiles
+	dev_vertical_half dot
+}
+
+dev_vimscript() {
+	cd ~/Development/practice/vimscript
+	dev_vertical_half vimscript
 }
 
 dev_pot() {
@@ -67,16 +77,6 @@ dev_pot() {
 	tmux send 'pipenv shell python manage.py runserver' C-m
 	tmux selectp -t ${SESSION_NAME}:1.1
 	tmux resizep -Z -t ${SESSION_NAME}:1.0  # Allows us to quick-switch to the bash shell
-	tmux -2 attach -t ${SESSION_NAME}:1.0
-}
-
-dev_dot() {
-	SESSION_NAME=dot
-	cd ~/dotfiles
-	tmux new -d -s ${SESSION_NAME} -n wrkspace -x - -y -
-	tmux send 'vim' C-m
-	tmux splitw -h
-	tmux resizep -Z -t ${SESSION_NAME}:1.0
 	tmux -2 attach -t ${SESSION_NAME}:1.0
 }
 
