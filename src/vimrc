@@ -17,7 +17,7 @@
 " for subsequent sections
 
 " clear all mappings before assignment
-mapc
+mapclear
 
 let mapleader=","
 
@@ -40,10 +40,22 @@ set splitbelow
 " webpack). The following line saves these files to a central directory
 " instead.
 set dir=$HOME/.vim/tmp/swap
-if !isdirectory(&dir) | call mkdir(&dir, 'p', 0700) | endif
+if !isdirectory(&dir)
+	call mkdir(&dir, 'p', 0700)
+endif
 ""}}}
 " -----------------------------------------------------------
 " Helper Functions {{{
+
+function! SetTabsAndText(textwidthnum, tabwidthnum)
+	let &l:textwidth = a:textwidthnum-1
+	let &l:colorcolumn = a:textwidthnum
+	let &l:tabstop = a:tabwidthnum
+	let &l:softtabstop = a:tabwidthnum
+	let &l:shiftwidth = a:tabwidthnum
+	setlocal autoindent
+	setlocal expandtab
+endfunction
 
 ""}}}
 " -----------------------------------------------------------
@@ -164,13 +176,13 @@ call plug#end()   					" Required
 " Put your non-Plugin stuff after this line
 "
 " Install plugins via Vim-Plug
-nnoremap <Leader>vi :PlugInstall<CR>
+noremap <Leader>vi :PlugInstall<CR>
 
 " Update plugins via Vim-Plug
-nnoremap <Leader>vu :PlugUpdate<CR>
+noremap <Leader>vu :PlugUpdate<CR>
 
 " Clean plugins via Vim-Plug
-nnoremap <Leader>vc :PlugClean<CR>
+noremap <Leader>vc :PlugClean<CR>
 ""}}}
 " -----------------------------------------------------------
 " NERDTree {{{
@@ -180,16 +192,29 @@ nnoremap <Leader>vc :PlugClean<CR>
 " Description: NERDTree provides a way for us to explore the file system
 " 			   visually and open files and directories accordingly.
 
-" Start NERDTree automatically when vim starts up with no files specified
-" au StdinReadPre * let s:std_in=1
-" au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+augroup nerdtree_setup
+	autocmd!
 
-" Start NERDTree automatically when vim starts up on a directory
-au StdinReadPre * let s:std_in=1
-au VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+	" Start NERDTree automatically when vim starts up with no files specified
+	" autocmd StdinReadPre * let s:std_in=1
+	" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") |
+	"             \ NERDTree |
+	"             \ endif
 
-" If NERDTree is the only window left, vim will automatically close
-au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+	" Start NERDTree automatically when vim starts up on a directory
+	autocmd StdinReadPre * let s:std_in=1
+
+	autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") |
+				\ exe 'NERDTree' argv()[0] |
+				\ wincmd p |
+				\ ene |
+				\ endif
+
+	" If NERDTree is the only window left, vim will automatically close
+	autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) |
+				\ q |
+				\ endif
+augroup END
 
 " Have NERDTree show hidden files by default
 let NERDTreeShowHidden=1
@@ -358,7 +383,7 @@ nnoremap <Leader>ff :BLines<CR>
 " Ag customization
 command! -bang -nargs=* Ag
 			\ call fzf#vim#ag(<q-args>,
-			\				  '--ignore .git --hidden',
+			\				  '--ignore .git --hidden -o',
 			\                 fzf#vim#with_preview('right:50%'),
 			\				  <bang>0)
 
@@ -605,52 +630,57 @@ endif
 set pastetoggle=<F11>
 ""}}}
 " -----------------------------------------------------------
-" Indentation Options {{{
+" Autocommands {{{
 
-" Indentation settings for using hard tabs for indent. Display tabs as
-" four characters wide for all files, unless otherwise specified
-set encoding=utf-8
-set shiftwidth=4
-set textwidth=0
-set wrapmargin=0
-set tabstop=4
-set softtabstop=4
-set autoindent
+" Autocommand groups help namespace autocommands and ensure we
+" only execute autocommands once (otherwise they will compound
+" each time we source our vimrc)
+augroup webdev_setup
+	autocmd!
+	" Indentation options for js, html, and css files
+	autocmd BufNewFile,BufRead *.js,*.html,*.css
+				\ call SetTabsAndText(120, 4)
+augroup END
 
-" Indentation options for js, html, and css files
-au BufNewFile,BufRead *.js,*.html,*.css
-			\ set textwidth=119 |
-			\ set colorcolumn=120 |
-			\ set tabstop=2 |
-			\ set softtabstop=2 |
-			\ set shiftwidth=2 |
-			\ set autoindent |
-			\ set expandtab
 
-" Indentation options for python files
-au BufNewFile,BufRead *.py,*.pyc
-			\ set textwidth=119 |
-			\ set colorcolumn=120 |
-			\ set colorcolumn=119 |
-			\ set tabstop=4 |
-			\ set softtabstop=4 |
-			\ set shiftwidth=4 |
-			\ set expandtab |
-			\ set autoindent |
-			\ set fileformat=unix |
-            \ setlocal foldmethod=indent |
-            \ setlocal foldlevel=99
+augroup python_setup
+	autocmd!
+	" Indentation options for python files
+	autocmd BufNewFile,BufRead *.py,*.pyc
+				\ call SetTabsAndText(120, 4) |
+				\ setlocal autoindent |
+				\ setlocal fileformat=unix |
+				\ setlocal foldmethod=indent |
+				\ setlocal foldlevel=99
+augroup END
 
-" Indentation options for reStructuredText files
-au BufNewFile,BufRead *.rst
-			\ set textwidth=79 |
-            \ set colorcolumn=80 |
-			\ set tabstop=4 |
-			\ set softtabstop=4 |
-			\ set shiftwidth=4 |
-			\ set expandtab |
-			\ set autoindent |
-			\ set fileformat=unix |
+augroup rst_setup
+	autocmd!
+	" Indentation options for reStructuredText files
+	" Setting a manual foldmethod for now; can set this to
+	" an expression (see: `fold-expr`) but don't know how to
+	" do so at the moment
+	autocmd BufNewFile,BufRead *.rst
+				\ call SetTabsAndText(80, 4) |
+				\ setlocal autoindent |
+				\ setlocal foldmethod=manual |
+				\ setlocal fileformat=unix |
+augroup END
+
+augroup markdown_setup
+	" By default, Vim detects *.md files as Modula-2 files; this line forces all
+	" *.md files to be read as markdown
+	autocmd BufNewFile,BufRead *.md
+				\ setlocal filetype=markdown |
+				\ SetTabsAndText(80, 4)
+augroup END
+
+augroup vimscript_setup
+	autocmd FileType vim
+				\ call SetTabsAndText(80, 4) |
+				\ setlocal autoindent
+augroup END
+
 ""}}}
 " -----------------------------------------------------------
 " Display {{{
@@ -666,8 +696,15 @@ set t_Co=256
 colorscheme snow
 set background=dark
 
-" Set a marker to denote when a line should break (see textwidth setting)
+" Default text formatting / line-breaks
 set colorcolumn=120
+set encoding=utf-8
+set shiftwidth=4
+set textwidth=0
+set wrapmargin=0
+set tabstop=4
+set softtabstop=4
+set autoindent
 
 " Highlight line that the cursor is currently on
 set cursorline
@@ -675,10 +712,6 @@ set cursorline
 " Flag excess whitespace
 highlight ExtraWhitespace ctermbg=190 guibg=#dfff00
 match ExtraWhitespace /\s\+$/
-
-" By default, Vim detects *.md files as Modula-2 files; this line forces all
-" *.md files to be read as markdown
-au BufNewFile,BufRead *.md set filetype=markdown
 
 " =============================
 " Airline Configuration
