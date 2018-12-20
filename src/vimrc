@@ -628,6 +628,7 @@ au BufNewFile,BufRead *.js,*.html,*.css
 			\ set expandtab
 
 " Indentation options for python files
+au BufNewFile,BufRead *.py,*.pyc
 			\ set textwidth=119 |
 			\ set colorcolumn=120 |
 			\ set colorcolumn=119 |
