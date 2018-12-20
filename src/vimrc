@@ -707,16 +707,16 @@ let python_highlight_all=1
 " =============================
 "
 " Open .vimrc file
-nnoremap <Leader>ev :e ~/.vimrc<CR>
-nnoremap <Leader>sv :so ~/.vimrc<CR>
+nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <Leader>sv :so $MYVIMRC<CR>
 
 " Open .bashrc file
-nnoremap <Leader>eb :e ~/.bashrc<CR>
+nnoremap <Leader>eb :vsplit ~/.bashrc<CR>
 nnoremap <Leader>sb :!. ~/.bashrc<CR>
 
 " Keep a small notebook of ongoing thoughts to be transferred to other mediums
 " for more permanent storage
-nnoremap <Leader>et :e ~/.thoughts.md<CR>
+nnoremap <Leader>et :vsplit ~/.thoughts.md<CR>
 
 " =============================
 " Useful mappings
@@ -757,5 +757,9 @@ nnoremap <C-j> <C-w>j
 
 " Macro shortcut
 nnoremap <Space> @q
+""}}}
+" -----------------------------------------------------------
+" Abbreviations {{{
+iabbrev @@ wes@test.com
 ""}}}
 " -----------------------------------------------------------
