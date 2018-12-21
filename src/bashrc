@@ -63,7 +63,6 @@ dev_pot() {
 	cd ~/Development/pot
 	pyenv local 3.6.6
 	tmux new -d -s ${SESSION_NAME} -n wrkspace -x - -y -
-	tmux send 'pipenv run vim' C-m
 	tmux splitw -v -p 15
 	tmux send 'pipenv shell clear' C-m
 	tmux splitw -h
@@ -76,6 +75,7 @@ dev_pot() {
 	tmux splitw -v
 	tmux send 'pipenv shell python manage.py runserver' C-m
 	tmux selectp -t ${SESSION_NAME}:1.1
+	tmux send -t ${SESSION_NAME}:1.0 'pipenv run vim' C-m
 	tmux resizep -Z -t ${SESSION_NAME}:1.0  # Allows us to quick-switch to the bash shell
 	tmux -2 attach -t ${SESSION_NAME}:1.0
 }
