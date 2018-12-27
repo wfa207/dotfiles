@@ -375,17 +375,22 @@ nnoremap <C-p> :Files<CR>
 nnoremap <Leader>fa :Ag<CR>
 
 " Search within a Buffer
-nnoremap <Leader>ff :BLines<CR>
+nnoremap <Leader>ff :SearchFile<CR>
 
 " Use Ale to search for references to symbol under cursor
 " nnoremap <Leader>fr :FZFFindRefs
 
 " Ag customization
 command! -bang -nargs=* Ag
-			\ call fzf#vim#ag(<q-args>,
-			\				  '--ignore .git --hidden -o',
-			\                 fzf#vim#with_preview('right:50%'),
-			\				  <bang>0)
+  \ call fzf#vim#ag(<q-args>,
+  \				    '--ignore .git --hidden',
+  \                 fzf#vim#with_preview({
+  \                                       'options': [
+  \                                                     '--prompt', 'All> ',
+  \                                                     '--delimiter', ':',
+  \                                                     '--nth',  '4..',
+  \                                                  ],
+  \                                      }, 'right:50%'), <bang>0)
 
 " Ctrl-P customization
 command! -bang -nargs=? -complete=dir Files
@@ -393,10 +398,6 @@ command! -bang -nargs=? -complete=dir Files
   \												       'source': 'ag --ignore .git --hidden -g .'
   \												      }, 'right:50%'), <bang>0)
 
-" BufferLine Search customization
-command! -bang -nargs=* BLines
-  \ call fzf#vim#buffer_lines(<q-args>, fzf#vim#with_preview({
-  \															 }, 'right:50%'), <bang>0)
 
 " ALE Find References customization
 " command! -bang -nargs=* FZFFindRefs
@@ -476,7 +477,7 @@ let g:multi_cursor_exit_from_insert_mode=0
 
 " Vimux's default 'VimuxZoomRunner' doesn't work properly
 " The fix below should zoom even from another zoomed pane
-function! MyVimuxZoomRunner()
+function! VimuxZoomRunner()
 	if exists("g:VimuxRunnerIndex")
 		call _VimuxTmux("select-"._VimuxRunnerType()." -t ".g:VimuxRunnerIndex)
 		call _VimuxTmux("resize-pane -Z -t ".g:VimuxRunnerIndex)
@@ -493,7 +494,7 @@ noremap <Leader>vl :VimuxRunLastCommand<CR>
 noremap <Leader>vr :VimuxInspectRunner<CR>
 
 " Zoom the tmux runner pane
-noremap <Leader>vz :call MyVimuxZoomRunner()<CR>
+noremap <Leader>vz :call VimuxZoomRunner()<CR>
 ""}}}
 " -----------------------------------------------------------
 " Vim-Test {{{
@@ -501,11 +502,11 @@ noremap <Leader>vz :call MyVimuxZoomRunner()<CR>
 let test#strategy = "vimux"
 let test#python#runner = "pytest"
 
-nnoremap <silent> tn :TestNearest<CR>
-nnoremap <silent> tf :TestFile<CR>
-nnoremap <silent> ta :TestSuite<CR>
-nnoremap <silent> tl :TestLast<CR>
-nnoremap <silent> tg :TestVisit<CR>
+nnoremap <silent> <Leader>tt :TestNearest<CR>
+nnoremap <silent> <Leader>tf :TestFile<CR>
+nnoremap <silent> <Leader>ta :TestSuite<CR>
+nnoremap <silent> <Leader>tl :TestLast<CR>
+nnoremap <silent> <Leader>tg :TestVisit<CR>
 
 ""}}}
 " -----------------------------------------------------------
@@ -791,6 +792,10 @@ nnoremap <C-j> <C-w>j
 
 " Macro shortcut
 nnoremap <Space> @q
+
+" Insert 'very magic' option into search
+noremap / /\v
+
 ""}}}
 " -----------------------------------------------------------
 " Abbreviations {{{
