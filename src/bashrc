@@ -68,7 +68,7 @@ dev_pot() {
 	tmux splitw -h
 	tmux send 'pipenv shell python manage.py shell' C-m
 	tmux neww -t ${SESSION_NAME}:2 -n bg_procs
-	tmux send -t ${SESSION_NAME}:2 'docker-compose	up -d' C-m
+	tmux send -t ${SESSION_NAME}:2 'docker-compose up -d' C-m
 	tmux send -t ${SESSION_NAME}:2 'pipenv run worker' C-m
 	tmux splitw -h
 	tmux send 'pipenv run scheduler' C-m
