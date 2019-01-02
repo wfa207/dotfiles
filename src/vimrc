@@ -57,6 +57,17 @@ function! SetTabsAndText(textwidthnum, tabwidthnum)
 	setlocal expandtab
 endfunction
 
+function! GetCurrentFilepath()
+    return expand('%:p')
+endfunction
+
+function! CopyFilepathToClipboard()
+    let s:_filepath = GetCurrentFilepath()
+    let s:_filepath = join(split(s:_filepath, '/')[2:], '.')
+    call setreg('*', s:_filepath)
+endfunction
+
+
 ""}}}
 " -----------------------------------------------------------
 " Vim-Plug {{{
@@ -673,7 +684,7 @@ augroup markdown_setup
 	" *.md files to be read as markdown
 	autocmd BufNewFile,BufRead *.md
 				\ setlocal filetype=markdown |
-				\ SetTabsAndText(80, 4)
+				\ call SetTabsAndText(80, 4)
 augroup END
 
 augroup vimscript_setup
@@ -753,6 +764,9 @@ nnoremap <Leader>sb :!. ~/.bashrc<CR>
 " for more permanent storage
 nnoremap <Leader>et :vsplit ~/.thoughts.md<CR>
 
+" Keep a scratch pad for python scripts
+nnoremap <Leader>ep :vsplit ~/.scratch.py<CR>
+
 " =============================
 " Useful mappings
 " =============================
@@ -795,6 +809,9 @@ nnoremap <Space> @q
 
 " Insert 'very magic' option into search
 noremap / /\v
+
+" Copy filename to clipboard register (*)
+nnoremap <Leader>fp :call CopyFilepathToClipboard()<CR>
 
 ""}}}
 " -----------------------------------------------------------
