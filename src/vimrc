@@ -813,6 +813,9 @@ noremap / /\v
 " Copy filename to clipboard register (*)
 nnoremap <Leader>fp :call CopyFilepathToClipboard()<CR>
 
+" Reload all buffers
+nnoremap <Leader>ea :bufdo e<CR>
+
 ""}}}
 " -----------------------------------------------------------
 " Abbreviations {{{
