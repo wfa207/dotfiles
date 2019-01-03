@@ -459,6 +459,12 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 " Author: Holger Rapp (https://github.com/SirVer)
 " Description: UltiSnips provides snippets in Vim
 
+" Add custom snippets
+let g:UltiSnipsSnippetDirectories=[
+            \ "UltiSnips",
+            \ $HOME."/.vim/my_snippets",
+            \ ]
+
 " The below helps UltiSnips play nice with YCM
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
