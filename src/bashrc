@@ -46,6 +46,7 @@ dev_vertical_half() {
 	tmux splitw -h
 	tmux resizep -Z -t ${SESSION_NAME}:1.0
 	tmux -2 attach -t ${SESSION_NAME}:1.0
+	unset SESSION_NAME
 }
 
 dev_dot() {
@@ -78,6 +79,7 @@ dev_pot() {
 	tmux send -t ${SESSION_NAME}:1.0 'pipenv run vim' C-m
 	tmux resizep -Z -t ${SESSION_NAME}:1.0  # Allows us to quick-switch to the bash shell
 	tmux -2 attach -t ${SESSION_NAME}:1.0
+	unset SESSION_NAME
 }
 
 dev_polls() {
@@ -89,6 +91,7 @@ dev_polls() {
 	tmux new-window -t ${SESSION_NAME}:2 -n bg_procs
 	tmux send-keys -t ${SESSION_NAME}:2 'pipenv shell python manage.py runserver 7000' C-m
 	tmux -2 attach -t ${SESSION_NAME}:1
+	unset SESSION_NAME
 }
 
 #}}}
@@ -102,6 +105,8 @@ complete -W "$(itermocil --list)" dev
 
 # Install snow theme
 [ -n "$PS1" ] && sh ~/.vim/plugged/snow/shell/snow_dark.sh
+
+eval `dircolors ~/.vim/plugged/snow/shell/dircolors`
 
 #}}}
 # =============================================================================
