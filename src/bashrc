@@ -106,7 +106,8 @@ complete -W "$(itermocil --list)" dev
 # Install snow theme
 [ -n "$PS1" ] && sh ~/.vim/plugged/snow/shell/snow_dark.sh
 
-eval `dircolors ~/.vim/plugged/snow/shell/dircolors`
+# dircolors doesn't exist on OSX's distribution of bash
+# eval `dircolors ~/.vim/plugged/snow/shell/dircolors`
 
 #}}}
 # =============================================================================
