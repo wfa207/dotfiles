@@ -357,6 +357,7 @@ endif
 " Author: Junegunn Choi (https://github.com/junegunn)
 " Description: Full path fuzzy file, buffer, mru, tag, ... finder for Vim
 
+
 " Custom mapping for horizontal split
 let g:fzf_action = {
   \ 'ctrl-h': 'split',
@@ -399,6 +400,9 @@ nnoremap <Leader>h :Helptags<CR>
 " Use Ale to search for references to symbol under cursor
 " nnoremap <Leader>fr :FZFFindRefs
 
+" Control how preview window displays syntax
+let $BAT_THEME = 'TwoDark'
+
 " Ag customization
 command! -bang -nargs=* Ag
   \ call fzf#vim#ag(<q-args>,
@@ -411,24 +415,12 @@ command! -bang -nargs=* Ag
   \                                                  ],
   \                                      }, 'right:50%'), <bang>0)
 
+
 " Ctrl-P customization
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({
   \												       'source': 'ag --ignore .git --hidden -g .'
   \												      }, 'right:50%'), <bang>0)
-
-
-" Helptags customization
-" command! -bang -nargs=? Helptags
-"   \ call fzf#vim#helptags(fzf#vim#with_preview('right:50%'), <bang>0)
-
-
-" ALE Find References customization
-" command! -bang -nargs=* FZFFindRefs
-"             \ call ale#references#Find(<cword>,
-"             \				  '--ignore .git --hidden',
-"             \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-"             \                         : fzf#vim#with_preview('right:50%', '?'))
 
 """}}}
 " -----------------------------------------------------------
@@ -451,6 +443,9 @@ let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
 " Go to definition / declaration of a variable or class
 nnoremap <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" Go to definition / declaration of a variable or class
+nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 
 ""}}}
 " -----------------------------------------------------------
@@ -834,6 +829,7 @@ nnoremap <Space> @q
 
 " Insert 'very magic' option into search
 noremap / /\v
+noremap ? ?\v
 
 " Copy filename to clipboard register (*)
 nnoremap <Leader>fp :call CopyFilepathToClipboard()<CR>
