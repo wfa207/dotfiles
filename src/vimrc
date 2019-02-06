@@ -172,6 +172,9 @@ Plug 'janko-m/vim-test'
 " Pythonsense: Smarter movement commands tailored for Python
 Plug 'jeetsukumaran/vim-pythonsense'
 
+" VimWiki: Personal wiki pages written in Vim
+Plug 'vimwiki/vimwiki'
+
 " All plugins must be added before the following line
 call plug#end()   					" Required
 

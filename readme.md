@@ -136,6 +136,10 @@ Run tests easily from Vim through Tmux (Vimux dependency)
 
 Move more naturally and intuitively in Python files, using Vim-style movement commands
 
+#### [VimWiki](https://github.com/vimwiki/vimwiki)
+
+Take notes on the fly and conveniently link note pages / pads together
+
 ## Bash
 
 The `bashrc` file is basically a collection of configuration options I've accumulated while working on projects.
