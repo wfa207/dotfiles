@@ -39,6 +39,32 @@ fi
 # Helper Functions#{{{
 # =============================================================================
 
+dev_template() {
+	# Sets up two windows:
+		# 1: 3 panes with a primary pain and 2 secondary panes underneath
+		# 2: 4 panes with a "tiled" layout
+	SESSION_NAME=TEMPLATE
+	tmux new -d -s ${SESSION_NAME} -n wrkspace -x - -y -
+	tmux splitw -v -p 15
+	tmux send 'echo "${SESSION_NAME} Window 1 - Pane 0"' C-m
+	tmux splitw -h
+	tmux send 'echo "${SESSION_NAME} Window 1 - Pane 1"' C-m
+	tmux neww -t ${SESSION_NAME}:2 -n bg_procs
+	tmux send -t ${SESSION_NAME}:2 'echo "${SESSION_NAME} Window 2 - Pane 0"' C-m
+	tmux splitw -v
+	tmux send 'echo "${SESSION_NAME} Window 2 - Pane 1"' C-m
+	tmux splitw -v
+	tmux send 'echo "${SESSION_NAME} Window 2 - Pane 2"' C-m
+	tmux splitw -v
+	tmux send 'echo "${SESSION_NAME} Window 2 - Pane 3"' C-m
+	tmux select-layout tiled
+	tmux selectp -t ${SESSION_NAME}:1.1
+	tmux send -t ${SESSION_NAME}:1.0 'echo "${SESSION_NAME} Window 1 - Pane 1"' C-m
+	tmux resizep -Z -t ${SESSION_NAME}:1.0  # Allows us to quick-switch to the bash shell
+	tmux -2 attach -t ${SESSION_NAME}:1.0
+	unset SESSION_NAME
+}
+
 dev_vertical_half() {
 	SESSION_NAME=$1
 	tmux new -d -s ${SESSION_NAME} -n wrkspace -x - -y -
@@ -57,29 +83,6 @@ dev_dot() {
 dev_vimscript() {
 	cd ~/Development/practice/vimscript
 	dev_vertical_half vimscript
-}
-
-dev_pot() {
-	SESSION_NAME=pot
-	cd ~/Development/pot
-	pyenv local 3.6.6
-	tmux new -d -s ${SESSION_NAME} -n wrkspace -x - -y -
-	tmux splitw -v -p 15
-	tmux send 'pipenv shell clear' C-m
-	tmux splitw -h
-	tmux send 'pipenv shell python manage.py shell' C-m
-	tmux neww -t ${SESSION_NAME}:2 -n bg_procs
-	tmux send -t ${SESSION_NAME}:2 'docker-compose up -d' C-m
-	tmux send -t ${SESSION_NAME}:2 'pipenv run worker' C-m
-	tmux splitw -h
-	tmux send 'pipenv run scheduler' C-m
-	tmux splitw -v
-	tmux send 'pipenv shell python manage.py runserver' C-m
-	tmux selectp -t ${SESSION_NAME}:1.1
-	tmux send -t ${SESSION_NAME}:1.0 'pipenv run vim' C-m
-	tmux resizep -Z -t ${SESSION_NAME}:1.0  # Allows us to quick-switch to the bash shell
-	tmux -2 attach -t ${SESSION_NAME}:1.0
-	unset SESSION_NAME
 }
 
 dev_polls() {
@@ -149,7 +152,7 @@ alias gstap="git stash apply"
 # =============================================================================
 alias .b=". ~/.bashrc"
 alias cl="clear"
-alias dev-pot="dev_pot"
+alias dev-template="dev_template"
 alias dev-polls="dev_polls"
 alias dev-dot="dev_dot"
 alias dev-vimscript="dev_vimscript"
