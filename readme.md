@@ -1,6 +1,6 @@
 # Introduction
 
-In this repository are the dotfiles configuring my environment. 
+This repository contains the dotfiles configuring my environment.
 
 # Installation
 
@@ -16,9 +16,9 @@ $ . install.sh
 
 There are a few configuration items that have to be buttoned up before certain tools are ready to be used and integrated across your environment. First, check if your version of Vim has the +clipboard option, by running `$ vim --version`. If it isn't enabled, then you'll have to install the latest version of Vim; you can do this by running `$ brew install vim` (brew should install vim with the `+clipboard` option enabled):
 
-Note: It may be smart to add the `--with-client-server` option, which supports X11 clipboard, allowing you to copy to the system clipboard even [when ssh'd into a machine](http://www.markcampbell.me/2016/04/12/setting-up-yank-to-clipboard-on-a-mac-with-vim.html). Homebrew doesn't enable this by default, and I haven't yet looked into adding this in this repo.
+For iTerm, you will need to set your font to a Powerline-enabled font (I usually use Inconsolata) for Powerline-Shell to display correctly. In addition, you can import iTerm color schemes from the `color_schemes/` directory, which contains one(s) that I use regularly.
 
-For Base, you will need to set your font to a Powerline-enabled font (I usually use Inconsolata)
+Note: It may be smart to add the `--with-client-server` option, which supports X11 clipboard, allowing you to copy to the system clipboard even [when ssh'd into a machine](http://www.markcampbell.me/2016/04/12/setting-up-yank-to-clipboard-on-a-mac-with-vim.html). Homebrew doesn't enable this by default, and I haven't yet looked into adding this in this repo.
 
 # Tools Used
 

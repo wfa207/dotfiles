@@ -65,6 +65,17 @@ dev_template() {
 	unset SESSION_NAME
 }
 
+dev_webgl() {
+	SESSION_NAME="web_gl"
+	cd ~/Development/WebGL/mozilla_tutorial
+	tmux new -d -s ${SESSION_NAME} -n wrkspace -x - -y -
+	tmux splitw -v -p 15
+	tmux splitw -h
+	tmux send -t ${SESSION_NAME}:1.0 'vim' C-m
+	tmux -2 attach -t ${SESSION_NAME}:1.0
+	unset SESSION_NAME
+}
+
 dev_vertical_half() {
 	SESSION_NAME=$1
 	tmux new -d -s ${SESSION_NAME} -n wrkspace -x - -y -
@@ -156,6 +167,7 @@ alias dev-template="dev_template"
 alias dev-polls="dev_polls"
 alias dev-dot="dev_dot"
 alias dev-vimscript="dev_vimscript"
+alias dev-webgl="dev_webgl"
 #}}}
 # =============================================================================
 # Private Aliases#{{{
@@ -175,7 +187,7 @@ flip() {
 }
 #}}}
 # =============================================================================
-# Node / React Native#{{{
+# Node / React#{{{
 # =============================================================================
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

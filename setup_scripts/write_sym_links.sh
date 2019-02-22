@@ -6,9 +6,6 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 # Get our project directory (assumes one level up)
 PROJ_DIR=$( dirname $DIR )
 
-# Source pretty_print helper
-. ${PROJ_DIR}/helper_scripts/pretty_print.sh
-
 pretty_print "Writing sym links"
 
 # Dot Files ============================================================
@@ -52,10 +49,11 @@ for abs_file_path in "${SNIPPET_FILE_DIR}"/*; do
 
 	ln -Fhs ${abs_file_path} ~/.vim/my_snippets/${base_name}
 	pretty_print "Wrote ${base_name} sym link"
+done
 
 # Epilogue =============================================================
 
 pretty_print "All sym links written.\n"
 
 # Clean up namespace
-unset file_name base_name DIR PROJ_DIR SRC_FILE_DIR SNIPPET_FILE_DIR pretty_print
+unset file_name base_name DIR PROJ_DIR SRC_FILE_DIR SNIPPET_FILE_DIR
