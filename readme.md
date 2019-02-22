@@ -20,6 +20,10 @@ For iTerm, you will need to set your font to a Powerline-enabled font (I usually
 
 Note: It may be smart to add the `--with-client-server` option, which supports X11 clipboard, allowing you to copy to the system clipboard even [when ssh'd into a machine](http://www.markcampbell.me/2016/04/12/setting-up-yank-to-clipboard-on-a-mac-with-vim.html). Homebrew doesn't enable this by default, and I haven't yet looked into adding this in this repo.
 
+# Known Issues
+
+* Powerline-shell is finicky with Python versions; you may need to install Python2.7 via Homebrew and then re-run the `install.py` script, *after* symlinking the Homebrew Python2 version
+
 # Tools Used
 
 ## Vim

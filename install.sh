@@ -32,10 +32,34 @@ brew update
 brew bundle
 pretty_print "Finished updating Brew and bundling packages\n"
 
+# Display =========================
+
+# Install powerline fonts
+pretty_print "Installing powerline fonts\n"
+git clone https://github.com/powerline/fonts.git --depth=1
+cd fonts
+./install.sh
+
+cd ..
+rm -rf fonts # Clean-up
+pretty_print "Finished installing powerline fonts\n"
+
+# Install powerline-shell
+# Note: This doesn't *really fit here* but requires pip (installed in the previous step)
+if [ -z $(which powerline-shell) ]; then
+	pretty_print "${INDENT}Installing powerline-shell\n"
+	git clone https://github.com/b-ryan/powerline-shell
+	cd powerline-shell
+	/usr/local/bin/python setup.py install  # Make sure you have Python2.7 installed here (preferably with HomeBrew)
+	cd ..
+	rm -rf powerline-shell # Clean-up
+	pretty_print ${INDENT}"Finished installing powerline-shell\n"
+fi
+
 # Tmux ============================
 
 # Install Tmux
-if [ -z $(which tmux) ]; then 
+if [ -z $(which tmux) ]; then
 	pretty_print "Installing Tmux\n"
 	brew install tmux
 	pretty_print "Finished installing Tmux\n"
@@ -47,16 +71,6 @@ if [ ! -e ~/.tmux/plugins/tpm ]; then
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	pretty_print "Installing Tmux Plugin Manager\n"
 fi
-
-# Install powerline fonts
-pretty_print "Installing powerline fonts\n"
-git clone https://github.com/powerline/fonts.git --depth=1
-cd fonts
-./install.sh
-
-cd ..
-rm -rf fonts # Clean-up
-pretty_print "Finished installing powerline fonts\n"
 
 # Vim =============================
 
@@ -102,15 +116,6 @@ if [ -z $(which pipenv) ]; then
 	pretty_print "${INDENT}Finished installing PipEnv\n"
 fi
 pretty_print "Finished installing Python CLI libraries\n"
-
-# Install powerline-shell
-# Note: This doesn't *really fit here* but requires pip (installed in the previous step)
-if [ -z $(which powerline-shell) ]; then
-	pretty_print "${INDENT}Installing powerline-shell\n"
-	pip install powerline-shell
-	pretty_print ${INDENT}"Finished installing powerline-shell\n"
-fi
-
 
 # Javascript Development ==========
 
