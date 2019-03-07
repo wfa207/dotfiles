@@ -29,7 +29,6 @@ fi
 
 pretty_print "Updating Brew and bundling packages\n"
 brew update
-brew bundle
 pretty_print "Finished updating Brew and bundling packages\n"
 
 # Display =========================
@@ -183,9 +182,11 @@ pretty_print "Finished installing YouCompleteMe Libraries for Vim\n"
 # =================================================================================
 # Clean-up ========================================================================{{{
 
+brew bundle
+
 pretty_print "~~~~~Finished Installation!~~~~~\n"
 # Create sym links for needed files
-unset DIR PARENT_DIR PRINT_COLOR DEFAULT_COLOR pretty_print
+unset DIR INDENT PARENT_DIR PRINT_COLOR DEFAULT_COLOR pretty_print
 . ~/.bashrc
 cd
 

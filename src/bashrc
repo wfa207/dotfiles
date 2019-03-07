@@ -124,8 +124,6 @@ dev_polls() {
 # =============================================================================
 # Private config variables sourced externally
 [ -f ~/.configvar.sh ] && . ~/.configvar.sh
-# Autocompletion for itermocil
-complete -W "$(itermocil --list)" dev
 
 # Install snow theme
 [ -n "$PS1" ] && sh ~/.vim/plugged/snow/shell/snow_dark.sh
