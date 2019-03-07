@@ -23,11 +23,6 @@ try:
 except ImportError:
     from io import StringIO
 
-'''
-from scraping_tools.http import ScrapeClient
-
-scrape_client = ScrapeClient(service='local-testing', timeout=30, retries=3)
-'''
 
 readline.parse_and_bind("tab: complete")
 
@@ -35,17 +30,18 @@ historyPath = os.path.expanduser("~/.pyhistory")
 
 
 def save_history(historyPath=historyPath):
-    import readline
     readline.write_history_file(historyPath)
 
 
 if os.path.exists(historyPath):
     readline.read_history_file(historyPath)
 
+
 atexit.register(save_history)
 os.system("clear")
 
-del os, atexit, readline, rlcompleter, save_history, historyPath
+
+del os, atexit, rlcompleter, save_history, historyPath
 
 
 def write_file(file_path, content):

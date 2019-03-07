@@ -323,29 +323,35 @@ let g:airline#extensions#ale#enabled = 1
 " switches to the active virtualenv with the correct system path so
 " python-language-server finds the right site packages
 
-let s:python_v = system("python --version")[7]
+silent !activate_py_virtual_env 
 
-if s:python_v == "3"
-py3 << endpy3
-import os
-import sys
+" let s:python_v = system("python --version")[7]
 
-project_base_dir = os.environ.get('VIRTUAL_ENV')
-if project_base_dir:
-    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-    exec(open(activate_this).read(), dict(__file__=activate_this))
-endpy3
-elseif s:python_v == "2"
-python << endpy2
-import os
-import sys
+" if s:python_v == "3"
+" py3 << endpy3
+" import os
+" import sys
 
-project_base_dir = os.environ.get('VIRTUAL_ENV')
-if project_base_dir:
-    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-    execfile(open(activate_this), dict(__file__=activate_this))
-endpy2
-endif
+" venv_base_dir = os.environ.get('VIRTUAL_ENV')
+" if venv_base_dir:
+"     _filepath = os.path.join(venv_base_dir, 'bin/activate_this.py')
+"     if os.path.isfile(_filepath):
+"         exec(open(_filepath).read(), dict(__file__=_filepath))
+
+" endpy3
+" elseif s:python_v == "2"
+" python << endpy2
+" import os
+" import sys
+
+" venv_base_dir = os.environ.get('VIRTUAL_ENV')
+" if venv_base_dir:
+"     _filepath = os.path.join(venv_base_dir, 'bin/activate_this.py')
+"     if os.path.isfile(_filepath):
+"         execfile(open(_filepath), dict(__file__=_filepath))
+
+" endpy2
+" endif
 
 " Mapping for GoTo Definition
 " Dropped in favor of YCM (which relies on Jedi)
