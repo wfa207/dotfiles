@@ -11,6 +11,9 @@ export TERM='xterm-256color'
 # =============================================================================
 export PYTHONSTARTUP=~/.pystartup.py
 
+# Initialize pyenv when a new shell spawns
+eval "$(pyenv init -)"
+
 # Modify path for Python's poetry dependency management system
 export PATH="$HOME/.poetry/bin:$PATH"
 

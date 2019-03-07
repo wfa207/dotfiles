@@ -29,6 +29,7 @@ fi
 
 pretty_print "Updating Brew and bundling packages\n"
 brew update
+brew bundle  # Installs brew packages from the Brewfile
 pretty_print "Finished updating Brew and bundling packages\n"
 
 # Display =========================
@@ -57,13 +58,6 @@ fi
 
 # Tmux ============================
 
-# Install Tmux
-if [ -z $(which tmux) ]; then
-	pretty_print "Installing Tmux\n"
-	brew install tmux
-	pretty_print "Finished installing Tmux\n"
-fi
-
 # Install Tmux Plugin Manager
 if [ ! -e ~/.tmux/plugins/tpm ]; then
 	pretty_print "Installing Tmux Plugin Manager\n"
@@ -73,14 +67,6 @@ fi
 
 # Vim =============================
 
-# Install Homebrew's version of Vim
-if [ $(which vim) != "/usr/local/bin/vim" ]; then
-	pretty_print "Installing latest version of Vim\n"
-	brew install vim
-	pretty_print "Finished installing latest version of Vim\n"
-fi
-
-
 # Install Vim plug-in manager
 if [ ! -e ~/.vim/autoload/plug.vim ]; then
 	pretty_print "Installing Vim-Plug\n"
@@ -88,26 +74,7 @@ if [ ! -e ~/.vim/autoload/plug.vim ]; then
 	pretty_print "Finished installing Vim-Plug\n"
 fi
 
-if [ -z $(which bat) ]; then
-	pretty_print "Installing Bat for Syntax-Highlighting in FZF preview\n"
-	brew install bat
-	pretty_print "Finished installing Bat\n"
-fi
-
 # Python Development =============
-
-pretty_print "Installing Python CLI libraries\n"
-if [ -z $(which pip) ]; then
-	pretty_print "${INDENT}Installing PIP - Python's package manager\n"
-	brew install pip
-	pretty_print "${INDENT}Finished installing PIP\n"
-fi
-
-if [ -z $(which pyenv) ]; then
-	pretty_print "${INDENT}Installing PyEnv - Python's version manager\n"
-	brew install pyenv
-	pretty_print "${INDENT}Finished installing PyEnv\n"
-fi
 
 if [ -z $(which pipenv) ]; then
 	pretty_print "${INDENT}Installing PipEnv - A utility that manages Python virtual environments in conjunction with versions\n"
@@ -118,19 +85,6 @@ pretty_print "Finished installing Python CLI libraries\n"
 
 # Javascript Development ==========
 
-pretty_print "Installing Javascript CLI libraries\n"
-if [ -z $(which node) ]; then
-	pretty_print "${INDENT}Installing Node\n"
-	brew install node
-	pretty_print "${INDENT}Finished installing Node\n"
-fi
-
-if [ -z $(which npm) ]; then
-	pretty_print "${INDENT}Installing NPM - Javascript's Package Manager\n"
-	brew install npm
-	pretty_print "${INDENT}Finished installing NPM\n"
-fi
-
 NVM_DIR=${NVM_DIR:=$HOME/.nvm}
 if [ ! -s "$NVM_DIR/nvm.sh" ]; then
 	pretty_print "${INDENT}Installing NVM - Javascript's Version Manager\n"
@@ -140,11 +94,6 @@ if [ ! -s "$NVM_DIR/nvm.sh" ]; then
 	pretty_print "${INDENT}Finished installing NVM\n"
 fi
 
-if [ -z $(which yarn) ]; then
-	pretty_print "${INDENT}Installing yarn - Javascript's Dependency Manager\n"
-	brew install yarn --ignore-dependencies
-	pretty_print "${INDENT}Installing yarn\n"
-fi
 pretty_print "Finished installing Javascript CLI libraries\n"
 
 
@@ -181,8 +130,6 @@ pretty_print "Finished installing YouCompleteMe Libraries for Vim\n"
 # }}}
 # =================================================================================
 # Clean-up ========================================================================{{{
-
-brew bundle
 
 pretty_print "~~~~~Finished Installation!~~~~~\n"
 # Create sym links for needed files
