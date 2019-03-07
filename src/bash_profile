@@ -1,5 +1,30 @@
+# =============================================================================
+# Setup#{{{
+# =============================================================================
 # Load bashrc if one exists
 [ -f ~/.bashrc ] && . ~/.bashrc
 
 # Load bash completion
 [ -f `brew --prefix`/etc/bash_completion ] && . `brew --prefix`/etc/bash_completion
+#
+#}}}
+# =============================================================================
+# Python#{{{
+# =============================================================================
+# Initialize pyenv when a new shell spawns
+eval "$(pyenv init -)"
+
+# Modify path for Python's poetry dependency management system
+export PATH="$HOME/.poetry/bin:$PATH"
+
+#}}}
+# =============================================================================
+# Node / React#{{{
+# =============================================================================
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Load avn
+[[ -s "$HOME/.avn/bin/avn.sh" ]] && . "$HOME/.avn/bin/avn.sh"
+#}}}
+# =============================================================================
