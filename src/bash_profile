@@ -3,5 +3,3 @@
 
 # Load bash completion
 [ -f `brew --prefix`/etc/bash_completion ] && . `brew --prefix`/etc/bash_completion
-
-export PATH="$HOME/.poetry/bin:$PATH"
