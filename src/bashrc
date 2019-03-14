@@ -83,6 +83,8 @@ dev_webgl() {
 	unset SESSION_NAME
 }
 
+alias dev-webgl="dev_webgl"
+
 dev_oauth() {
 	SESSION_NAME="oauthlib"
 	cd ~/Development/oauthlib
@@ -106,15 +108,21 @@ dev_vertical_half() {
 	unset SESSION_NAME
 }
 
+alias dev="dev_vertical_half dev"
+
 dev_dot() {
 	cd ~/dotfiles
 	dev_vertical_half dot
 }
 
+alias dev-dot="dev_dot"
+
 dev_vimscript() {
 	cd ~/Development/practice/vimscript
 	dev_vertical_half vimscript
 }
+
+alias dev-vimscript="dev_vimscript"
 
 dev_polls() {
 	SESSION_NAME=polls
@@ -127,6 +135,8 @@ dev_polls() {
 	tmux -2 attach -t ${SESSION_NAME}:1
 	unset SESSION_NAME
 }
+
+alias dev-polls="dev_polls"
 
 #}}}
 # =============================================================================
@@ -181,11 +191,6 @@ alias gstap="git stash apply"
 # =============================================================================
 alias .b=". ~/.bashrc"
 alias cl="clear"
-alias dev-template="dev_template"
-alias dev-polls="dev_polls"
-alias dev-dot="dev_dot"
-alias dev-vimscript="dev_vimscript"
-alias dev-webgl="dev_webgl"
 #}}}
 # =============================================================================
 # Private Aliases#{{{
