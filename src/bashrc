@@ -15,7 +15,7 @@ export PYTHONSTARTUP=~/.pystartup.py
 [ ! -z $(which virtualenvwrapper.sh) ] && source $(which virtualenvwrapper.sh)
 
 function activate_py_virtual_env() {
-	if [ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]; then
+	if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
 		. "${VIRTUAL_ENV}/bin/activate"
 	fi
 }
