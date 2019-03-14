@@ -57,20 +57,17 @@ function! SetTabsAndText(textwidthnum, tabwidthnum)
 	setlocal expandtab
 endfunction
 
-function! GetCurrentFilepath()
-    return expand('%:p')
+function! GetCurrentRelativeFilepath()
+    return expand('%:F')
 endfunction
 
-function! CopyFilepathToClipboard()
-    let s:_filepath = GetCurrentFilepath()
-    let s:_filepath = join(split(s:_filepath, '/')[2:], '.')
+function! CopyPythonFilepathToClipboard()
+    let s:_filepath = GetCurrentRelativeFilepath()
+    let s:_filepath = split(s:_filepath, '/')
+    let s:_filepath[-1] = substitute(s:_filepath[-1], '\c\.py', '', '')
+    let s:_filepath = join(s:_filepath, '.')
     call setreg('*', s:_filepath)
 endfunction
-
-function! ReloadAllBuffers()
-    " let s:_current_buffer =
-endfunction
-
 
 ""}}}
 " -----------------------------------------------------------
@@ -841,7 +838,7 @@ noremap / /\v
 noremap ? ?\v
 
 " Copy filename to clipboard register (*)
-nnoremap <Leader>fp :call CopyFilepathToClipboard()<CR>
+nnoremap <Leader>fp :call CopyPythonFilepathToClipboard()<CR>
 
 " Reload all buffers
 nnoremap <Leader>ea :bufdo e<CR>
