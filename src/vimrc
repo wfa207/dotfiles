@@ -318,40 +318,45 @@ let g:airline#extensions#ale#enabled = 1
 " By default, VIM and python-language-server (pyls) are not aware of the
 " virtualenv; the following code detects if a virtualenv is running and
 " switches to the active virtualenv with the correct system path so
-" python-language-server finds the right site packages
+" python-language-server finds the right site packages. There is a bash
+" function I've written that aims to achieve the same thing in a much simpler
+" fashion, but Vim does not support loading .bashrc by default, since it runs
+" bash commands with the '-ci' options enabled.
 
-silent !activate_py_virtual_env 
+let s:python_v = system("python --version")[7]
 
-" let s:python_v = system("python --version")[7]
+if s:python_v == "3"
+py3 << endpy3
+import os
+import sys
+import subprocess
 
-" if s:python_v == "3"
-" py3 << endpy3
-" import os
-" import sys
+venv_base_dir = os.environ.get('VIRTUAL_ENV')
+if venv_base_dir:
+    _filepath = os.path.join(venv_base_dir, 'bin/activate')
+    if os.path.isfile(_filepath):
+        subprocess.call(f". {_filepath}", shell=True)
+        # exec(open(_filepath).read(), dict(__file__=_filepath))
 
-" venv_base_dir = os.environ.get('VIRTUAL_ENV')
-" if venv_base_dir:
-"     _filepath = os.path.join(venv_base_dir, 'bin/activate_this.py')
-"     if os.path.isfile(_filepath):
-"         exec(open(_filepath).read(), dict(__file__=_filepath))
+endpy3
+elseif s:python_v == "2"
+python << endpy2
+import os
+import sys
+import subprocess
 
-" endpy3
-" elseif s:python_v == "2"
-" python << endpy2
-" import os
-" import sys
+venv_base_dir = os.environ.get('VIRTUAL_ENV')
+if venv_base_dir:
+    _filepath = os.path.join(venv_base_dir, 'bin/activate')
+    if os.path.isfile(_filepath):
+        subprocess.call(". {}".format(_filepath), shell=True)
+        # execfile(open(_filepath), dict(__file__=_filepath))
 
-" venv_base_dir = os.environ.get('VIRTUAL_ENV')
-" if venv_base_dir:
-"     _filepath = os.path.join(venv_base_dir, 'bin/activate_this.py')
-"     if os.path.isfile(_filepath):
-"         execfile(open(_filepath), dict(__file__=_filepath))
+endpy2
+endif
 
-" endpy2
-" endif
-
-" Mapping for GoTo Definition
-" Dropped in favor of YCM (which relies on Jedi)
+" " Mapping for GoTo Definition
+" " Dropped in favor of YCM (which relies on Jedi)
 " noremap <Leader>gd  :ALEGoToDefinition<CR>
 " noremap <Leader>fr  :ALEFindReferences<CR>
 

@@ -14,6 +14,8 @@ export PYTHONSTARTUP=~/.pystartup.py
 # Test if virtualenvwrapper.sh path is a non-zero-length string
 [ ! -z $(which virtualenvwrapper.sh) ] && source $(which virtualenvwrapper.sh)
 
+# This is not used; since Vim executes bash commands with the "-ci" options,
+# it doesn't have access to functions defined in .bashrc
 function activate_py_virtual_env() {
 	if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
 		. "${VIRTUAL_ENV}/bin/activate"
