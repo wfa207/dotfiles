@@ -126,6 +126,19 @@ dev_vimscript() {
 
 alias dev-vimscript="dev_vimscript"
 
+dev_react() {
+	SESSION_NAME=react
+	tmux new -d -s ${SESSION_NAME} -n wrkspace -x - -y -
+	tmux send 'vim' C-m
+	tmux splitw -v -p 15
+	tmux splitw -h
+	tmux send 'node' C-m
+	tmux select-layout tiled
+	unset SESSION_NAME
+}
+
+alias dev-react="dev_react"
+
 dev_polls() {
 	SESSION_NAME=polls
 	cd ~/Development/practice/django/polls
