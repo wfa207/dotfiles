@@ -296,7 +296,7 @@ let g:user_emmet_settings = {
 
 " Enable completion where available.
 " This setting must be set before ALE is loaded.
-let g:ale_completion_enabled = 1
+" let g:ale_completion_enabled = 1
 
 " Default settings recommended by syntastic contributors
 let g:ale_sign_error = '✖' " Less aggressive than the default '>>'
@@ -312,7 +312,7 @@ let g:ale_linters = {
 			\ 'javascript': ['tsserver']
 			\}
 
-let g:ale_python_pylint_use_global = 1
+let g:ale_python_pylint_use_global = 0
 let g:airline#extensions#ale#enabled = 1
 
 " By default, VIM and python-language-server (pyls) are not aware of the
