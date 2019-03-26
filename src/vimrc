@@ -136,6 +136,9 @@ Plug 'nightsense/snow'
 " SimpylFold: Help with indentation-based code folding
 Plug 'tmhedberg/SimpylFold'
 
+" FastFold: Speed up Vim's default folding mechanism
+Plug 'Konfekt/FastFold'
+
 " Vim Flake8: Flake 8
 Plug 'nvie/vim-flake8'
 
@@ -504,6 +507,15 @@ nnoremap <Leader>gl :Glog<CR>
 nnoremap <Leader>gv :Gvdiff<CR>
 ""}}}
 " -----------------------------------------------------------
+" SimpylFold {{{
+
+" URL: https://github.com/tmhedberg/SimpylFold
+" Author: Taylor M. Hedberg (https://github.com/tmhedberg)
+" Description: Intuitive folding for Python files
+
+let g:SimpylFold_docstring_preview = 0
+""}}}
+" -----------------------------------------------------------
 " Vim Multiple Cursor {{{
 
 let g:multi_cursor_exit_from_visual_mode=0
@@ -673,6 +685,8 @@ set pastetoggle=<F11>
 " Autocommand groups help namespace autocommands and ensure we
 " only execute autocommands once (otherwise they will compound
 " each time we source our vimrc)
+
+" `autocmd!` clears the autocmd associated with the augroup, if it exists
 augroup webdev_setup
 	autocmd!
 	" Indentation options for js, html, and css files
@@ -688,8 +702,7 @@ augroup python_setup
 				\ call SetTabsAndText(120, 4) |
 				\ setlocal autoindent |
 				\ setlocal fileformat=unix |
-				\ setlocal foldmethod=indent |
-				\ setlocal foldlevel=99
+				\ setlocal foldmethod=expr " Defer to SimpylFold
 augroup END
 
 augroup rst_setup

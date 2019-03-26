@@ -96,6 +96,10 @@ Updates the status bar to be more informative (git info / encoding, etc.)
 
 Plugin that aids with smarter code folding
 
+#### [Konfekt/FastFold](https://github.com/Konfekt/FastFold)
+
+Speed up Vim's default folding mechanism
+
 #### [Vim Flake8](https://github.com/nvie/vim-flake8)
 
 Integrate flake8 with Vim
