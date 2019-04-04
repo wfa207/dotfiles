@@ -100,6 +100,19 @@ dev_oauth() {
 
 alias dev-oauth="dev_oauth"
 
+dev_viewflow() {
+	SESSION_NAME="viewflow"
+	cd ~/Development/viewflow
+	tmux new -d -s ${SESSION_NAME} -n wrkspace -x - -y -
+	tmux splitw -h
+	tmux send -t ${SESSION_NAME}:1.0 'vim' C-m
+	tmux resizep -Z -t ${SESSION_NAME}:1.0
+	tmux -2 attach -t ${SESSION_NAME}:1.0
+	unset SESSION_NAME
+}
+
+alias dev-viewflow="dev_viewflow"
+
 dev_vertical_half() {
 	SESSION_NAME=$1
 	tmux new -d -s ${SESSION_NAME} -n wrkspace -x - -y -
