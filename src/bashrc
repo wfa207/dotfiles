@@ -100,9 +100,9 @@ dev_oauth() {
 
 alias dev-oauth="dev_oauth"
 
-dev_viewflow() {
-	SESSION_NAME="viewflow"
-	cd ~/Development/viewflow
+dev_transitions() {
+	SESSION_NAME="pytransitions"
+	cd ~/Development/transitions
 	tmux new -d -s ${SESSION_NAME} -n wrkspace -x - -y -
 	tmux splitw -h
 	tmux send -t ${SESSION_NAME}:1.0 'vim' C-m
@@ -111,7 +111,7 @@ dev_viewflow() {
 	unset SESSION_NAME
 }
 
-alias dev-viewflow="dev_viewflow"
+alias dev-transitions="dev_transitions"
 
 dev_vertical_half() {
 	SESSION_NAME=$1
