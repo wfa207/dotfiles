@@ -10,6 +10,8 @@ import os
 import readline
 import rlcompleter
 import pdb
+from importlib import reload
+
 try:
     from lxml import etree
     import requests
@@ -71,6 +73,10 @@ def get_dom_from_text(text):
 def get_dom(*args, **kwargs):
     html_str = get_html_str(*args, **kwargs)
     return get_dom_from_text(html_str)
+
+
+def _r():
+    reload()
 
 
 '''
