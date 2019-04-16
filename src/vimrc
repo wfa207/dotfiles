@@ -371,7 +371,7 @@ if venv_base_dir:
         execfile(open(_filepath), dict(__file__=_filepath))
         # os.system(". {}".format(_filepath))
     else:
-        print("Virtual environment missing \"activate_this.py\" file")
+        print "Virtual environment missing \"activate_this.py\" file"
 
 endpy2
 endif

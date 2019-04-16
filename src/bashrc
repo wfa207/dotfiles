@@ -28,7 +28,7 @@ function activate_py_virtual_env() {
 function setup_venv_activate() {
 	if [[ -n $VIRTUAL_ENV && ! -e "${VIRTUAL_ENV}/bin/activate_this.py" ]]; then
 		echo "Writing \"activate_this.py\" script"
-		echo $(curl -s https://raw.githubusercontent.com/pypa/virtualenv/master/virtualenv_embedded/activate_this.py) \
+		echo "$(curl -s https://raw.githubusercontent.com/pypa/virtualenv/master/virtualenv_embedded/activate_this.py)" \
 			>> "${VIRTUAL_ENV}/bin/activate_this.py"
 		echo "Finished"
 	else
