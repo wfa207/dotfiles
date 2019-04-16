@@ -316,6 +316,18 @@ let g:ale_linters = {
 			\}
 
 let g:ale_python_pylint_use_global = 1
+" Script to run pylint with active virtual env
+let g:ale_python_pylint_options = '--init-hook "'
+            \ . 'import os; '
+            \ . 'import sys; '
+            \ . 'PY_V = sys.version[0]; '
+            \ . '_f = os.path.join('
+            \ .     '\"$VIRTUAL_ENV\", '
+            \ .     '\"bin/activate_this.py\"'
+            \ . '); '
+            \ . 'read_cmd = open(_f).read() if PY_V == \"3\" else open(_f); '
+            \ . 'exec(read_cmd, dict(__file__=_f))"'
+
 let g:airline#extensions#ale#enabled = 1
 
 " By default, VIM and python-language-server (pyls) are not aware of the
@@ -336,10 +348,13 @@ import subprocess
 
 venv_base_dir = os.environ.get('VIRTUAL_ENV')
 if venv_base_dir:
-    _filepath = os.path.join(venv_base_dir, 'bin/activate')
+    _filepath = os.path.join(venv_base_dir, 'bin/activate_this.py')
     if os.path.isfile(_filepath):
-        subprocess.call(f". {_filepath}", shell=True)
-        # exec(open(_filepath).read(), dict(__file__=_filepath))
+        # subprocess.call(f". {_filepath}", shell=True)
+        exec(open(_filepath).read(), dict(__file__=_filepath))
+        # os.system(f". {_filepath}")
+    else:
+        print("Virtual environment missing \"activate_this.py\" file")
 
 endpy3
 elseif s:python_v == "2"
@@ -350,10 +365,13 @@ import subprocess
 
 venv_base_dir = os.environ.get('VIRTUAL_ENV')
 if venv_base_dir:
-    _filepath = os.path.join(venv_base_dir, 'bin/activate')
+    _filepath = os.path.join(venv_base_dir, 'bin/activate_this.py')
     if os.path.isfile(_filepath):
-        subprocess.call(". {}".format(_filepath), shell=True)
-        # execfile(open(_filepath), dict(__file__=_filepath))
+        # subprocess.call(". {}".format(_filepath), shell=True)
+        execfile(open(_filepath), dict(__file__=_filepath))
+        # os.system(". {}".format(_filepath))
+    else:
+        print("Virtual environment missing \"activate_this.py\" file")
 
 endpy2
 endif

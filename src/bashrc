@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # URL: https://github.com/wfa207/bash-config
 # Description: A barebones .bashrc file that includes some convenience aliases
 
@@ -19,6 +21,18 @@ export PYTHONSTARTUP=~/.pystartup.py
 function activate_py_virtual_env() {
 	if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
 		. "${VIRTUAL_ENV}/bin/activate"
+	fi
+}
+
+# Write "activate_this.py" script to current virtual environment dir
+function setup_venv_activate() {
+	if [[ -n $VIRTUAL_ENV && ! -e "${VIRTUAL_ENV}/bin/activate_this.py" ]]; then
+		echo "Writing \"activate_this.py\" script"
+		echo $(curl -s https://raw.githubusercontent.com/pypa/virtualenv/master/virtualenv_embedded/activate_this.py) \
+			>> "${VIRTUAL_ENV}/bin/activate_this.py"
+		echo "Finished"
+	else
+		echo "Virtual environment already has a \"activate_this.py\" script"
 	fi
 }
 
@@ -221,6 +235,7 @@ alias gstap="clear; git stash apply"
 alias .b=". ~/.bashrc"
 alias cl="clear"
 alias ls="ls -AGFl"
+alias setup-venv-activate="setup_venv_activate"
 #}}}
 # =============================================================================
 # Private Aliases#{{{
