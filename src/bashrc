@@ -26,13 +26,17 @@ function activate_py_virtual_env() {
 
 # Write "activate_this.py" script to current virtual environment dir
 function setup_venv_activate() {
-	if [[ -n $VIRTUAL_ENV && ! -e "${VIRTUAL_ENV}/bin/activate_this.py" ]]; then
-		echo "Writing \"activate_this.py\" script"
-		echo "$(curl -s https://raw.githubusercontent.com/pypa/virtualenv/master/virtualenv_embedded/activate_this.py)" \
-			>> "${VIRTUAL_ENV}/bin/activate_this.py"
-		echo "Finished"
+	if [[ -n $VIRTUAL_ENV ]]; then
+		if [[ ! -e "${VIRTUAL_ENV}/bin/activate_this.py" ]]; then
+			echo "Writing \"activate_this.py\" script"
+			echo "$(curl -s https://raw.githubusercontent.com/pypa/virtualenv/master/virtualenv_embedded/activate_this.py)" \
+				>> "${VIRTUAL_ENV}/bin/activate_this.py"
+			echo "Finished"
+		else
+			echo "Virtual environment already has a \"activate_this.py\" script"
+		fi
 	else
-		echo "Virtual environment already has a \"activate_this.py\" script"
+		echo "You must be in a virtual environment to use \"setup_venv_activate\""
 	fi
 }
 
