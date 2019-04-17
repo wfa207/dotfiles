@@ -138,27 +138,27 @@ dev_transitions() {
 alias dev-transitions="dev_transitions"
 
 dev_vertical_half() {
-	SESSION_NAME=$1
-	tmux new -d -s ${SESSION_NAME} -n wrkspace -x - -y -
-	tmux send 'vim' C-m
+	tmux new -d ${2:+-s} ${2:-} -n wrkspace -x - -y -
+	if [ -n ${1:+x} ]; then
+		tmux send $1 C-m
+	fi
 	tmux splitw -h
-	tmux resizep -Z -t ${SESSION_NAME}:1.0
-	tmux -2 attach -t ${SESSION_NAME}:1.0
-	unset SESSION_NAME
+	tmux resizep -Z -t ${2:-}${2:+:}1.0
+	tmux -2 attach -t ${2:-}${2:+:}1.0
 }
 
-alias dev="dev_vertical_half dev"
+alias dev="dev_vertical_half"
 
 dev_dot() {
 	cd ~/dotfiles
-	dev_vertical_half dot
+	dev_vertical_half vim dot
 }
 
 alias dev-dot="dev_dot"
 
 dev_vimscript() {
 	cd ~/Development/practice/vimscript
-	dev_vertical_half vimscript
+	dev_vertical_half vim vimscript
 }
 
 alias dev-vimscript="dev_vimscript"
