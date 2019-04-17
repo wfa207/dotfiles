@@ -42,6 +42,12 @@ function setup_venv_activate() {
 
 #}}}
 # =============================================================================
+# Vim {{{
+# Ctrl-Q defaults to Bash's "stty start" signal; this interferes with Vim mappings
+# (Terminal intercepts signal)
+stty start undef
+#}}}
+# =============================================================================
 # Powerline Configuration#{{{
 # =============================================================================
 # URL: https://github.com/b-ryan/powerline-shell

@@ -848,7 +848,7 @@ nnoremap <C-W><C-W> :q<CR>
 nnoremap <C-T> :tabnew<CR>
 
 " Toggle line numbers
-nnoremap <Leader>3 :set invnumber<CR>
+nnoremap <C-q> :set invnumber!<CR>
 
 " Ensure Enter inserts new line
 inoremap <CR> <CR>
