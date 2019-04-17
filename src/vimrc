@@ -380,6 +380,7 @@ let g:ale_fixers = {
 
 " Error display options
 let g:ale_echo_msg_format = '[%linter%]% (code)%: %s [%severity%]'
+let g:ale_loclist_msg_format = '[%severity%][%linter%]% (code)%: %s'
 let g:ale_sign_error = '✖' " Less aggressive than the default '>>'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_info_str = 'I'
@@ -389,7 +390,10 @@ let g:ale_sign_warning = '●'
 " Linter settings
 let g:ale_python_pylint_use_global = 1
 " Script to run pylint with active virtual env
-let g:ale_python_pylint_options = '--max-line-length=120 --init-hook "exec(\"\"\"'
+let g:ale_python_pylint_options = '--max-line-length=120 '
+            \ . '--load-plugins pylint_django '
+            \ . '--init-hook "exec(\"\"\"'
+            \
             \ . 'import os\n'
             \ . 'import sys\n'
             \ . 'if os.environ.get(\"VIRTUAL_ENV\"):\n'
