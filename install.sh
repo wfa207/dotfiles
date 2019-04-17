@@ -83,6 +83,24 @@ if [ -z $(which pipenv) ]; then
 fi
 pretty_print "Finished installing Python CLI libraries\n"
 
+if [ -z $(which poetry) ]; then
+	pretty_print "${INDENT}Installing Poetry - A cleaner Python dependency manager\n"
+	curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+	pretty_print "${INDENT}Finished installing Poetry\n"
+fi
+
+PYTHON_VERSIONS=("2.7.15" "3.6.6" "3.7.0" "3.7.1")
+
+for py_version in ${PYTHON_VERSIONS[@]}; do
+	echo "${INDENT}Installing Python version ${py_version}"
+	pyenv install --skip-existing $py_version
+	PYENV_VERSION=$py_version pip install pip --upgrade
+	PYENV_VERSION=$py_version pip install -U pylint pylint-django
+	echo "${INDENT}Finished installing Python version ${py_version}"
+done
+
+unset PYTHON_VERSIONS
+
 # Javascript Development ==========
 
 NVM_DIR=${NVM_DIR:=$HOME/.nvm}
