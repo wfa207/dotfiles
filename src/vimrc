@@ -43,6 +43,7 @@ set dir=$HOME/.vim/tmp/swap
 if !isdirectory(&dir)
 	call mkdir(&dir, 'p', 0700)
 endif
+
 ""}}}
 " -----------------------------------------------------------
 " Helper Functions {{{
@@ -203,6 +204,63 @@ noremap <Leader>vu :PlugUpdate<CR>
 noremap <Leader>vc :PlugClean<CR>
 ""}}}
 " -----------------------------------------------------------
+" Display {{{
+
+" Colorscheme
+colorscheme snow
+set background=dark
+
+" Enable syntax highlighting
+syntax on
+
+" Turn on true colors in terminal
+set termguicolors
+
+set t_Co=256
+
+" Suggested additional configuration variables to set in Snow Theme
+" Doesn't seem to have an effect at the moment; see :h xterm-true-color
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+" Default text formatting / line-breaks
+set colorcolumn=120
+set encoding=utf-8
+set shiftwidth=4
+set textwidth=0
+set wrapmargin=0
+set tabstop=4
+set softtabstop=4
+set autoindent
+
+" Highlight line that the cursor is currently on
+set cursorline
+
+" Flag excess whitespace
+highlight ExtraWhitespace ctermbg=190 guibg=#dfff00
+match ExtraWhitespace /\s\+$/
+
+" =============================
+" Airline Configuration
+" =============================
+
+" Enable Powerline fonts for more aesthetic appearance
+let g:airline_powerline_fonts=1
+
+" Smarter tab line allows for display of buffers
+let g:airline#extensions#tabline#enabled=1
+
+" Allow space after tabs but no in between them
+let g:airline#extensions#whitespace#mixed_indent_algo=1
+
+" Airline theme
+let g:airline_theme='snow_dark'
+
+" Enable better syntax highlighting for Python
+let python_highlight_all=1
+
+""}}}
+" -----------------------------------------------------------
 " NERDTree {{{
 
 " URL: https://github.com/scrooloose/nerdtree
@@ -299,25 +357,36 @@ let g:user_emmet_settings = {
 
 " Enable completion where available.
 " This setting must be set before ALE is loaded.
-" let g:ale_completion_enabled = 1
-
-" Default settings recommended by syntastic contributors
-let g:ale_sign_error = '✖' " Less aggressive than the default '>>'
-let g:ale_sign_warning = '●'
-
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
+let g:ale_completion_enabled = 1
+let g:airline#extensions#ale#enabled = 1
+let g:ale_fix_on_save = 1
+let g:ale_set_balloons = 1
 
 " Python linters previously included 'pyls'
 " I've dropped 'pyls' in favor of YCM (which relies on Jedi)
 let g:ale_linters = {
 			\ 'python': ['pylint'],
-			\ 'javascript': ['tsserver']
+			\ 'javascript': ['eslint', 'flow']
 			\}
 
+let g:ale_fixers = {
+            \ 'javascript': ['prettier'],
+            \ 'css': ['prettier'],
+            \ 'python': ['black'],
+            \}
+
+" Error display options
+let g:ale_echo_msg_format = '[%linter%]% (code)%: %s [%severity%]'
+let g:ale_sign_error = '✖' " Less aggressive than the default '>>'
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_info_str = 'I'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_sign_warning = '●'
+
+" Linter settings
 let g:ale_python_pylint_use_global = 1
 " Script to run pylint with active virtual env
-let g:ale_python_pylint_options = '--init-hook "exec(\"\"\"'
+let g:ale_python_pylint_options = '--max-line-length=120 --init-hook "exec(\"\"\"'
             \ . 'import os\n'
             \ . 'import sys\n'
             \ . 'if os.environ.get(\"VIRTUAL_ENV\"):\n'
@@ -330,7 +399,22 @@ let g:ale_python_pylint_options = '--init-hook "exec(\"\"\"'
             \ . '   exec(read_cmd, dict(__file__=_f))'
             \ . '\"\"\")"'
 
-let g:airline#extensions#ale#enabled = 1
+" Mapping for GoTo Definition
+" noremap <Leader>gd  :ALEGoToDefinition<CR>
+" noremap <Leader>fr  :ALEFindReferences<CR>
+
+" Error navigation Mapping
+nnoremap <Leader>an :ALENextWrap<CR>
+nnoremap <Leader>ap :ALEPreviousWrap<CR>
+nnoremap <Leader>ad :ALEDetail<CR>
+
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+highlight clear ALEInfoSign
+
+highlight ALEErrorSign ctermbg=NONE ctermfg=131 guibg=NONE guifg=#ae5865
+highlight ALEWarningSign ctermbg=NONE ctermfg=179 guibg=NONE guifg=#e5bb7e
+highlight ALEInfoSign ctermbg=NONE ctermfg=32 guibg=NONE guifg=#2b7ab2
 
 " By default, VIM and python-language-server (pyls) are not aware of the
 " virtualenv; the following code detects if a virtualenv is running and
@@ -340,48 +424,43 @@ let g:airline#extensions#ale#enabled = 1
 " fashion, but Vim does not support loading .bashrc by default, since it runs
 " bash commands with the '-ci' options enabled.
 
-let s:python_v = system("python --version")[7]
+" let s:python_v = system("python --version")[7]
 
-if s:python_v == "3"
-py3 << endpy3
-import os
-import sys
-import subprocess
+" if s:python_v == "3"
+" py3 << endpy3
+" import os
+" import sys
+" import subprocess
 
-venv_base_dir = os.environ.get('VIRTUAL_ENV')
-if venv_base_dir:
-    _filepath = os.path.join(venv_base_dir, 'bin/activate_this.py')
-    if os.path.isfile(_filepath):
-        # subprocess.call(f". {_filepath}", shell=True)
-        exec(open(_filepath).read(), dict(__file__=_filepath))
-        # os.system(f". {_filepath}")
-    else:
-        print("Virtual environment missing \"activate_this.py\" file")
+" venv_base_dir = os.environ.get('VIRTUAL_ENV')
+" if venv_base_dir:
+"     _filepath = os.path.join(venv_base_dir, 'bin/activate_this.py')
+"     if os.path.isfile(_filepath):
+"         # subprocess.call(f". {_filepath}", shell=True)
+"         exec(open(_filepath).read(), dict(__file__=_filepath))
+"         # os.system(f". {_filepath}")
+"     else:
+"         print("Virtual environment missing \"activate_this.py\" file")
 
-endpy3
-elseif s:python_v == "2"
-python << endpy2
-import os
-import sys
-import subprocess
+" endpy3
+" elseif s:python_v == "2"
+" python << endpy2
+" import os
+" import sys
+" import subprocess
 
-venv_base_dir = os.environ.get('VIRTUAL_ENV')
-if venv_base_dir:
-    _filepath = os.path.join(venv_base_dir, 'bin/activate_this.py')
-    if os.path.isfile(_filepath):
-        # subprocess.call(". {}".format(_filepath), shell=True)
-        execfile(open(_filepath), dict(__file__=_filepath))
-        # os.system(". {}".format(_filepath))
-    else:
-        print "Virtual environment missing \"activate_this.py\" file"
+" venv_base_dir = os.environ.get('VIRTUAL_ENV')
+" if venv_base_dir:
+"     _filepath = os.path.join(venv_base_dir, 'bin/activate_this.py')
+"     if os.path.isfile(_filepath):
+"         # subprocess.call(". {}".format(_filepath), shell=True)
+"         execfile(open(_filepath), dict(__file__=_filepath))
+"         # os.system(". {}".format(_filepath))
+"     else:
+"         print "Virtual environment missing \"activate_this.py\" file"
 
-endpy2
-endif
-
-" " Mapping for GoTo Definition
-" " Dropped in favor of YCM (which relies on Jedi)
-" noremap <Leader>gd  :ALEGoToDefinition<CR>
-" noremap <Leader>fr  :ALEFindReferences<CR>
+" endpy2
+" endif
 
 ""}}}
 " -----------------------------------------------------------
@@ -469,17 +548,24 @@ command! -bang -nargs=? -complete=dir Files
 " Ensure autocomplete window disappears once it is no longer in use
 let g:ycm_autoclose_preview_window_after_completion=1
 
+" Turn off diagnostics reporting
+let g:ycm_show_diagnostics_ui = 1
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_echo_current_diagnostic = 0
+
 " Select next completion
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 
 " Select previous completion
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
+" These are in autocommands now (only used for Python)
 " Go to definition / declaration of a variable or class
-nnoremap <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <Leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Go to definition / declaration of a variable or class
-nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+nnoremap <Leader>gr :YcmCompleter GoToReferences<CR>
 
 ""}}}
 " -----------------------------------------------------------
@@ -709,20 +795,21 @@ set pastetoggle=<F11>
 " `autocmd!` clears the autocmd associated with the augroup, if it exists
 augroup webdev_setup
 	autocmd!
-	" Indentation options for js, html, and css files
+	" Indentation options & bindings for js, html, and css files
 	autocmd BufNewFile,BufRead *.js,*.html,*.css
-				\ call SetTabsAndText(120, 4)
+				\ call SetTabsAndText(120, 4) |
 augroup END
 
 
 augroup python_setup
 	autocmd!
-	" Indentation options for python files
+	" Indentation options & bindings for python files
 	autocmd BufNewFile,BufRead *.py,*.pyc
 				\ call SetTabsAndText(120, 4) |
 				\ setlocal autoindent |
 				\ setlocal fileformat=unix |
-				\ setlocal foldmethod=expr " Defer to SimpylFold
+                " Defer to SimpylFold
+				\ setlocal foldmethod=expr |
 augroup END
 
 augroup rst_setup
@@ -751,63 +838,6 @@ augroup vimscript_setup
 				\ call SetTabsAndText(80, 4) |
 				\ setlocal autoindent
 augroup END
-
-""}}}
-" -----------------------------------------------------------
-" Display {{{
-
-" Colorscheme
-colorscheme snow
-set background=dark
-
-" Enable syntax highlighting
-syntax on
-
-" Turn on true colors in terminal
-set termguicolors
-
-set t_Co=256
-
-" Suggested additional configuration variables to set in Snow Theme
-" Doesn't seem to have an effect at the moment; see :h xterm-true-color
-" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
-" Default text formatting / line-breaks
-set colorcolumn=120
-set encoding=utf-8
-set shiftwidth=4
-set textwidth=0
-set wrapmargin=0
-set tabstop=4
-set softtabstop=4
-set autoindent
-
-" Highlight line that the cursor is currently on
-set cursorline
-
-" Flag excess whitespace
-highlight ExtraWhitespace ctermbg=190 guibg=#dfff00
-match ExtraWhitespace /\s\+$/
-
-" =============================
-" Airline Configuration
-" =============================
-
-" Enable Powerline fonts for more aesthetic appearance
-let g:airline_powerline_fonts=1
-
-" Smarter tab line allows for display of buffers
-let g:airline#extensions#tabline#enabled=1
-
-" Allow space after tabs but no in between them
-let g:airline#extensions#whitespace#mixed_indent_algo=1
-
-" Airline theme
-let g:airline_theme='snow_dark'
-
-" Enable better syntax highlighting for Python
-let python_highlight_all=1
 
 ""}}}
 " -----------------------------------------------------------
