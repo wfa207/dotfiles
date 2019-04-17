@@ -102,6 +102,9 @@ Plug 'Valloric/YouCompleteMe'
 " Ale: An asynchronous syntax checker
 Plug 'w0rp/ale'
 
+" ListToggle: Toggle Vim's loclist / quickfix windows
+Plug 'Valloric/ListToggle'
+
 " Fzf: Full-path fuzzy file, buffer, mru, tab... finder for Vim
 Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 Plug 'junegunn/fzf.vim'
@@ -461,6 +464,17 @@ highlight ALEInfoSign ctermbg=NONE ctermfg=32 guibg=NONE guifg=#2b7ab2
 
 " endpy2
 " endif
+
+""}}}
+" -----------------------------------------------------------
+" List Toggle {{{
+
+" URL: https://github.com/Valloric/ListToggle
+" Author: Val Markovic (https://github.com/Valloric/)
+" Description: Toggle Vim's loclist / quickfix windows
+
+let g:lt_location_list_toggle_map = '<Leader>al'
+" let g:lt_quickfix_list_toggle_map = '<leader>q'
 
 ""}}}
 " -----------------------------------------------------------

@@ -60,6 +60,10 @@ Python autocomplete plugin built on top of jedi
 
 Asynchronous linter that can also be used for code introspection
 
+#### [ListToggle](Valloric/ListToggle)
+
+Toggle Vim's Location List / Quickfix windows
+
 #### [FZF](junegunn/fzf)
 
 Fuzzy search that operates asynchronously
