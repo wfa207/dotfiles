@@ -207,6 +207,28 @@ noremap <Leader>vu :PlugUpdate<CR>
 noremap <Leader>vc :PlugClean<CR>
 ""}}}
 " -----------------------------------------------------------
+" Python {{{
+
+" Python script to install activate_this.py script if it doesn't already exist
+py3 << endpy3
+import os
+
+venv_dir_path = os.environ.get("VIRTUAL_ENV")
+
+if venv_dir_path:
+    activate_script_path = f"{venv_dir_path}/bin/activate_this.py"
+    if not os.path.isfile(activate_script_path):
+        print("Writing \"activate_this.py\" script.")
+        os.system((\
+        "echo "
+        "\"$(curl -s https://raw.githubusercontent.com/pypa/virtualenv/master/virtualenv_embedded/activate_this.py)\" "
+        ">> \"${VIRTUAL_ENV}/bin/activate_this.py\""
+        ))
+        print("Finished")
+endpy3
+
+""}}}
+" -----------------------------------------------------------
 " Display {{{
 
 " Colorscheme
