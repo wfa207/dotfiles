@@ -166,6 +166,32 @@ dev_polls() {
 
 alias dev-polls="dev_polls"
 
+dev_pwa() {
+	SESSION_NAME=pwa
+	cd ~/Development/egghead-tutorials/pwa-create-react-app/todo-pwa
+	tmux new-session -d -s ${SESSION_NAME} -n wrkspace
+	tmux send-keys -t ${SESSION_NAME}:1.0 'vim' C-m
+	tmux splitw -v -p 15
+	tmux new-window -t ${SESSION_NAME}:2 -n bg_procs
+	tmux send-keys -t ${SESSION_NAME}:2 'yarn build && serve -s build' C-m
+	tmux -2 attach -t ${SESSION_NAME}:1
+}
+
+alias dev-pwa="dev_pwa"
+
+dev_pusher_coins() {
+	SESSION_NAME=pusher_coins
+	cd ~/Development/practice/pusher-coins
+	tmux new-session -d -s ${SESSION_NAME} -n wrkspace -x - -y -
+	tmux send-keys -t ${SESSION_NAME}:1.0 'vim' C-m
+	tmux splitw -v -p 15
+	tmux new-window -t ${SESSION_NAME}:2 -n bg_procs
+	tmux send-keys -t ${SESSION_NAME}:2 'yarn build && serve -s build' C-m
+	tmux -2 attach -t ${SESSION_NAME}:1
+}
+
+alias dev-pusher-coins="dev_pusher_coins"
+
 #}}}
 # =============================================================================
 # Config Variables#{{{
@@ -247,3 +273,6 @@ set editing-mode vi
 set keymap vi-command
 #}}}
 # =============================================================================
+# Added by `blink setup profile` 2019-06-03T16:08:55
+# See https://github.com/blinkhealth/blink-cli for more info
+source "${HOME}/.blink-profile"

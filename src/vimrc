@@ -155,6 +155,12 @@ Plug 'mxw/vim-jsx'
 " Emmet VIM: JSX Snippet generation
 Plug 'mattn/emmet-vim'
 
+" Typescript VIM: Typescript syntax support
+Plug 'leafgarland/typescript-vim'
+
+" Vim JSX Typescript: Typescript & JSX syntax support
+Plug 'peitalin/vim-jsx-typescript'
+
 " Editorconfig: Define local rules that your editor can acknowledge
 Plug 'editorconfig/editorconfig-vim'
 
@@ -284,6 +290,12 @@ let g:airline_theme='snow_dark'
 " Enable better syntax highlighting for Python
 let python_highlight_all=1
 
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+let g:airline_symbols.dirty='✎'
+
 ""}}}
 " -----------------------------------------------------------
 " NERDTree {{{
@@ -385,17 +397,20 @@ let g:user_emmet_settings = {
 let g:ale_completion_enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:ale_fix_on_save = 1
+" let g:ale_linters_explicit = 0
 let g:ale_set_balloons = 1
 
 " Python linters previously included 'pyls'
 " I've dropped 'pyls' in favor of YCM (which relies on Jedi)
 let g:ale_linters = {
 			\ 'python': ['pylint'],
-			\ 'javascript': ['eslint', 'flow']
+			\ 'javascript': ['eslint', 'flow'],
+			\ 'typescript': ['tsserver', 'tslint']
 			\}
 
 let g:ale_fixers = {
             \ 'javascript': ['prettier'],
+            \ 'typescript': ['prettier'],
             \ 'css': ['prettier'],
             \ 'python': ['black'],
             \}
@@ -427,6 +442,11 @@ let g:ale_python_pylint_options = '--max-line-length=120 '
             \ . '   read_cmd = open(_f).read() if PY_V == \"3\" else open(_f)\n'
             \ . '   exec(read_cmd, dict(__file__=_f))'
             \ . '\"\"\")"'
+
+let g:ale_javascript_prettier_options = '--print-width 120 '
+            \ . '--trailing-comma es5 '
+            \ . '--single-quote '
+            \ . '--parser flow '
 
 " Mapping for GoTo Definition
 " noremap <Leader>gd  :ALEGoToDefinition<CR>
@@ -842,7 +862,7 @@ set pastetoggle=<F11>
 augroup webdev_setup
 	autocmd!
 	" Indentation options & bindings for js, html, and css files
-	autocmd BufNewFile,BufRead *.js,*.html,*.css
+	autocmd BufNewFile,BufRead *.tsx,*.ts,*.jsx,*.js,*.html,*.css
 				\ call SetTabsAndText(120, 4) |
 augroup END
 
