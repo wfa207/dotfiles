@@ -1,0 +1,56 @@
+{
+    "window.zoomLevel": -1,
+    "workbench.colorTheme": "SynthWave '84",
+    "vscode_custom_css.imports": [
+        "file:/Users/wes.auyeung/.vscode/css/synthwave84.css"
+    ],
+    "editor.minimap.enabled": false,
+    "editor.fontLigatures": true,
+    "editor.lineNumbers": "relative",
+    "settings.cycle": [
+        {
+            "id": "lineNumber",
+            "overrideWorkspaceSettings": false,
+            "values": [
+                {
+                    "editor.lineNumbers": "on"
+                }, {
+                    "editor.lineNumbers": "relative",
+                }
+            ]
+        }
+    ],
+    "terminal.integrated.fontFamily": "Inconsolata for Powerline",
+    "vim.leader": ",",
+    "vim.surround": true,
+    "vim.useSystemClipboard": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<C-l>"], // Navigate Right
+            "after": ["<C-w>", "l"],
+        }, {
+            "before": ["<C-h>"], // Navigate Left
+            "after": ["<C-w>", "h"],
+        }, {
+            "before": ["<C-k>"], // Navigate Up
+            "after": ["<C-w>", "k"],
+        }, {
+            "before": ["<C-j>"], // Navigate Down
+            "after": ["<C-w>", "j"],
+        }, {
+            "before": ["<C-w>", "<C-w>"], // Navigate Down
+            "commands": [":q"],
+        }, {
+            "before": ["<C-a>"], // Toggle between relative & absolute line numbers
+            "commands": [
+                "settings.cycle.lineNumber"
+            ],
+        }
+    ],
+    "python.linting.pylintPath": "~/.pyenv/shims/pylint",
+    "python.linting.pylintArgs": [
+        "--load-plugins \"pylint_django\"",
+        "--init-hook \"exec(\\\"\\\"\\\"import os\\nimport sys\\nif os.environ.get(\\\"VIRTUAL_ENV\\\"):\\n  PY_V = sys.version[0]\\n  _f = os.path.join(\\\"$VIRTUAL_ENV\\\", \\\"bin/activate_this.py\\\")\\n  read_cmd = open(_f).read() if PY_V == \\\"3\\\" else open(_f)\\n  exec(read_cmd, dict(__file__=_f))\\\"\\\"\\\")\""
+    ]
+}
+

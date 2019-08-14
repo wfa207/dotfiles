@@ -1,5 +1,6 @@
 brew "the_silver_searcher"  # Global file-search in FZF
 brew "cmake"  # YouCompleteMe requires this
+brew "ctags"  # Python tagging
 brew "node"  # JS Development
 brew "npm"  # JS package manager
 brew "yarn", args: ["ignore-dependencies"]  # JS package manager

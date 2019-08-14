@@ -442,7 +442,7 @@ let g:ale_python_pylint_options = '--max-line-length=120 '
             \ . '   read_cmd = open(_f).read() if PY_V == \"3\" else open(_f)\n'
             \ . '   exec(read_cmd, dict(__file__=_f))'
             \ . '\"\"\")"'
-
+"exec(\"\"\"import os\nimport sys\nif os.environ.get(\"VIRTUAL_ENV\"):\n  PY_V = sys.version[0]\n  _f = os.path.join(\"$VIRTUAL_ENV\", \"bin/activate_this.py\")\n  read_cmd = open(_f).read() if PY_V == \"3\" else open(_f)\n  exec(read_cmd, dict(__file__=_f))\"\"\")"
 let g:ale_javascript_prettier_options = '--print-width 120 '
             \ . '--trailing-comma es5 '
             \ . '--single-quote '
@@ -783,7 +783,7 @@ set foldmethod=marker
 " set foldlevel=99
 ""}}}
 " -----------------------------------------------------------
-" Usability options {{{
+" Usability Options {{{
 
 " These are options that users frequently set in their .vimrc. Some of them
 " change Vim's behaviour in ways which deviate from the true Vi way, but

@@ -114,7 +114,6 @@ fi
 
 pretty_print "Finished installing Javascript CLI libraries\n"
 
-
 pretty_print "Installing language servers for code introspection"
 pretty_print "At the moment, the following languages are supported
     * Python
