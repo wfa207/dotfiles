@@ -47,10 +47,12 @@
             ],
         }
     ],
-    "python.linting.pylintPath": "~/.pyenv/shims/pylint",
     "python.linting.pylintArgs": [
-        "--load-plugins \"pylint_django\"",
-        "--init-hook \"exec(\\\"\\\"\\\"import os\\nimport sys\\nif os.environ.get(\\\"VIRTUAL_ENV\\\"):\\n  PY_V = sys.version[0]\\n  _f = os.path.join(\\\"$VIRTUAL_ENV\\\", \\\"bin/activate_this.py\\\")\\n  read_cmd = open(_f).read() if PY_V == \\\"3\\\" else open(_f)\\n  exec(read_cmd, dict(__file__=_f))\\\"\\\"\\\")\""
-    ]
+        "--load-plugins",
+        "pylint_django",
+    ], /* [
+        "--init-hook",
+        "\"exec(\\\"\\\"\\\"import os\\nimport sys\\nif os.environ.get(\\\"VIRTUAL_ENV\\\"):\\n  PY_V = sys.version[0]\\n  _f = os.path.join(\\\"$VIRTUAL_ENV\\\", \\\"bin/activate_this.py\\\")\\n  read_cmd = open(_f).read() if PY_V == \\\"3\\\" else open(_f)\\n  exec(read_cmd, dict(__file__=_f))\\\"\\\"\\\")\""
+    ] */
 }
 
