@@ -197,7 +197,7 @@ chrome_debug() {
 	SESSION_NAME=chrome_debug
 	cd
 	tmux new-session -d -s ${SESSION_NAME} -n wrkspace -x - -y -
-	tmux send-keys -t ${SESSION_NAME}:1.0 '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222' C-m
+	tmux send-keys -t ${SESSION_NAME}:1.0 '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9229' C-m
 }
 alias chrome-debug=chrome_debug
 
