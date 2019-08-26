@@ -192,6 +192,15 @@ dev_pusher_coins() {
 
 alias dev-pusher-coins="dev_pusher_coins"
 
+# Open an instance of Chrome that opens up a remote debug port
+chrome_debug() {
+	SESSION_NAME=chrome_debug
+	cd
+	tmux new-session -d -s ${SESSION_NAME} -n wrkspace -x - -y -
+	tmux send-keys -t ${SESSION_NAME}:1.0 '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222' C-m
+}
+alias chrome-debug=chrome_debug
+
 #}}}
 # =============================================================================
 # Config Variables#{{{
@@ -273,6 +282,3 @@ set editing-mode vi
 set keymap vi-command
 #}}}
 # =============================================================================
-# Added by `blink setup profile` 2019-06-03T16:08:55
-# See https://github.com/blinkhealth/blink-cli for more info
-source "${HOME}/.blink-profile"
