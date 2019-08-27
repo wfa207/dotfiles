@@ -114,7 +114,31 @@
             "after": [
                 "<Esc>"
             ]
-        }
+        },
+        {
+            "before": [
+                "u"
+            ],
+            "after": [],
+            "commands": [
+                {
+                    "command": "undo",
+                    "when": "textInputFocus && !editorReadonly"
+                }
+            ]
+        },
+        {
+            "before": [
+                "<C-r>"
+            ],
+            "after": [],
+            "commands": [
+                {
+                    "command": "redo",
+                    "when": "textInputFocus && !editorReadonly"
+                }
+            ]
+        },
     ],
     "vim.insertModeKeyBindingsNonRecursive": [
         {
@@ -126,7 +150,6 @@
             ]
         }
     ],
-    "workbench.editor.enablePreview": false,
     "editor.wordWrapColumn": 120,
     "prettier.printWidth": 120,
     "prettier.singleQuote": true,
@@ -149,5 +172,11 @@
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "vim.debug.loggingLevelForConsole": "debug"
+    "vim.debug.loggingLevelForConsole": "debug",
+    "python.poetryPath": "/Users/wes.auyeung/.poetry/bin/poetry",
+    "python.venvFolders": [
+        "Library/Caches/pypoetry/virtualenvs"
+    ],
+    "python.formatting.provider": "black",
+    "python.testing.pytestEnabled": true
 }
