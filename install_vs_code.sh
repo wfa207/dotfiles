@@ -38,7 +38,7 @@ pretty_print "Finished loading Visual Studio Code settings.json"
 
 pretty_print "${INDENT}Loading Visual Studio Code keybindings.json"
 
-if [ ! -L "$HOME/Library/Application Support/Code/User/settings.json" ]; then
+if [ ! -L "$HOME/Library/Application Support/Code/User/keybindings.json" ]; then
 	ln -Fhs "${DIR}/vs_code/keybindings.json" ~/Library/Application\ Support/Code/User/keybindings.json
 fi
 

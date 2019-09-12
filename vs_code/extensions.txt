@@ -3,3 +3,4 @@ hoovercj.vscode-settings-cycler
 ms-python.python
 RobbOwen.synthwave-vscode
 vscodevim.vim
+eamodio.gitlens
