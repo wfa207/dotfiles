@@ -152,7 +152,6 @@ pretty_print "~~~~~Finished Installation!~~~~~\n"
 # Create sym links for needed files
 unset DIR INDENT PARENT_DIR PRINT_COLOR DEFAULT_COLOR pretty_print
 . ~/.bashrc
-cd
 
 # }}}
 # =================================================================================

@@ -26,6 +26,12 @@ if [ ! -e "/Applications/Visual Studio Code.app" ]; then
 	pretty_print "Finished installing Visual Studio Code\n"
 fi
 
+if [ ! -e "$HOME/.vscode/css/synthwave84.css" ]; then
+	pretty_print "${INDENT}No Theme CSS detected; Installing\n"
+	curl -L https://raw.githubusercontent.com/robb0wen/synthwave-vscode/master/synthwave84.css -o ~/.vscode/css/synthwave84.css --create-dirs 
+	pretty_print "Finished installing CSS theme\n"
+fi
+
 pretty_print "Finished installing Visual Studio Code"
 
 pretty_print "${INDENT}Loading Visual Studio Code settings.json"
@@ -68,7 +74,6 @@ pretty_print "~~~~~Finished Installation!~~~~~\n"
 # Create sym links for needed files
 unset DIR INDENT PARENT_DIR PRINT_COLOR DEFAULT_COLOR pretty_print ext_name
 . ~/.bashrc
-cd
 
 # }}}
 # =================================================================================
