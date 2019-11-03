@@ -126,6 +126,23 @@ npm install -g typescript
 
 pretty_print "Finished installing language servers\n"
 
+# Docker ===========================
+
+pretty_print "Installing Docker (Mac OS Version)"
+
+if [ ! -s /Applications/Docker.app ]; then
+	DOCKER_IMG='Docker-Temp'
+	curl --create-dirs -L -o ~/Downloads/$DOCKER_IMG.dmg https://download.docker.com/mac/stable/Docker.dmg
+	hdiutil attach -mountpoint /Volumes/$DOCKER_IMG ~/Downloads/$DOCKER_IMG.dmg
+	cp -R /Volumes/$DOCKER_IMG/Docker.app /Volumes/$DOCKER_IMG/Applications
+	hdiutil detach /Volumes/$DOCKER_IMG
+	rm -rf ~/Downloads/$DOCKER_IMG.dmg
+	unset DOCKER_IMG
+	open /Applications/Docker.app
+fi
+
+pretty_print "Finished installing Docker (Mac OS Version)"
+
 # }}}
 # =================================================================================
 # Create Sym Links ================================================================{{{
