@@ -20,12 +20,18 @@ INDENT="    "
 
 if [ ! -e "/Applications/Visual Studio Code.app" ]; then
 	pretty_print "${INDENT}No Visual Studio Code App detected; Installing\n"
-	curl -L https://update.code.visualstudio.com/latest/darwin/stable -o ~/Downloads/VSCode-temp.zip
+	curl -L --create-dirs -o ~/Downloads/VSCode-temp.zip https://update.code.visualstudio.com/latest/darwin/stable
 	unzip ~/Downloads/VSCode-temp.zip -d /Applications
 	rm ~/Downloads/VSCode-temp.zip
 	pretty_print "Finished installing Visual Studio Code\n"
 else 
 	pretty_print "Visual Studio Code is already installed; skipping"
+fi
+
+if [ ! -e "$HOME/.vscode/css/synthwave84.css" ]; then
+	pretty_print "${INDENT}No Theme CSS detected; Installing\n"
+	curl -L -o ~/.vscode/css/synthwave84.css --create-dirs https://raw.githubusercontent.com/robb0wen/synthwave-vscode/master/synthwave84.css
+	pretty_print "Finished installing CSS theme\n"
 fi
 
 pretty_print "Finished installing Visual Studio Code"
@@ -37,7 +43,7 @@ for src_object_path in "${DIR}/vs_code"/*; do
 
 	pretty_print "${INDENT}Loading Visual Studio Code ${object_name}"
 
-	if [ ! -L "$HOME/Library/Application Support/Code/User/settings.json" ]; then
+	if [ ! -L "$HOME/Library/Application Support/Code/User/${object_name}" ]; then
 		ln -Fhs $src_object_path ~/Library/Application\ Support/Code/User/${object_name}
 		pretty_print "Finished loading Visual Studio Code ${object_name}"
 	else 
