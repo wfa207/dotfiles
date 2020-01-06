@@ -10,7 +10,10 @@ import os
 import readline
 import rlcompleter
 import pdb
-from importlib import reload
+try:
+    from importlib import reload
+except ImportError as exc:
+    print("Warning: Could not import reload library.")
 
 try:
     from lxml import etree

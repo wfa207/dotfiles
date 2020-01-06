@@ -29,3 +29,6 @@ export NVM_DIR=${NVM_DIR:=$HOME/.nvm}
 [[ -s "$HOME/.avn/bin/avn.sh" ]] && . "$HOME/.avn/bin/avn.sh"
 #}}}
 # =============================================================================
+# Added by `blink onboard profile` 2019-12-16T22:04:37
+# See https://github.com/blinkhealth/blink-cli for more info
+eval "$(blink shellenv)"

@@ -195,7 +195,6 @@ alias dev-pusher-coins="dev_pusher_coins"
 # Open an instance of Chrome that opens up a remote debug port
 chrome_debug() {
 	SESSION_NAME=chrome_debug
-	cd
 	tmux new-session -d -s ${SESSION_NAME} -n wrkspace -x - -y -
 	tmux send-keys -t ${SESSION_NAME}:1.0 '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9229' C-m
 }
