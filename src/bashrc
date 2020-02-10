@@ -87,19 +87,6 @@ dev_webgl() {
 
 alias dev-webgl="dev_webgl"
 
-dev_oauth() {
-	SESSION_NAME="oauthlib"
-	cd ~/Development/oauthlib
-	tmux new -d -s ${SESSION_NAME} -n wrkspace -x - -y -
-	tmux splitw -h
-	tmux send -t ${SESSION_NAME}:1.0 'vim' C-m
-	tmux resizep -Z -t ${SESSION_NAME}:1.0
-	tmux -2 attach -t ${SESSION_NAME}:1.0
-	unset SESSION_NAME
-}
-
-alias dev-oauth="dev_oauth"
-
 dev_transitions() {
 	SESSION_NAME="pytransitions"
 	cd ~/Development/transitions
@@ -166,19 +153,6 @@ dev_polls() {
 
 alias dev-polls="dev_polls"
 
-dev_pwa() {
-	SESSION_NAME=pwa
-	cd ~/Development/egghead-tutorials/pwa-create-react-app/todo-pwa
-	tmux new-session -d -s ${SESSION_NAME} -n wrkspace
-	tmux send-keys -t ${SESSION_NAME}:1.0 'vim' C-m
-	tmux splitw -v -p 15
-	tmux new-window -t ${SESSION_NAME}:2 -n bg_procs
-	tmux send-keys -t ${SESSION_NAME}:2 'yarn build && serve -s build' C-m
-	tmux -2 attach -t ${SESSION_NAME}:1
-}
-
-alias dev-pwa="dev_pwa"
-
 dev_pusher_coins() {
 	SESSION_NAME=pusher_coins
 	cd ~/Development/practice/pusher-coins
@@ -191,6 +165,17 @@ dev_pusher_coins() {
 }
 
 alias dev-pusher-coins="dev_pusher_coins"
+
+dev_penny() {
+	SESSION_NAME=pennyworth
+	cd ~/Development/pennyworth/backend
+	tmux new-session -d -s ${SESSION_NAME} -n wrkspace -x - -y -
+	tmux splitw -h
+	tmux new-window -t ${SESSION_NAME}:2 -n bg_procs
+	tmux -2 attach -t ${SESSION_NAME}:1
+}
+
+alias dev-penny="dev_penny"
 
 # Open an instance of Chrome that opens up a remote debug port
 chrome_debug() {
