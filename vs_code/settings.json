@@ -271,4 +271,7 @@
     "emmet.triggerExpansionOnTab": true,
     "git.enableSmartCommit": true,
     "search.searchOnType": false,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
 }
