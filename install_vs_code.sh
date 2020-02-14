@@ -26,12 +26,6 @@ if [ ! -e "/Applications/Visual Studio Code.app" ]; then
 	pretty_print "Finished installing Visual Studio Code\n"
 fi
 
-if [ ! -e "$HOME/.vscode/css/synthwave84.css" ]; then
-	pretty_print "${INDENT}No Theme CSS detected; Installing\n"
-	curl -L https://raw.githubusercontent.com/robb0wen/synthwave-vscode/master/synthwave84.css -o ~/.vscode/css/synthwave84.css --create-dirs 
-	pretty_print "Finished installing CSS theme\n"
-fi
-
 pretty_print "Finished installing Visual Studio Code"
 
 pretty_print "${INDENT}Loading Visual Studio Code settings.json"
@@ -51,9 +45,6 @@ fi
 pretty_print "Finished loading Visual Studio Code keybindings.json"
 
 pretty_print "${INDENT}Installing VS Code Dependencies & Extensions"
-
-# mkdir -p ~/.vscode/css
-# curl https://raw.githubusercontent.com/robb0wen/synthwave-vscode/master/synthwave84.css -o ~/.vscode/css/synthwave84.css
 
 for ext_name in $(cat "${DIR}/vs_code/extensions.txt");
 do 

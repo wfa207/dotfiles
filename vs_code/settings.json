@@ -1,277 +1,207 @@
 {
-    "window.zoomLevel": -1,
-    "workbench.colorTheme": "SynthWave '84",
-    "vscode_custom_css.imports": [
-        "file:/Users/wes.auyeung/.vscode/css/synthwave84.css"
-    ],
-    "editor.formatOnSave": true,
-    "editor.formatOnPaste": true,
-    "editor.wordWrap": "bounded",
-    "editor.minimap.enabled": false,
-    "editor.fontLigatures": true,
-    "editor.lineNumbers": "relative",
-    "gitlens.views.repositories.location": "scm",
-    "gitlens.views.fileHistory.location": "scm",
-    "gitlens.views.lineHistory.location": "scm",
-    "gitlens.views.search.location": "scm",
-    "gitlens.views.compare.location": "scm",
-    "settings.cycle": [
+  "window.zoomLevel": -1,
+  "workbench.colorTheme": "SynthWave '84",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.wordWrap": "bounded",
+  "editor.minimap.enabled": false,
+  "editor.fontLigatures": true,
+  "editor.lineNumbers": "relative",
+  "gitlens.views.repositories.location": "scm",
+  "gitlens.views.fileHistory.location": "scm",
+  "gitlens.views.lineHistory.location": "scm",
+  "gitlens.views.search.location": "scm",
+  "gitlens.views.compare.location": "scm",
+  "settings.cycle": [
+    {
+      "id": "lineNumber",
+      "overrideWorkspaceSettings": false,
+      "values": [
         {
-            "id": "lineNumber",
-            "overrideWorkspaceSettings": false,
-            "values": [
-                {
-                    "editor.lineNumbers": "on"
-                },
-                {
-                    "editor.lineNumbers": "relative",
-                }
-            ]
+          "editor.lineNumbers": "on"
+        },
+        {
+          "editor.lineNumbers": "relative"
         }
-    ],
-    "terminal.integrated.fontFamily": "Inconsolata for Powerline",
-    /* Vim */
-    "vim.textwidth": 120,
-    "vim.leader": ",",
-    "vim.surround": true,
-    "vim.useSystemClipboard": true,
-    "vim.normalModeKeyBindingsNonRecursive": [
+      ]
+    }
+  ],
+  "terminal.integrated.fontFamily": "Inconsolata for Powerline",
+  /* Vim */
+  "vim.textwidth": 120,
+  "vim.leader": ",",
+  "vim.surround": true,
+  "vim.useSystemClipboard": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-l>"], // Navigate Right
+      "after": ["<C-w>", "l"]
+    },
+    {
+      "before": ["<C-h>"], // Navigate Left
+      "after": ["<C-w>", "h"]
+    },
+    {
+      "before": ["<C-k>"], // Navigate Up
+      "after": ["<C-w>", "k"]
+    },
+    {
+      "before": ["<C-j>"], // Navigate Down
+      "after": ["<C-w>", "j"]
+    },
+    {
+      "before": ["<C-w>", "<C-w>"], // Navigate Down
+      "commands": [":q"]
+    },
+    {
+      "before": ["<C-a>"], // Toggle between relative & absolute line numbers
+      "commands": ["settings.cycle.lineNumber"]
+    },
+    {
+      "before": ["g", "r"],
+      "commands": [
         {
-            "before": [
-                "<C-l>"
-            ], // Navigate Right
-            "after": [
-                "<C-w>",
-                "l"
-            ],
-        },
-        {
-            "before": [
-                "<C-h>"
-            ], // Navigate Left
-            "after": [
-                "<C-w>",
-                "h"
-            ],
-        },
-        {
-            "before": [
-                "<C-k>"
-            ], // Navigate Up
-            "after": [
-                "<C-w>",
-                "k"
-            ],
-        },
-        {
-            "before": [
-                "<C-j>"
-            ], // Navigate Down
-            "after": [
-                "<C-w>",
-                "j"
-            ],
-        },
-        {
-            "before": [
-                "<C-w>",
-                "<C-w>"
-            ], // Navigate Down
-            "commands": [
-                ":q"
-            ],
-        },
-        {
-            "before": [
-                "<C-a>"
-            ], // Toggle between relative & absolute line numbers
-            "commands": [
-                "settings.cycle.lineNumber"
-            ],
-        },
-        {
-            "before": [
-                "g",
-                "r"
-            ],
-            "commands": [
-                {
-                    "command": "editor.action.referenceSearch.trigger",
-                    "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
-                }
-            ]
-        },
-        {
-            "before": [
-                "<C-["
-            ], // Bind to escape key
-            "after": [
-                "<Esc>"
-            ]
-        },
-        {
-            "before": [
-                "u"
-            ],
-            "after": [],
-            "commands": [
-                {
-                    "command": "undo",
-                    "when": "textInputFocus && !editorReadonly"
-                }
-            ]
-        },
-        {
-            "before": [
-                "<C-r>"
-            ],
-            "after": [],
-            "commands": [
-                {
-                    "command": "redo",
-                    "when": "textInputFocus && !editorReadonly"
-                }
-            ]
-        },
-        {
-            "before": [
-                "<C-c>"
-            ],
-            "after": [
-                "<Esc>"
-            ],
-            "commands": [
-                {
-                    "command": ":nohl",
-                    "when": "textInputFocus"
-                }
-            ]
-        },
-        {
-            "before": [
-                "="
-            ],
-            "commands": [
-                { 
-                    "command": "editor.action.formatDocument",
-                    "when": "editorHasDocumentFormattingProvider && editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly"
-                }
-            ]
-        },
-        {
-            "before": [
-                "/"
-            ],
-            "commands": [
-                {
-                    "command": "actions.find",
-                    "when": "editorFocus"
-                }
-            ]
-        },
-        {
-            "before": [
-                "n"
-            ],
-            "commands": [
-                {
-                    "command": "editor.action.nextMatchFindAction",
-                    "when": "editorFocus"
-                }
-            ]
-        },
-        {
-            "before": [
-                "N"
-            ],
-            "commands": [
-                {
-                    "command": "editor.action.previousMatchFindAction",
-                    "when": "editorFocus"
-                }
-            ]
-        },
-        {
-            "before": [
-                "*"
-            ],
-            "commands": [
-                {
-                    "command": "editor.action.nextSelectionMatchFindAction",
-                    "when": "editorFocus"
-                }
-            ],
-        },
-        {
-            "before": [
-                "#",
-            ],
-            "commands": [
-                {
-                    "command": "editor.action.previousSelectionMatchFindAction",
-                    "when": "editorFocus"
-                }
-            ]
-        },
-        {
-            "before": [
-                "<Space>",
-            ],
-            "after": [
-                "@",
-                "q"
-            ]
+          "command": "editor.action.referenceSearch.trigger",
+          "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
         }
-    ],
-    "vim.insertModeKeyBindingsNonRecursive": [
+      ]
+    },
+    {
+      "before": ["<C-["], // Bind to escape key
+      "after": ["<Esc>"]
+    },
+    {
+      "before": ["u"],
+      "after": [],
+      "commands": [
         {
-            "before": [
-                "<C-["
-            ], // Bind to escape key
-            "after": [
-                "<Esc>"
-            ]
+          "command": "undo",
+          "when": "textInputFocus && !editorReadonly"
         }
-    ],
-    "editor.wordWrapColumn": 120,
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.tabSize": 2,
+      ]
     },
-    "[css]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.tabSize": 2,
+    {
+      "before": ["<C-r>"],
+      "after": [],
+      "commands": [
+        {
+          "command": "redo",
+          "when": "textInputFocus && !editorReadonly"
+        }
+      ]
     },
-    "search.location": "panel",
-    "search.showLineNumbers": true,
-    "workbench.activityBar.visible": false,
-    "workbench.list.automaticKeyboardNavigation": false,
-    "githubPullRequests.showInSCM": true,
-    "git.autofetch": true,
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    {
+      "before": ["<C-c>"],
+      "after": ["<Esc>"],
+      "commands": [
+        {
+          "command": ":nohl",
+          "when": "textInputFocus"
+        }
+      ]
     },
-    "python.poetryPath": "/Users/wes.auyeung/.poetry/bin/poetry",
-    "python.venvFolders": [
-        "Library/Caches/pypoetry/virtualenvs"
-    ],
-    "python.formatting.provider": "black",
-    "python.testing.pytestEnabled": true,
-    "[jsonc]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    {
+      "before": ["="],
+      "commands": [
+        {
+          "command": "editor.action.formatDocument",
+          "when": "editorHasDocumentFormattingProvider && editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly"
+        }
+      ]
     },
-    "editor.find.seedSearchStringFromSelection": false,
-    "workbench.settings.enableNaturalLanguageSearch": false,
-    "diffEditor.renderSideBySide": false,
-    "search.quickOpen.includeHistory": false,
-    "search.collapseResults": "alwaysExpand",
-    "autoDocstring.docstringFormat": "sphinx",
-    "typescript.referencesCodeLens.enabled": true,
-    "explorer.confirmDragAndDrop": false,
-    "emmet.triggerExpansionOnTab": true,
-    "git.enableSmartCommit": true,
-    "search.searchOnType": false,
-    "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
+    {
+      "before": ["/"],
+      "commands": [
+        {
+          "command": "actions.find",
+          "when": "editorFocus"
+        }
+      ]
     },
+    {
+      "before": ["n"],
+      "commands": [
+        {
+          "command": "editor.action.nextMatchFindAction",
+          "when": "editorFocus"
+        }
+      ]
+    },
+    {
+      "before": ["N"],
+      "commands": [
+        {
+          "command": "editor.action.previousMatchFindAction",
+          "when": "editorFocus"
+        }
+      ]
+    },
+    {
+      "before": ["*"],
+      "commands": [
+        {
+          "command": "editor.action.nextSelectionMatchFindAction",
+          "when": "editorFocus"
+        }
+      ]
+    },
+    {
+      "before": ["#"],
+      "commands": [
+        {
+          "command": "editor.action.previousSelectionMatchFindAction",
+          "when": "editorFocus"
+        }
+      ]
+    },
+    {
+      "before": ["<Space>"],
+      "after": ["@", "q"]
+    }
+  ],
+  "vim.insertModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-["], // Bind to escape key
+      "after": ["<Esc>"]
+    }
+  ],
+  "editor.wordWrapColumn": 120,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "search.showLineNumbers": true,
+  "workbench.activityBar.visible": false,
+  "workbench.list.automaticKeyboardNavigation": false,
+  "githubPullRequests.showInSCM": true,
+  "git.autofetch": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "python.poetryPath": "/Users/wes.auyeung/.poetry/bin/poetry",
+  "python.venvFolders": ["Library/Caches/pypoetry/virtualenvs"],
+  "python.formatting.provider": "black",
+  "python.testing.pytestEnabled": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.find.seedSearchStringFromSelection": false,
+  "workbench.settings.enableNaturalLanguageSearch": false,
+  "diffEditor.renderSideBySide": false,
+  "search.quickOpen.includeHistory": false,
+  "search.collapseResults": "alwaysExpand",
+  "synthwave84.brightness": "0.35",
+  "autoDocstring.docstringFormat": "sphinx",
+  "typescript.referencesCodeLens.enabled": true,
+  "explorer.confirmDragAndDrop": false,
+  "emmet.triggerExpansionOnTab": true,
+  "git.enableSmartCommit": true,
+  "search.searchOnType": false,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  }
 }
