@@ -106,7 +106,7 @@ dev_vertical_half() {
 		tmux send $1 C-m
 	fi
 	tmux splitw -h
-	tmux resizep -Z -t ${2:-}${2:+:}1.0
+	# tmux resizep -Z -t ${2:-}${2:+:}1.0
 	tmux -2 attach -t ${2:-}${2:+:}1.0
 }
 
