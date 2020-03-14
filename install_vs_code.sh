@@ -24,25 +24,27 @@ if [ ! -e "/Applications/Visual Studio Code.app" ]; then
 	unzip ~/Downloads/VSCode-temp.zip -d /Applications
 	rm ~/Downloads/VSCode-temp.zip
 	pretty_print "Finished installing Visual Studio Code\n"
+else 
+	pretty_print "Visual Studio Code is already installed; skipping"
 fi
 
 pretty_print "Finished installing Visual Studio Code"
 
-pretty_print "${INDENT}Loading Visual Studio Code settings.json"
+for src_object_path in "${DIR}/vs_code"/*; do
 
-if [ ! -L "$HOME/Library/Application Support/Code/User/settings.json" ]; then
-	ln -Fhs "${DIR}/vs_code/settings.json" ~/Library/Application\ Support/Code/User/settings.json
-fi
+	# Get name of object
+	object_name=$(basename "${src_object_path}")
 
-pretty_print "Finished loading Visual Studio Code settings.json"
+	pretty_print "${INDENT}Loading Visual Studio Code ${object_name}"
 
-pretty_print "${INDENT}Loading Visual Studio Code keybindings.json"
+	if [ ! -L "$HOME/Library/Application Support/Code/User/settings.json" ]; then
+		ln -Fhs $src_object_path ~/Library/Application\ Support/Code/User/${object_name}
+		pretty_print "Finished loading Visual Studio Code ${object_name}"
+	else 
+		pretty_print "Visual Studio Code ${object_name} already exists; skipping"
+	fi
 
-if [ ! -L "$HOME/Library/Application Support/Code/User/keybindings.json" ]; then
-	ln -Fhs "${DIR}/vs_code/keybindings.json" ~/Library/Application\ Support/Code/User/keybindings.json
-fi
-
-pretty_print "Finished loading Visual Studio Code keybindings.json"
+done
 
 pretty_print "${INDENT}Installing VS Code Dependencies & Extensions"
 
@@ -63,7 +65,7 @@ pretty_print "Finished installing VS Code Dependencies & Extensions"
 
 pretty_print "~~~~~Finished Installation!~~~~~\n"
 # Create sym links for needed files
-unset DIR INDENT PARENT_DIR PRINT_COLOR DEFAULT_COLOR pretty_print ext_name
+unset DIR INDENT PARENT_DIR PRINT_COLOR DEFAULT_COLOR pretty_print ext_name src_object_path object_name
 . ~/.bashrc
 
 # }}}

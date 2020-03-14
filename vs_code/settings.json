@@ -1,5 +1,5 @@
 {
-  "window.zoomLevel": -1,
+  "window.zoomLevel": -2,
   "workbench.colorTheme": "SynthWave '84",
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
@@ -203,5 +203,6 @@
   "search.searchOnType": false,
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
-  }
+  },
+  "workbench.editor.showTabs": true
 }

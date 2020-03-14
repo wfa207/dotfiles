@@ -290,4 +290,14 @@
         "command": "-breadcrumbs.focus",
         "when": "breadcrumbsPossible"
     },
+    {
+        "key": "shift+cmd+j",
+        "when": "panelFocus && !inSearchEditor && !searchViewletFocus",
+        "command": "workbench.action.toggleMaximizedPanel"
+    },
+    {
+        "key": "cmd+k w",
+        "when": "terminalFocus",
+        "command": "workbench.action.terminal.kill"
+    },
 ]
