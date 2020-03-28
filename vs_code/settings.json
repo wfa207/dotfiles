@@ -204,5 +204,6 @@
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "workbench.editor.showTabs": true
+  "workbench.editor.showTabs": true,
+  "diffEditor.ignoreTrimWhitespace": true
 }

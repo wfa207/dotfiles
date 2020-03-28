@@ -114,7 +114,7 @@ alias dev="dev_vertical_half"
 
 dev_dot() {
 	cd ~/dotfiles
-	dev_vertical_half vim dot
+	dev_vertical_half '' dot
 }
 
 alias dev-dot="dev_dot"

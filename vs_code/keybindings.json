@@ -305,4 +305,14 @@
         "when": "terminalFocus",
         "command": "workbench.action.terminal.kill"
     },
+    {
+        "key": "=",
+        "command": "git.stage",
+        "when": "activeViewlet == 'workbench.view.scm' && !inputFocus"
+    },
+    {
+        "key": "-",
+        "command": "git.unstage",
+        "when": "activeViewlet == 'workbench.view.scm' && !inputFocus"
+    },
 ]
