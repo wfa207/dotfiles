@@ -168,7 +168,7 @@ alias dev-pusher-coins="dev_pusher_coins"
 
 dev_penny() {
 	SESSION_NAME=pennyworth
-	cd ~/Development/pennyworth/backend
+	cd ~/Development/pennyworth
 	tmux new-session -d -s ${SESSION_NAME} -n wrkspace -x - -y -
 	tmux splitw -h
 	tmux new-window -t ${SESSION_NAME}:2 -n bg_procs
