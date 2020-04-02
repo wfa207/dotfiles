@@ -1,6 +1,7 @@
 // Copies current JIRA board info in comma-delineated format for easy manipulation in Google Sheets
-copy(
-  Object.values(document.querySelectorAll("div.ghx-issue-content")).map(
+copy([
+  "Type, Title, Epic Name, Epic Key, Ticket Number, Ticket Link, Priority, Story Points",
+  ...Object.values(document.querySelectorAll("div.ghx-issue-content")).map(
     container => {
       const typeElem = container.querySelector("span.ghx-type.items-spacer");
       const type = typeElem ? typeElem.title : null;
@@ -50,4 +51,4 @@ copy(
       ].join(", ");
     }
   )
-);
+]);
