@@ -205,5 +205,12 @@
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "workbench.editor.showTabs": true,
-  "diffEditor.ignoreTrimWhitespace": true
+  "diffEditor.ignoreTrimWhitespace": true,
+  "terminal.integrated.shell.osx": "/bin/bash",
+  "python.analysis.logLevel": "Warning",
+  "python.languageServer": "Jedi",
+  "python.linting.mypyEnabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.dataScience.debugJustMyCode": false,
+  "pyright.useLibraryCodeForTypes": true
 }

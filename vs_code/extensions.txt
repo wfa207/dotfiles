@@ -1,6 +1,15 @@
 be5invis.vscode-custom-css
+eamodio.gitlens
+esbenp.prettier-vscode
+flowtype.flow-for-vscode
+GitHub.vscode-pull-request-github
 hoovercj.vscode-settings-cycler
+lextudio.restructuredtext
+ms-azuretools.vscode-docker
+ms-pyright.pyright
 ms-python.python
+ms-vscode-remote.remote-containers
+msjsdiag.debugger-for-chrome
+njpwerner.autodocstring
 RobbOwen.synthwave-vscode
 vscodevim.vim
-eamodio.gitlens
