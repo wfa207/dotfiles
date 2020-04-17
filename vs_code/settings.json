@@ -1,17 +1,63 @@
 {
-  "window.zoomLevel": -1,
-  "workbench.colorTheme": "SynthWave '84",
+  "autoDocstring.docstringFormat": "sphinx",
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "diffEditor.ignoreTrimWhitespace": true,
+  "diffEditor.renderSideBySide": false,
+  "editor.find.seedSearchStringFromSelection": false,
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   "editor.wordWrap": "bounded",
   "editor.minimap.enabled": false,
   "editor.fontLigatures": true,
   "editor.lineNumbers": "relative",
+  "editor.wordWrapColumn": 120,
+  "emmet.triggerExpansionOnTab": true,
+  "explorer.confirmDragAndDrop": false,
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+  "githubPullRequests.showInSCM": true,
   "gitlens.views.repositories.location": "scm",
   "gitlens.views.fileHistory.location": "scm",
   "gitlens.views.lineHistory.location": "scm",
   "gitlens.views.search.location": "scm",
   "gitlens.views.compare.location": "scm",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "pyright.useLibraryCodeForTypes": true,
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+  "python.analysis.logLevel": "Warning",
+  "python.dataScience.debugJustMyCode": false,
+  "python.formatting.provider": "black",
+  "python.languageServer": "Jedi",
+  "python.linting.mypyEnabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.mypyArgs": [
+    "--ignore-missing-imports",
+    "--follow-imports=silent",
+    "--show-column-numbers"
+  ],
+  "python.poetryPath": "/Users/wes.auyeung/.poetry/bin/poetry",
+  "python.sortImports.args": ["-rc", "-w 88", "-m 3"],
+  "python.testing.pytestEnabled": true,
+  "python.venvFolders": ["Library/Caches/pypoetry/virtualenvs"],
+  "search.collapseResults": "alwaysExpand",
+  "search.quickOpen.includeHistory": false,
+  "search.searchOnType": false,
+  "search.showLineNumbers": true,
   "settings.cycle": [
     {
       "id": "lineNumber",
@@ -26,8 +72,14 @@
       ]
     }
   ],
+  "synthwave84.brightness": 0.35,
   "terminal.integrated.fontFamily": "Inconsolata for Powerline",
-  /* Vim */
+  "terminal.integrated.shell.osx": "/bin/bash",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "typescript.referencesCodeLens.enabled": true,
   "vim.textwidth": 120,
   "vim.leader": ",",
   "vim.surround": true,
@@ -165,52 +217,10 @@
       "after": ["<Esc>"]
     }
   ],
-  "editor.wordWrapColumn": 120,
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.tabSize": 2
-  },
-  "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.tabSize": 2
-  },
-  "search.showLineNumbers": true,
+  "window.zoomLevel": -1,
   "workbench.activityBar.visible": false,
-  "workbench.list.automaticKeyboardNavigation": false,
-  "githubPullRequests.showInSCM": true,
-  "git.autofetch": true,
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "python.poetryPath": "/Users/wes.auyeung/.poetry/bin/poetry",
-  "python.venvFolders": ["Library/Caches/pypoetry/virtualenvs"],
-  "python.formatting.provider": "black",
-  "python.testing.pytestEnabled": true,
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "editor.find.seedSearchStringFromSelection": false,
-  "workbench.settings.enableNaturalLanguageSearch": false,
-  "diffEditor.renderSideBySide": false,
-  "search.quickOpen.includeHistory": false,
-  "search.collapseResults": "alwaysExpand",
-  "synthwave84.brightness": "0.35",
-  "autoDocstring.docstringFormat": "sphinx",
-  "typescript.referencesCodeLens.enabled": true,
-  "explorer.confirmDragAndDrop": false,
-  "emmet.triggerExpansionOnTab": true,
-  "git.enableSmartCommit": true,
-  "search.searchOnType": false,
-  "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
+  "workbench.colorTheme": "SynthWave '84",
   "workbench.editor.showTabs": true,
-  "diffEditor.ignoreTrimWhitespace": true,
-  "terminal.integrated.shell.osx": "/bin/bash",
-  "python.analysis.logLevel": "Warning",
-  "python.languageServer": "Jedi",
-  "python.linting.mypyEnabled": true,
-  "python.linting.flake8Enabled": true,
-  "python.dataScience.debugJustMyCode": false,
-  "pyright.useLibraryCodeForTypes": true
+  "workbench.list.automaticKeyboardNavigation": false,
+  "workbench.settings.enableNaturalLanguageSearch": false
 }
