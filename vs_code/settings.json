@@ -14,6 +14,9 @@
   "editor.fontLigatures": true,
   "editor.lineNumbers": "relative",
   "editor.wordWrapColumn": 120,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
   "emmet.triggerExpansionOnTab": true,
   "explorer.confirmDragAndDrop": false,
   "git.autofetch": true,
@@ -33,6 +36,7 @@
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "pyright.disableOrganizeImports": true,
   "pyright.useLibraryCodeForTypes": true,
   "[python]": {
     "editor.codeActionsOnSave": {
@@ -43,17 +47,19 @@
   "python.dataScience.debugJustMyCode": false,
   "python.formatting.provider": "black",
   "python.languageServer": "Jedi",
+  "python.linting.mypyArgs": [
+    "--disallow-untyped-defs",
+    "--disallow-incomplete-defs",
+    "--disallow-untyped-decorators"
+  ],
   "python.linting.mypyEnabled": true,
   "python.linting.flake8Enabled": true,
-  "python.linting.mypyArgs": [
-    "--ignore-missing-imports",
-    "--follow-imports=silent",
-    "--show-column-numbers"
-  ],
   "python.poetryPath": "/Users/wes.auyeung/.poetry/bin/poetry",
-  "python.sortImports.args": ["-rc", "-w 88", "-m 3"],
+  "python.sortImports.args": ["-w 88", "-cs", "-rc", "-m 3", "-e"],
   "python.testing.pytestEnabled": true,
   "python.venvFolders": ["Library/Caches/pypoetry/virtualenvs"],
+  "python.venvPath": "Library/Caches/pypoetry/virtualenvs",
+  "restructuredtext.linter.executablePath": "doc8",
   "search.collapseResults": "alwaysExpand",
   "search.quickOpen.includeHistory": false,
   "search.searchOnType": false,
@@ -222,5 +228,10 @@
   "workbench.colorTheme": "SynthWave '84",
   "workbench.editor.showTabs": true,
   "workbench.list.automaticKeyboardNavigation": false,
-  "workbench.settings.enableNaturalLanguageSearch": false
+  "workbench.settings.enableNaturalLanguageSearch": false,
+  "pyright.typeCheckingMode": "off",
+  "python.diagnostics.sourceMapsEnabled": false,
+  "workbench.iconTheme": "eq-material-theme-icons-darker",
+  "gitlens.views.compare.files.layout": "list",
+  "editor.largeFileOptimizations": false
 }
