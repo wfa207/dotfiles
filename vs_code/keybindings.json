@@ -41,12 +41,12 @@
   {
     "key": "=",
     "command": "git.stageSelectedRanges",
-    "when": "isInDiffEditor && editorHasSelection"
+    "when": "editorHasSelection && isInDiffEditor"
   },
   {
     "key": "-",
     "command": "git.unstageSelectedRanges",
-    "when": "isInDiffEditor && editorHasSelection"
+    "when": "isInDiffEditor && editorHasSelection && !textInputFocus"
   },
   {
     "key": "cmd+;",
@@ -190,11 +190,6 @@
   },
   {
     "key": "enter",
-    "command": "list.select",
-    "when": "listFocus && !inputFocus"
-  },
-  {
-    "key": "enter",
     "command": "closeFindWidget",
     "when": "editorFocus && findWidgetVisible && !replaceActive"
   },
@@ -335,15 +330,23 @@
     "command": "workbench.action.navigateBack"
   },
   {
-    "key": "ctrl+-",
-    "command": "-workbench.action.navigateBack"
-  },
-  {
     "key": "ctrl+shift+]",
     "command": "workbench.action.navigateForward"
   },
   {
+    "key": "ctrl+-",
+    "command": "-workbench.action.navigateBack"
+  },
+  {
     "key": "ctrl+shift+-",
     "command": "-workbench.action.navigateForward"
+  },
+  {
+    "key": "ctrl+o",
+    "command": "workbench.action.navigateBack"
+  },
+  {
+    "key": "ctrl+i",
+    "command": "workbench.action.navigateForward"
   }
 ]
