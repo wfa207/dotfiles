@@ -1,4 +1,4 @@
-from setup.utils import Shell
+from setup.utils import Executable, Shell
 
 
 class Javascript:
@@ -20,8 +20,7 @@ class Javascript:
         ]
 
         for executable_name in DEPENDENT_EXECUTABLES:
-            # TODO: Should encapsulate installation method in case Brew unavailable
-            Shell.execute("brew", "install", executable_name)
+            Executable.install(executable_name)
 
         Shell.print_formatted(
             "\nInstalled Javascript dependencies\n", Shell.Colors.HEADER_1
@@ -36,7 +35,7 @@ class Javascript:
 
         if not Shell.exists(NVM_DIR):
             if Shell.exists("/usr/local/Cellar/nvm"):
-                Shell.execute("brew", "uninstall", "nvm")
+                Executable.uninstall("nvm")
 
         Shell.make_dir(NVM_DIR, exist_ok=True)
         Shell.execute(

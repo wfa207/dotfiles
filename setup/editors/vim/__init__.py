@@ -1,4 +1,4 @@
-from setup.utils import Shell
+from setup.utils import Executable, Shell
 
 
 class Vim:
@@ -18,8 +18,7 @@ class Vim:
     def _install_command(cls):
         Shell.print_formatted("Installing Vim command\n", Shell.Colors.HEADER_1)
 
-        # TODO: Should encapsulate installation method in case Brew unavailable
-        Shell.execute("brew", "install", "vim")
+        Executable.install("vim")
 
         Shell.print_formatted("\nInstalled Vim command\n", Shell.Colors.HEADER_1)
 
@@ -35,8 +34,7 @@ class Vim:
         ]
 
         for executable_name in DEPENDENT_EXECUTABLES:
-            # TODO: Should encapsulate installation method in case Brew unavailable
-            Shell.execute("brew", "install", executable_name)
+            Executable.install(executable_name)
 
         Shell.print_formatted("\nInstalled Vim dependencies\n", Shell.Colors.HEADER_1)
 

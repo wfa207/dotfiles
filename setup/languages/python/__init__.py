@@ -1,4 +1,4 @@
-from setup.utils import Shell
+from setup.utils import Executable, Shell
 
 
 class Python:
@@ -21,8 +21,7 @@ class Python:
         ]
 
         for executable_name in DEPENDENT_EXECUTABLES:
-            # TODO: Should encapsulate installation method in case Brew unavailable
-            Shell.execute("brew", "install", executable_name)
+            Executable.install(executable_name)
 
         Shell.print_formatted(
             "\nInstalled Python dependencies\n", Shell.Colors.HEADER_1

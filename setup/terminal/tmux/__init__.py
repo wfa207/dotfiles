@@ -1,4 +1,4 @@
-from setup.utils import Shell
+from setup.utils import Executable, Shell
 
 
 class Tmux:
@@ -13,8 +13,7 @@ class Tmux:
     def _install_command(cls):
         Shell.print_formatted("Installing Tmux command\n", Shell.Colors.HEADER_1)
 
-        # TODO: Should encapsulate installation method in case Brew unavailable
-        Shell.execute("brew", "install", "tmux")
+        Executable.install("tmux")
 
         Shell.print_formatted(
             "\nFinished installing Tmux command\n", Shell.Colors.HEADER_1
