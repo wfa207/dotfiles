@@ -14,13 +14,10 @@ class Javascript:
             "Installing Javascript dependencies\n", Shell.Colors.HEADER_1
         )
 
-        DEPENDENT_EXECUTABLES = [
-            "node",
-            "yarn",  # args: ["ignore-dependencies"]
-        ]
+        DEPENDENT_EXECUTABLES = [("node", {}), ("yarn", {"ignore-dependencies": True})]
 
-        for executable_name in DEPENDENT_EXECUTABLES:
-            Executable.install(executable_name)
+        for executable_name, install_options in DEPENDENT_EXECUTABLES:
+            Executable.install(executable_name, **install_options)
 
         Shell.print_formatted(
             "\nInstalled Javascript dependencies\n", Shell.Colors.HEADER_1
