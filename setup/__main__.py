@@ -1,11 +1,12 @@
 from setup import Setup
-from setup.constants import TermColors
-from setup.utils import print_formatted
+from setup.utils import Shell
 
 if __name__ == "__main__":
     try:
         Setup.run()
 
     except Exception as exc:
-        print_formatted(f"Encountered exception: '{str(exc)}'\n", TermColors.FAILURE)
+        Shell.print_formatted(
+            f"Encountered exception: '{str(exc)}'\n", Shell.Colors.FAILURE
+        )
         raise exc

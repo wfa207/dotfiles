@@ -1,8 +1,8 @@
 import os
 import subprocess
 
-from setup.constants import HOME_DIR, TermColors
-from setup.utils import print_formatted
+from setup.constants import HOME_DIR
+from setup.utils import Shell
 
 
 class Tmux:
@@ -15,23 +15,25 @@ class Tmux:
 
     @classmethod
     def _install_command(cls):
-        print_formatted("Installing Tmux command\n", TermColors.HEADER_1)
+        Shell.print_formatted("Installing Tmux command\n", Shell.Colors.HEADER_1)
 
         # TODO: Should encapsulate installation method in case Brew unavailable
         subprocess.call(["brew", "install", "tmux"])
 
-        print_formatted("\nFinished installing Tmux command\n", TermColors.HEADER_1)
+        Shell.print_formatted(
+            "\nFinished installing Tmux command\n", Shell.Colors.HEADER_1
+        )
 
     @classmethod
     def _install_plugin_manager(cls):
         already_exists = os.path.exists(f"{HOME_DIR}/.tmux/plugins/tpm")
         if already_exists:
-            print_formatted(
-                "Tmux plugin manager already installed\n", TermColors.WARNING
+            Shell.print_formatted(
+                "Tmux plugin manager already installed\n", Shell.Colors.WARNING
             )
             return
 
-        print_formatted("Installing Tmux plugin manager\n", TermColors.HEADER_1)
+        Shell.print_formatted("Installing Tmux plugin manager\n", Shell.Colors.HEADER_1)
 
         subprocess.call(
             [
@@ -42,13 +44,13 @@ class Tmux:
             ]
         )
 
-        print_formatted(
-            "\nFinished installing Tmux plugin manager\n", TermColors.HEADER_1
+        Shell.print_formatted(
+            "\nFinished installing Tmux plugin manager\n", Shell.Colors.HEADER_1
         )
 
     @classmethod
     def _configure(cls):
-        print_formatted("Configuring Tmux\n", TermColors.HEADER_1)
+        Shell.print_formatted("Configuring Tmux\n", Shell.Colors.HEADER_1)
 
         curr_file_dir = os.path.dirname(os.path.abspath(__file__))
         config_files_dir = f"{curr_file_dir}/config_files"
@@ -61,9 +63,9 @@ class Tmux:
                 os.symlink(config_file_path_src, config_file_path_tgt)
 
             else:
-                print_formatted(
+                Shell.print_formatted(
                     f"Warning: Detected existing configuration at {config_file_path_tgt}\n",
-                    TermColors.WARNING,
+                    Shell.Colors.WARNING,
                 )
 
-        print_formatted("Configured Tmux\n", TermColors.HEADER_1)
+        Shell.print_formatted("Configured Tmux\n", Shell.Colors.HEADER_1)

@@ -2,8 +2,8 @@ import errno
 import os
 import subprocess
 
-from setup.constants import HOME_DIR, TermColors
-from setup.utils import print_formatted
+from setup.constants import HOME_DIR
+from setup.utils import Shell
 
 
 class VSCode:
@@ -19,7 +19,9 @@ class VSCode:
     def _install_executable(cls):
         already_exists = os.path.exists("/Applications/Visual Studio Code.app")
         if not already_exists:
-            print_formatted("Installing VS Code executable\n", TermColors.WARNING)
+            Shell.print_formatted(
+                "Installing VS Code executable\n", Shell.Colors.WARNING
+            )
 
             # This is OS X-specific setup -----------------------------------------------
             subprocess.call(
@@ -48,11 +50,13 @@ class VSCode:
             )
             # ---------------------------------------------------------------------------
 
-            print_formatted("\nInstalled VS Code executable\n", TermColors.HEADER_1)
+            Shell.print_formatted(
+                "\nInstalled VS Code executable\n", Shell.Colors.HEADER_1
+            )
 
         else:
-            print_formatted(
-                "VS Code executable already installed\n", TermColors.WARNING
+            Shell.print_formatted(
+                "VS Code executable already installed\n", Shell.Colors.WARNING
             )
 
         cls._setup_cli_command()
@@ -63,7 +67,9 @@ class VSCode:
         already_exists = os.path.exists(binary_path_tgt)
 
         if not already_exists:
-            print_formatted("Setting up VS Code CLI command\n", TermColors.HEADER_1)
+            Shell.print_formatted(
+                "Setting up VS Code CLI command\n", Shell.Colors.HEADER_1
+            )
 
             binary_path_src = (
                 f"/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
@@ -71,10 +77,12 @@ class VSCode:
 
             os.symlink(binary_path_src, binary_path_tgt)
 
-            print_formatted("Setup VS Code CLI command\n", TermColors.HEADER_1)
+            Shell.print_formatted("Setup VS Code CLI command\n", Shell.Colors.HEADER_1)
 
         else:
-            print_formatted("VS Code CLI command already setup\n", TermColors.WARNING)
+            Shell.print_formatted(
+                "VS Code CLI command already setup\n", Shell.Colors.WARNING
+            )
 
     @classmethod
     def _install_extensions(cls):
@@ -103,16 +111,16 @@ class VSCode:
             "ms-vscode-remote.remote-containers",
         ]
 
-        print_formatted("Installing VS Code Extensions\n", TermColors.HEADER_1)
+        Shell.print_formatted("Installing VS Code Extensions\n", Shell.Colors.HEADER_1)
 
         for extension_name in EXTENSIONS:
             subprocess.call(["code", "--install-extension", extension_name])
 
-        print_formatted("Installed VS Code Extensions\n", TermColors.HEADER_1)
+        Shell.print_formatted("Installed VS Code Extensions\n", Shell.Colors.HEADER_1)
 
     @classmethod
     def _configure(cls):
-        print_formatted("Configuring VS Code\n", TermColors.HEADER_1)
+        Shell.print_formatted("Configuring VS Code\n", Shell.Colors.HEADER_1)
 
         curr_file_dir = os.path.dirname(os.path.abspath(__file__))
         config_files_dir = f"{curr_file_dir}/config_files"
@@ -126,9 +134,9 @@ class VSCode:
                 os.symlink(config_file_path_src, config_file_path_tgt)
 
             except OSError as exc:
-                print_formatted(
+                Shell.print_formatted(
                     f"Warning: Detected existing configuration at {config_file_path_tgt}\n",
-                    TermColors.WARNING,
+                    Shell.Colors.WARNING,
                 )
 
                 if exc.errno == errno.EEXIST:
@@ -167,11 +175,11 @@ class VSCode:
         )
         subprocess.call(["defaults", "delete", "-g", "ApplePressAndHoldEnabled"])
 
-        print_formatted("\nConfigured VS Code\n", TermColors.HEADER_1)
+        Shell.print_formatted("\nConfigured VS Code\n", Shell.Colors.HEADER_1)
 
     @classmethod
     def _load_snippets(cls):
-        print_formatted("Loading VS Code snippets\n", TermColors.HEADER_1)
+        Shell.print_formatted("Loading VS Code snippets\n", Shell.Colors.HEADER_1)
 
         curr_file_dir = os.path.dirname(os.path.abspath(__file__))
         snippet_dir_path_src = f"{curr_file_dir}/snippets"
@@ -183,13 +191,13 @@ class VSCode:
             os.symlink(snippet_dir_path_src, snippet_dir_path_tgt)
 
         except OSError as exc:
-            print_formatted(
+            Shell.print_formatted(
                 f"Warning: Detected existing configuration at {snippet_dir_path_tgt}\n",
-                TermColors.WARNING,
+                Shell.Colors.WARNING,
             )
 
             if exc.errno == errno.EEXIST:
                 os.unlink(snippet_dir_path_tgt)
                 os.symlink(snippet_dir_path_src, snippet_dir_path_tgt)
 
-        print_formatted("Loaded VS Code snippets\n", TermColors.HEADER_1)
+        Shell.print_formatted("Loaded VS Code snippets\n", Shell.Colors.HEADER_1)

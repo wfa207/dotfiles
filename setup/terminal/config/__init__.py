@@ -1,7 +1,7 @@
 import os
 
-from setup.constants import HOME_DIR, TermColors
-from setup.utils import print_formatted
+from setup.constants import HOME_DIR
+from setup.utils import Shell
 
 
 class Config:
@@ -11,7 +11,7 @@ class Config:
 
     @classmethod
     def _configure(cls):
-        print_formatted("Configuring Bash\n", TermColors.HEADER_1)
+        Shell.print_formatted("Configuring Bash\n", Shell.Colors.HEADER_1)
 
         curr_file_dir = os.path.dirname(os.path.abspath(__file__))
         config_files_dir = f"{curr_file_dir}/config_files"
@@ -25,9 +25,9 @@ class Config:
                 os.symlink(config_file_path_src, config_file_path_tgt)
 
             else:
-                print_formatted(
+                Shell.print_formatted(
                     f"Warning: Detected existing configuration at {config_file_path_tgt}\n",
-                    TermColors.WARNING,
+                    Shell.Colors.WARNING,
                 )
 
-        print_formatted("Configured Bash\n", TermColors.HEADER_1)
+        Shell.print_formatted("Configured Bash\n", Shell.Colors.HEADER_1)

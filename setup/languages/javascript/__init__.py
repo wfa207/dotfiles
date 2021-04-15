@@ -1,8 +1,8 @@
 import os
 import subprocess
 
-from setup.constants import HOME_DIR, TermColors
-from setup.utils import print_formatted
+from setup.constants import HOME_DIR
+from setup.utils import Shell
 
 
 class Javascript:
@@ -14,7 +14,9 @@ class Javascript:
 
     @classmethod
     def _install_dependencies(cls):
-        print_formatted("Installing Javascript dependencies\n", TermColors.HEADER_1)
+        Shell.print_formatted(
+            "Installing Javascript dependencies\n", Shell.Colors.HEADER_1
+        )
 
         DEPENDENT_EXECUTABLES = [
             "node",
@@ -25,12 +27,16 @@ class Javascript:
             # TODO: Should encapsulate installation method in case Brew unavailable
             subprocess.call(["brew", "install", executable_name])
 
-        print_formatted("\nInstalled Javascript dependencies\n", TermColors.HEADER_1)
+        Shell.print_formatted(
+            "\nInstalled Javascript dependencies\n", Shell.Colors.HEADER_1
+        )
 
     @classmethod
     def _install_version_managers(cls):
         NVM_DIR = f"{HOME_DIR}/.nvm"
-        print_formatted("Installing Javascript version managers\n", TermColors.HEADER_1)
+        Shell.print_formatted(
+            "Installing Javascript version managers\n", Shell.Colors.HEADER_1
+        )
 
         if not os.path.exists(NVM_DIR):
             if os.path.exists(f"/usr/local/Cellar/nvm"):
@@ -47,8 +53,8 @@ class Javascript:
             ]
         )
 
-        print_formatted(
-            "\nInstalled Javascript version managers\n", TermColors.HEADER_1
+        Shell.print_formatted(
+            "\nInstalled Javascript version managers\n", Shell.Colors.HEADER_1
         )
 
     @classmethod
@@ -57,8 +63,12 @@ class Javascript:
             "typescript",
         ]
 
-        print_formatted("Installing Javascript utilities\n", TermColors.HEADER_1)
+        Shell.print_formatted(
+            "Installing Javascript utilities\n", Shell.Colors.HEADER_1
+        )
 
         subprocess.call(["npm", "install", "-g", *UTILITY_LIBRARIES]),
 
-        print_formatted("\nInstalled Javascript utilities\n", TermColors.HEADER_1)
+        Shell.print_formatted(
+            "\nInstalled Javascript utilities\n", Shell.Colors.HEADER_1
+        )

@@ -1,15 +1,14 @@
-from setup.constants import TermColors
 from setup.languages.javascript import Javascript
 from setup.languages.python import Python
-from setup.utils import print_formatted
+from setup.utils import Shell
 
 
 class LanguageSetup:
     @classmethod
     def run(cls):
-        print_formatted("Setting up Language Support\n", TermColors.HEADER_1)
+        Shell.print_formatted("Setting up Language Support\n", Shell.Colors.HEADER_1)
 
         Python.setup()
         Javascript.setup()
 
-        print_formatted("Setup Language Support\n", TermColors.HEADER_1)
+        Shell.print_formatted("Setup Language Support\n", Shell.Colors.HEADER_1)

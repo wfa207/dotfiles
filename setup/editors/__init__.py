@@ -1,7 +1,6 @@
-from setup.constants import TermColors
 from setup.editors.vim import Vim
 from setup.editors.vs_code import VSCode
-from setup.utils import clean_cli_input, print_formatted
+from setup.utils import Shell
 
 
 class EditorSetup:
@@ -12,7 +11,7 @@ class EditorSetup:
 
     @classmethod
     def run(cls):
-        print_formatted("Setting up your editor\n", TermColors.HEADER_1)
+        Shell.print_formatted("Setting up your editor\n", Shell.Colors.HEADER_1)
 
         while True:
             choice_indent = 2 * " "
@@ -23,13 +22,13 @@ class EditorSetup:
                 ]
             )
             editor_choice_input_raw = input(
-                f"{TermColors.INPUT}Please select an editor:\n{editor_choices}\n\n> {TermColors.END}"
+                f"{Shell.Colors.INPUT}Please select an editor:\n{editor_choices}\n\n> {Shell.Colors.END}"
             )
 
             # Insert blank line after input is entered
-            print_formatted()
+            Shell.print_formatted()
 
-            editor_choice_input = clean_cli_input(editor_choice_input_raw)
+            editor_choice_input = Shell.clean_input(editor_choice_input_raw)
             editor_choice = cls.EDITOR_MAP.get(editor_choice_input)
 
             if editor_choice is not None:
@@ -37,10 +36,10 @@ class EditorSetup:
                 break
 
             else:
-                print_formatted(
+                Shell.print_formatted(
                     f"'{editor_choice_input_raw}' is not a valid choice\n",
-                    TermColors.WARNING,
+                    Shell.Colors.WARNING,
                 )
                 continue
 
-        print_formatted("Successfully setup your editor\n", TermColors.HEADER_1)
+        Shell.print_formatted("Successfully setup your editor\n", Shell.Colors.HEADER_1)

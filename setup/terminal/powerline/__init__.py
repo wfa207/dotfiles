@@ -3,8 +3,8 @@ import os
 import shutil
 import subprocess
 
-from setup.constants import HOME_DIR, TermColors
-from setup.utils import print_formatted
+from setup.constants import HOME_DIR
+from setup.utils import Shell
 
 
 class Powerline:
@@ -17,7 +17,7 @@ class Powerline:
 
     @classmethod
     def _setup_fonts(cls):
-        print_formatted("Installing powerline fonts\n", TermColors.HEADER_1)
+        Shell.print_formatted("Installing powerline fonts\n", Shell.Colors.HEADER_1)
 
         subprocess.call(
             ["git", "clone", "https://github.com/powerline/fonts.git", "--depth=1"]
@@ -25,11 +25,13 @@ class Powerline:
         subprocess.call(["sh", "./fonts/install.sh"])
         shutil.rmtree("./fonts")
 
-        print_formatted("\nFinished installing powerline fonts\n", TermColors.HEADER_1)
+        Shell.print_formatted(
+            "\nFinished installing powerline fonts\n", Shell.Colors.HEADER_1
+        )
 
     @classmethod
     def _setup_shell(cls):
-        print_formatted("Installing powerline-shell\n", TermColors.HEADER_1)
+        Shell.print_formatted("Installing powerline-shell\n", Shell.Colors.HEADER_1)
 
         subprocess.call(["git", "clone", "https://github.com/b-ryan/powerline-shell"])
         subprocess.call(["python", "./powerline-shell/setup.py", "install"])
@@ -39,11 +41,13 @@ class Powerline:
         for dir_name in dirs:
             shutil.rmtree(dir_name)
 
-        print_formatted("\nFinished installing powerline-shell\n", TermColors.HEADER_1)
+        Shell.print_formatted(
+            "\nFinished installing powerline-shell\n", Shell.Colors.HEADER_1
+        )
 
     @classmethod
     def _configure(cls):
-        print_formatted("Configuring powerline-shell\n", TermColors.HEADER_1)
+        Shell.print_formatted("Configuring powerline-shell\n", Shell.Colors.HEADER_1)
 
         os.makedirs(f"{HOME_DIR}/.config/powerline-shell", exist_ok=True)
 
@@ -56,9 +60,9 @@ class Powerline:
             os.symlink(config_file_path_src, config_file_path_tgt)
 
         else:
-            print_formatted(
+            Shell.print_formatted(
                 f"Warning: Detected existing configuration at {config_file_path_tgt}\n",
-                TermColors.WARNING,
+                Shell.Colors.WARNING,
             )
 
-        print_formatted("Configured powerline-shell\n", TermColors.HEADER_1)
+        Shell.print_formatted("Configured powerline-shell\n", Shell.Colors.HEADER_1)
