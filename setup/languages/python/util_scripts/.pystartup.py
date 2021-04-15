@@ -7,9 +7,9 @@
 
 import atexit
 import os
+import pdb
 import readline
 import rlcompleter
-import pdb
 
 try:
     from importlib import reload
@@ -17,8 +17,8 @@ except ImportError as exc:
     print("Warning: Could not import reload library.")
 
 try:
-    from lxml import etree
     import requests
+    from lxml import etree
 except ImportError:
     pass
 

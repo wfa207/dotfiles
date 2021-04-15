@@ -3,7 +3,6 @@ import os
 import shutil
 import subprocess
 
-from setup.constants import HOME_DIR
 from setup.utils import Shell
 
 
@@ -103,14 +102,13 @@ class Python:
             "\nInstalling Python utility scripts\n", Shell.Colors.HEADER_1
         )
 
-        curr_file_dir = os.path.dirname(os.path.abspath(__file__))
-        utility_scripts_dir = f"{curr_file_dir}/config_files"
-        for utility_script in os.listdir(utility_scripts_dir):
+        utility_scripts_dir = Shell.get_abs_path("config_files")
+        for utility_script in Shell.iter_file_names(utility_scripts_dir):
             utility_script_path_src = f"{utility_scripts_dir}/{utility_script}"
-            utility_script_path_tgt = f"{HOME_DIR}/{utility_script}"
+            utility_script_path_tgt = f"{Shell.HOME_DIR}/{utility_script}"
 
             try:
-                os.symlink(utility_script_path_src, utility_script_path_tgt)
+                Shell.link(utility_script_path_src, utility_script_path_tgt)
 
             except OSError as exc:
                 Shell.print_formatted(
@@ -120,7 +118,7 @@ class Python:
 
                 if exc.errno == errno.EEXIST:
                     os.unlink(utility_script_path_tgt)
-                    os.symlink(utility_script_path_src, utility_script_path_tgt)
+                    Shell.link(utility_script_path_src, utility_script_path_tgt)
 
         Shell.print_formatted(
             "\nInstalled Python utility scripts\n", Shell.Colors.HEADER_1

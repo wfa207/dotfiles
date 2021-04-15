@@ -49,15 +49,13 @@ class Powerline:
     def _configure(cls):
         Shell.print_formatted("Configuring powerline-shell\n", Shell.Colors.HEADER_1)
 
-        os.makedirs(f"{HOME_DIR}/.config/powerline-shell", exist_ok=True)
+        os.makedirs(f"{Shell.HOME_DIR}/.config/powerline-shell", exist_ok=True)
 
-        curr_file_dir = os.path.dirname(os.path.abspath(__file__))
-        config_file_path_src = f"{curr_file_dir}/config_files/config.json"
-        config_file_path_tgt = f"{HOME_DIR}/.config/powerline-shell/config.json"
+        config_file_path_src = Shell.get_abs_path("config_files/config.json")
+        config_file_path_tgt = f"{Shell.HOME_DIR}/.config/powerline-shell/config.json"
 
-        already_exists = os.path.exists(config_file_path_tgt)
-        if not already_exists:
-            os.symlink(config_file_path_src, config_file_path_tgt)
+        if not Shell.exists(config_file_path_tgt):
+            Shell.link(config_file_path_src, config_file_path_tgt)
             Shell.print_formatted("Configured powerline-shell\n", Shell.Colors.HEADER_1)
 
         else:

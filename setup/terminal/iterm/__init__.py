@@ -12,9 +12,7 @@ class iTerm:
 
     @classmethod
     def _verify_installation(cls):
-        already_exists = os.path.exists(f"/Applications/iTerm.app")
-
-        if not already_exists:
+        if not Shell.exists(f"/Applications/iTerm.app"):
             Shell.print_formatted(
                 "iTerm could not be found on your machine."
                 "\nPlease refer to iTerm's website https://www.iterm2.com or contact"
@@ -29,13 +27,13 @@ class iTerm:
     def _load_preferences(cls):
         Shell.print_formatted("Loading iTerm preferences\n", Shell.Colors.HEADER_1)
 
-        curr_file_dir = os.path.dirname(os.path.abspath(__file__))
+        tgt_file_path = Shell.get_abs_path("config_files")
         Shell.execute(
             "defaults",
             "write",
             "com.googlecode.iterm2",
             "PrefsCustomFolder",
-            f"{curr_file_dir}/config_files",
+            tgt_file_path,
         )
 
         Shell.print_formatted("Loaded iTerm preferences\n", Shell.Colors.HEADER_1)

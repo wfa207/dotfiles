@@ -1,7 +1,5 @@
 import os
-import subprocess
 
-from setup.constants import HOME_DIR
 from setup.utils import Shell
 
 
@@ -33,13 +31,13 @@ class Javascript:
 
     @classmethod
     def _install_version_managers(cls):
-        NVM_DIR = f"{HOME_DIR}/.nvm"
+        NVM_DIR = f"{Shell.HOME_DIR}/.nvm"
         Shell.print_formatted(
             "Installing Javascript version managers\n", Shell.Colors.HEADER_1
         )
 
-        if not os.path.exists(NVM_DIR):
-            if os.path.exists(f"/usr/local/Cellar/nvm"):
+        if not Shell.exists(NVM_DIR):
+            if Shell.exists("/usr/local/Cellar/nvm"):
                 Shell.execute("brew", "uninstall", "nvm")
 
         os.makedirs(NVM_DIR, exist_ok=True)

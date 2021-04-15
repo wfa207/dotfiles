@@ -1,7 +1,3 @@
-import os
-import subprocess
-
-from setup.constants import HOME_DIR
 from setup.utils import Shell
 
 
@@ -26,8 +22,8 @@ class Tmux:
 
     @classmethod
     def _install_plugin_manager(cls):
-        already_exists = os.path.exists(f"{HOME_DIR}/.tmux/plugins/tpm")
-        if not already_exists:
+        tgt_plugin_path = f"{Shell.HOME_DIR}/.tmux/plugins/tpm"
+        if not Shell.exists(tgt_plugin_path):
             Shell.print_formatted(
                 "Installing Tmux plugin manager\n", Shell.Colors.HEADER_1
             )
@@ -36,7 +32,7 @@ class Tmux:
                 "git",
                 "clone",
                 "https://github.com/tmux-plugins/tpm",
-                f"{HOME_DIR}/.tmux/plugins/tpm",
+                tgt_plugin_path,
             )
 
             Shell.print_formatted(
@@ -52,15 +48,13 @@ class Tmux:
     def _configure(cls):
         Shell.print_formatted("Configuring Tmux\n", Shell.Colors.HEADER_1)
 
-        curr_file_dir = os.path.dirname(os.path.abspath(__file__))
-        config_files_dir = f"{curr_file_dir}/config_files"
-        for config_file in os.listdir(config_files_dir):
-            config_file_path_src = f"{config_files_dir}/{config_file}"
-            config_file_path_tgt = f"{HOME_DIR}/{config_file}"
+        config_files_dir = Shell.get_abs_path("config_files")
+        for config_file_name in Shell.iter_file_names(config_files_dir):
+            config_file_path_src = f"{config_files_dir}/{config_file_name}"
+            config_file_path_tgt = f"{Shell.HOME_DIR}/{config_file_name}"
 
-            already_exists = os.path.exists(config_file_path_tgt)
-            if not already_exists:
-                os.symlink(config_file_path_src, config_file_path_tgt)
+            if not Shell.exists(config_file_path_tgt):
+                Shell.link(config_file_path_src, config_file_path_tgt)
 
             else:
                 Shell.print_formatted(

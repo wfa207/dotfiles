@@ -1,8 +1,6 @@
 import errno
 import os
-import subprocess
 
-from setup.constants import HOME_DIR
 from setup.utils import Shell
 
 
@@ -17,8 +15,7 @@ class VSCode:
 
     @classmethod
     def _install_executable(cls):
-        already_exists = os.path.exists("/Applications/Visual Studio Code.app")
-        if not already_exists:
+        if not Shell.exists("/Applications/Visual Studio Code.app"):
             Shell.print_formatted(
                 "Installing VS Code executable\n", Shell.Colors.WARNING
             )
@@ -29,18 +26,18 @@ class VSCode:
                 "-L",
                 "--create-dirs",
                 "-o",
-                f"{HOME_DIR}/Downloads/VSCode-temp.zip",
+                f"{Shell.HOME_DIR}/Downloads/VSCode-temp.zip",
                 "https://update.code.visualstudio.com/latest/darwin/stable",
             )
             Shell.execute(
                 "unzip",
-                f"{HOME_DIR}/Downloads/VSCode-temp.zip",
+                f"{Shell.HOME_DIR}/Downloads/VSCode-temp.zip",
                 "-d",
                 "/Applications",
             )
             Shell.execute(
                 "rm",
-                f"{HOME_DIR}/Downloads/VSCode-temp.zip",
+                f"{Shell.HOME_DIR}/Downloads/VSCode-temp.zip",
             )
             # ---------------------------------------------------------------------------
 
@@ -58,18 +55,16 @@ class VSCode:
     @classmethod
     def _setup_cli_command(cls):
         binary_path_tgt = "/usr/local/bin/code"
-        already_exists = os.path.exists(binary_path_tgt)
-
-        if not already_exists:
+        if not Shell.exists(binary_path_tgt):
             Shell.print_formatted(
                 "Setting up VS Code CLI command\n", Shell.Colors.HEADER_1
             )
 
             binary_path_src = (
-                f"/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
+                "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
             )
 
-            os.symlink(binary_path_src, binary_path_tgt)
+            Shell.link(binary_path_src, binary_path_tgt)
 
             Shell.print_formatted("Setup VS Code CLI command\n", Shell.Colors.HEADER_1)
 
@@ -119,16 +114,15 @@ class VSCode:
     def _configure(cls):
         Shell.print_formatted("Configuring VS Code\n", Shell.Colors.HEADER_1)
 
-        curr_file_dir = os.path.dirname(os.path.abspath(__file__))
-        config_files_dir = f"{curr_file_dir}/config_files"
-        for config_file in os.listdir(config_files_dir):
+        config_files_dir = Shell.get_abs_path("config_files")
+        for config_file in Shell.iter_file_names(config_files_dir):
             config_file_path_src = f"{config_files_dir}/{config_file}"
             config_file_path_tgt = (
-                f"{HOME_DIR}/Library/Application Support/Code/User/{config_file}"
+                f"{Shell.HOME_DIR}/Library/Application Support/Code/User/{config_file}"
             )
 
             try:
-                os.symlink(config_file_path_src, config_file_path_tgt)
+                Shell.link(config_file_path_src, config_file_path_tgt)
 
             except OSError as exc:
                 Shell.print_formatted(
@@ -138,7 +132,7 @@ class VSCode:
 
                 if exc.errno == errno.EEXIST:
                     os.unlink(config_file_path_tgt)
-                    os.symlink(config_file_path_src, config_file_path_tgt)
+                    Shell.link(config_file_path_src, config_file_path_tgt)
 
         Shell.execute(
             "defaults",
@@ -172,14 +166,13 @@ class VSCode:
     def _load_snippets(cls):
         Shell.print_formatted("Loading VS Code snippets\n", Shell.Colors.HEADER_1)
 
-        curr_file_dir = os.path.dirname(os.path.abspath(__file__))
-        snippet_dir_path_src = f"{curr_file_dir}/snippets"
+        snippet_dir_path_src = Shell.get_abs_path("snippets")
         snippet_dir_path_tgt = (
-            f"{HOME_DIR}/Library/Application Support/Code/User/snippets"
+            f"{Shell.HOME_DIR}/Library/Application Support/Code/User/snippets"
         )
 
         try:
-            os.symlink(snippet_dir_path_src, snippet_dir_path_tgt)
+            Shell.link(snippet_dir_path_src, snippet_dir_path_tgt)
 
         except OSError as exc:
             Shell.print_formatted(
@@ -189,6 +182,6 @@ class VSCode:
 
             if exc.errno == errno.EEXIST:
                 os.unlink(snippet_dir_path_tgt)
-                os.symlink(snippet_dir_path_src, snippet_dir_path_tgt)
+                Shell.link(snippet_dir_path_src, snippet_dir_path_tgt)
 
         Shell.print_formatted("Loaded VS Code snippets\n", Shell.Colors.HEADER_1)
