@@ -86,8 +86,12 @@ class Vim:
                     "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim",
                 ]
             )
+            Shell.print_formatted("\nInstalled Vim-Plug\n", Shell.Colors.HEADER_1)
 
-        Shell.print_formatted("\nInstalled Vim-Plug\n", Shell.Colors.HEADER_1)
+        else:
+            Shell.print_formatted(
+                "\nVim-Plug already installed\n", Shell.Colors.WARNING
+            )
 
     @classmethod
     def _install_plugins(cls):

@@ -27,26 +27,28 @@ class Tmux:
     @classmethod
     def _install_plugin_manager(cls):
         already_exists = os.path.exists(f"{HOME_DIR}/.tmux/plugins/tpm")
-        if already_exists:
+        if not already_exists:
+            Shell.print_formatted(
+                "Installing Tmux plugin manager\n", Shell.Colors.HEADER_1
+            )
+
+            subprocess.call(
+                [
+                    "git",
+                    "clone",
+                    "https://github.com/tmux-plugins/tpm",
+                    f"{HOME_DIR}/.tmux/plugins/tpm",
+                ]
+            )
+
+            Shell.print_formatted(
+                "\nFinished installing Tmux plugin manager\n", Shell.Colors.HEADER_1
+            )
+
+        else:
             Shell.print_formatted(
                 "Tmux plugin manager already installed\n", Shell.Colors.WARNING
             )
-            return
-
-        Shell.print_formatted("Installing Tmux plugin manager\n", Shell.Colors.HEADER_1)
-
-        subprocess.call(
-            [
-                "git",
-                "clone",
-                "https://github.com/tmux-plugins/tpm",
-                f"{HOME_DIR}/.tmux/plugins/tpm",
-            ]
-        )
-
-        Shell.print_formatted(
-            "\nFinished installing Tmux plugin manager\n", Shell.Colors.HEADER_1
-        )
 
     @classmethod
     def _configure(cls):

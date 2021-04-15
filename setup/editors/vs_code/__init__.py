@@ -192,7 +192,7 @@ class VSCode:
 
         except OSError as exc:
             Shell.print_formatted(
-                f"Warning: Detected existing configuration at {snippet_dir_path_tgt}\n",
+                f"Warning: Detected existing snippets at {snippet_dir_path_tgt}\n",
                 Shell.Colors.WARNING,
             )
 

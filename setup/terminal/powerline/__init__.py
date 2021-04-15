@@ -58,11 +58,10 @@ class Powerline:
         already_exists = os.path.exists(config_file_path_tgt)
         if not already_exists:
             os.symlink(config_file_path_src, config_file_path_tgt)
+            Shell.print_formatted("Configured powerline-shell\n", Shell.Colors.HEADER_1)
 
         else:
             Shell.print_formatted(
                 f"Warning: Detected existing configuration at {config_file_path_tgt}\n",
                 Shell.Colors.WARNING,
             )
-
-        Shell.print_formatted("Configured powerline-shell\n", Shell.Colors.HEADER_1)
