@@ -14,7 +14,7 @@ class EditorSetup:
             self.setup_class = setup_class
 
     EDITOR_MAP = {
-        Editors.VS_CODE: Editor("VS Code (default)", VSCode),
+        Editors.VS_CODE: Editor("VS Code", VSCode),
         Editors.VIM: Editor("Vim", Vim),
     }
 
@@ -28,6 +28,7 @@ class EditorSetup:
         editor_choices = "\n".join(
             [
                 f"{choice_indent} * Input '{editor_num}' for {editor_obj.display_name}"
+                f"{' (default)' if editor_num == cls.DEFAULT_EDITOR else ''}"
                 for editor_num, editor_obj in cls.EDITOR_MAP.items()
             ]
         )
