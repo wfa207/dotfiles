@@ -26,8 +26,22 @@ class Shell:
 
     # I/O ######################################################################
     @classmethod
-    def clean_input(cls, raw_input):
-        return raw_input.lower()
+    def await_input(cls, prompt, color=Colors.DEFAULT):
+        user_input = input(f"{color}{prompt}{cls.Colors.END}")
+
+        # Insert blank line after input
+        Shell.print_formatted()
+
+        return user_input
+
+    @classmethod
+    def clean_input(cls, original_input):
+        return original_input.lower()
+
+    @classmethod
+    def confirm_choice(cls, prompt, affirmative_choice="y", color=Colors.DEFAULT):
+        user_choice_input = cls.await_input(prompt, color=color)
+        return user_choice_input == affirmative_choice
 
     @classmethod
     def print_formatted(cls, msg=None, color=Colors.DEFAULT):
