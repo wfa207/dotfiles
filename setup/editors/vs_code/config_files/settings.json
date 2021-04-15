@@ -10,7 +10,6 @@
   "editor.wordWrapColumn": 120,
   "editor.largeFileOptimizations": false,
   "editor.renderControlCharacters": false,
-  "editor.find.cursorMoveOnType": false,
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
