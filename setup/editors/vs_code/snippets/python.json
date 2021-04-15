@@ -14,7 +14,12 @@
     // }
     "Debug celery task": {
         "prefix": "rdb",
-        "body": "from celery.contrib import rdb; rdb.set_trace()",
+        "body": "from celery.contrib import rdb\n\nrdb.set_trace()",
         "description": "Insert a remote debugger"
+    },
+    "Debug": {
+        "prefix": "pdb",
+        "body": "import pdb\n\npdb.set_trace()",
+        "description": "Insert a debugger"
     }
 }

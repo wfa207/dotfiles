@@ -102,13 +102,16 @@ class VSCode:
             # Python ===========================================================
             "njpwerner.autodocstring",
             "lextudio.restructuredtext",
+            "tht13.python",  # Decent snippets collection
             "ms-pyright.pyright",
             "ms-python.python",
             # Javascript =======================================================
             "esbenp.prettier-vscode",
+            "xabikos.JavaScriptSnippets",
             # Misc #############################################################
             "ms-azuretools.vscode-docker",
             "ms-vscode-remote.remote-containers",
+            "TabNine.tabnine-vscode",
         ]
 
         Shell.print_formatted("Installing VS Code Extensions\n", Shell.Colors.HEADER_1)

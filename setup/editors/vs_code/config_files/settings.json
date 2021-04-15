@@ -311,5 +311,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   // Extensions ########################################################################################################
-  "extensions.ignoreRecommendations": false
+  "extensions.ignoreRecommendations": false,
+  "tabnine.experimentalAutoImports": true
 }
