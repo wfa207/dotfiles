@@ -24,5 +24,6 @@ class Config:
                     f"Warning: Found existing configuration at {config_file_path_tgt}\n",
                     Shell.Colors.WARNING,
                 )
+                Shell.confirm_action
 
         Shell.print_formatted("Configured Bash\n", Shell.Colors.SUCCESS)

@@ -83,7 +83,7 @@ class Shell:
         return original_input.lower()
 
     @classmethod
-    def confirm_choice(cls, prompt, affirmative_choice="y", color=Colors.DEFAULT):
+    def confirm_action(cls, prompt, affirmative_choice="y", color=Colors.DEFAULT):
         user_choice_input = cls.await_input(prompt, color=color)
         return user_choice_input == affirmative_choice
 

@@ -48,7 +48,7 @@ class EditorSetup:
             )
 
             editor_obj = cls.EDITOR_MAP[cls.DEFAULT_EDITOR]
-            confirmed = Shell.confirm_choice(
+            confirmed = Shell.confirm_action(
                 f"Do you want to install the default editor, {editor_obj.display_name}? [y/n]"
                 "\n> ",
                 affirmative_choice="y",
