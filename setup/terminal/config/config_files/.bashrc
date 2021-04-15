@@ -1,58 +1,42 @@
 #!/bin/bash
 
-# URL: https://github.com/wfa207/bash-config
-# Description: A barebones .bashrc file that includes some convenience aliases
 
-# =============================================================================
-# Display#{{{
-# =============================================================================
+# Display ######################################################################
 export TERM='xterm-256color'
 export BASH_SILENCE_DEPRECATION_WARNING=1
-#}}}
-# =============================================================================
-# Python#{{{
-# =============================================================================
+
+# Python #######################################################################
 [ -f ~/.pystartup.py ] && export PYTHONSTARTUP=~/.pystartup.py
 
 # Test if virtualenvwrapper.sh path is a non-zero-length string
 [ ! -z $(which virtualenvwrapper.sh) ] && source $(which virtualenvwrapper.sh)
 
-#}}}
-# =============================================================================
-# Vim {{{
+# Vim ##########################################################################
 # Ctrl-Q defaults to Bash's "stty start" signal; this interferes with Vim mappings
 # (Terminal intercepts signal)
 stty start undef
-#}}}
-# =============================================================================
-# Powerline Configuration#{{{
-# =============================================================================
-# URL: https://github.com/b-ryan/powerline-shell
-# Author: Buck Ryan (https://github.com/b-ryan)
-# Description: Powerline prompt written purely in bash, with my own
-# modifications
+
+# Powerline Configuration ######################################################
+# Repo: https://github.com/b-ryan/powerline-shell
 
 function _update_ps1() {
-    PS1=$(powerline-shell $?)
+	if [[ ! -z $(which powerline-shell) ]]; then
+		PS1=$(powerline-shell $?)
+	fi
 }
 
 if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
-#}}}
-# =============================================================================
-# FZF Confguration {{{
+# FZF Confguration #############################################################
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-#}}}
-# =============================================================================
-# Helper Functions#{{{
-# =============================================================================
 
+# Helper Functions #############################################################
 dev_template() {
 	# Sets up two windows:
-		# 1: 3 panes with a primary pain and 2 secondary panes underneath
-		# 2: 4 panes with a "tiled" layout
+	# .. 1: 3 panes with a primary pain and 2 secondary panes underneath
+	# .. 2: 4 panes with a "tiled" layout
 	SESSION_NAME=TEMPLATE
 	tmux new -d -s ${SESSION_NAME} -n wrkspace -x - -y -
 	tmux splitw -v -p 15
@@ -113,10 +97,7 @@ chrome_debug() {
 }
 alias chrome-debug=chrome_debug
 
-#}}}
-# =============================================================================
-# Config Variables#{{{
-# =============================================================================
+# Config Variables #############################################################
 # Private config variables sourced externally
 [ -f ~/.configvar.sh ] && . ~/.configvar.sh
 
@@ -126,21 +107,20 @@ alias chrome-debug=chrome_debug
 # dircolors doesn't exist on OSX's distribution of bash
 # eval `dircolors ~/.vim/plugged/snow/shell/dircolors`
 
-#}}}
-# =============================================================================
-# Navigation Aliases#{{{
-# =============================================================================
+# Navigation Aliases ###########################################################
 alias ls="ls -Al"						# List all files (incl. hidden)
 
 # Do not include an alias for '.' (shortcut for source)
-alias ..='cd ..'						# Go up a directory
-alias ...='cd ../..'					# Go up 2 directories
-alias ....='cd ../../..'				# Go up 3 directories
-alias bk='cd -'							# Go back a directory
-#}}}
-# =============================================================================
-# Git Aliases#{{{
-# =============================================================================
+# Go up a directory
+alias ..='cd ..'
+# Go up 2 directories
+alias ...='cd ../..'
+# Go up 3 directories
+alias ....='cd ../../..'
+# Go back a directory
+alias bk='cd -'
+
+# Git Aliases ##################################################################
 alias gls="clear; git log"
 alias gtree="clear; git log --graph --all"
 alias ga="clear; git add -A"
@@ -161,21 +141,16 @@ alias grbase="clear; git rebase -i"
 alias gstd="clear; git stash drop"
 alias gstls="clear; git stash list"
 alias gstap="clear; git stash apply"
-#}}}
-# =============================================================================
-# General Aliases#{{{
-# =============================================================================
+
+# General Aliases ##############################################################
 alias .b=". ~/.bashrc"
 alias cl="clear"
 alias ls="ls -AGFl"
-#}}}
-# =============================================================================
-# Private Aliases#{{{
-# =============================================================================
+
+# Private Aliases ##############################################################
 [ -f ~/.privaliases.sh ] && source ~/.privaliases.sh #}}}
-# =============================================================================
-# Fun stuff#{{{
-# =============================================================================
+
+# Fun stuff ####################################################################
 flip() {
   echo;
   echo -en "( º_º）  ┬─┬   \r"; sleep .5;
@@ -185,12 +160,8 @@ flip() {
   echo -en "  (╯'□'）╯︵ ⊏  \r"; sleep .3;
   echo     "  (╯°□°）╯︵ ┻━┻"; sleep .3;
 }
-#}}}
-# =============================================================================
-# Edit Commands#{{{
-# =============================================================================
+
+# Edit Commands ################################################################
 set -o vi
 set editing-mode vi
 set keymap vi-command
-#}}}
-# =============================================================================
