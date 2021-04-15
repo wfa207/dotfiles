@@ -39,12 +39,12 @@ class VSCode:
             # ---------------------------------------------------------------------------
 
             Shell.print_formatted(
-                "\nInstalled VS Code executable\n", Shell.Colors.HEADER_1
+                "Installed VS Code executable\n", Shell.Colors.SUCCESS
             )
 
         else:
             Shell.print_formatted(
-                "VS Code executable already installed\n", Shell.Colors.WARNING
+                "VS Code executable already installed\n", Shell.Colors.SUCCESS
             )
 
         cls._setup_cli_command()
@@ -63,11 +63,11 @@ class VSCode:
 
             Shell.link(binary_path_src, binary_path_tgt)
 
-            Shell.print_formatted("Setup VS Code CLI command\n", Shell.Colors.HEADER_1)
+            Shell.print_formatted("Setup VS Code CLI command\n", Shell.Colors.SUCCESS)
 
         else:
             Shell.print_formatted(
-                "VS Code CLI command already setup\n", Shell.Colors.WARNING
+                "VS Code CLI command already setup\n", Shell.Colors.SUCCESS
             )
 
     @classmethod
@@ -105,7 +105,7 @@ class VSCode:
         for extension_name in EXTENSIONS:
             Shell.execute("code", "--install-extension", extension_name)
 
-        Shell.print_formatted("Installed VS Code Extensions\n", Shell.Colors.HEADER_1)
+        Shell.print_formatted("Installed VS Code Extensions\n", Shell.Colors.SUCCESS)
 
     @classmethod
     def _configure(cls):
@@ -153,7 +153,7 @@ class VSCode:
         )
         Shell.execute("defaults", "delete", "-g", "ApplePressAndHoldEnabled")
 
-        Shell.print_formatted("\nConfigured VS Code\n", Shell.Colors.HEADER_1)
+        Shell.print_formatted("Configured VS Code\n", Shell.Colors.SUCCESS)
 
     @classmethod
     def _load_snippets(cls):
@@ -173,4 +173,4 @@ class VSCode:
 
         Shell.link(snippet_dir_path_src, snippet_dir_path_tgt)
 
-        Shell.print_formatted("Loaded VS Code snippets\n", Shell.Colors.HEADER_1)
+        Shell.print_formatted("Loaded VS Code snippets\n", Shell.Colors.SUCCESS)

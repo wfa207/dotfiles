@@ -16,7 +16,7 @@ class Tmux:
         Executable.install("tmux")
 
         Shell.print_formatted(
-            "\nFinished installing Tmux command\n", Shell.Colors.HEADER_1
+            "Finished installing Tmux command\n", Shell.Colors.SUCCESS
         )
 
     @classmethod
@@ -35,7 +35,7 @@ class Tmux:
             )
 
             Shell.print_formatted(
-                "\nFinished installing Tmux plugin manager\n", Shell.Colors.HEADER_1
+                "Finished installing Tmux plugin manager\n", Shell.Colors.SUCCESS
             )
 
         else:
@@ -61,4 +61,4 @@ class Tmux:
                     Shell.Colors.WARNING,
                 )
 
-        Shell.print_formatted("Configured Tmux\n", Shell.Colors.HEADER_1)
+        Shell.print_formatted("Configured Tmux\n", Shell.Colors.SUCCESS)

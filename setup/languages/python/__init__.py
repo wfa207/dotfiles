@@ -23,9 +23,7 @@ class Python:
         for executable_name in DEPENDENT_EXECUTABLES:
             Executable.install(executable_name)
 
-        Shell.print_formatted(
-            "\nInstalled Python dependencies\n", Shell.Colors.HEADER_1
-        )
+        Shell.print_formatted("Installed Python dependencies\n", Shell.Colors.SUCCESS)
 
     @classmethod
     def _install_package_managers(cls):
@@ -52,7 +50,7 @@ class Python:
             )
 
         Shell.print_formatted(
-            "\nInstalled Python package managers\n", Shell.Colors.HEADER_1
+            "Installed Python package managers\n", Shell.Colors.SUCCESS
         )
 
     @classmethod
@@ -72,7 +70,7 @@ class Python:
             Shell.execute("pyenv", "install", "--skip-existing", language_version)
 
         Shell.print_formatted(
-            "\nInstalled commonly used Python versions\n", Shell.Colors.HEADER_1
+            "Installed commonly used Python versions\n", Shell.Colors.SUCCESS
         )
 
     @classmethod
@@ -86,12 +84,12 @@ class Python:
 
         Shell.execute("pip", "install", *UTILITY_LIBRARIES),
 
-        Shell.print_formatted("\nInstalled Python utilities\n", Shell.Colors.HEADER_1)
+        Shell.print_formatted("Installed Python utilities\n", Shell.Colors.SUCCESS)
 
     @classmethod
     def _install_utility_scripts(cls):
         Shell.print_formatted(
-            "\nInstalling Python utility scripts\n", Shell.Colors.HEADER_1
+            "Installing Python utility scripts\n", Shell.Colors.HEADER_1
         )
 
         utility_scripts_dir = Shell.get_abs_path("config_files")
@@ -109,5 +107,5 @@ class Python:
             Shell.link(utility_script_path_src, utility_script_path_tgt)
 
         Shell.print_formatted(
-            "\nInstalled Python utility scripts\n", Shell.Colors.HEADER_1
+            "Installed Python utility scripts\n", Shell.Colors.SUCCESS
         )

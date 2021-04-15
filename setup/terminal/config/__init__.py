@@ -25,4 +25,4 @@ class Config:
                     Shell.Colors.WARNING,
                 )
 
-        Shell.print_formatted("Configured Bash\n", Shell.Colors.HEADER_1)
+        Shell.print_formatted("Configured Bash\n", Shell.Colors.SUCCESS)

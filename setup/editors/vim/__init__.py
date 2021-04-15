@@ -20,7 +20,7 @@ class Vim:
 
         Executable.install("vim")
 
-        Shell.print_formatted("\nInstalled Vim command\n", Shell.Colors.HEADER_1)
+        Shell.print_formatted("Installed Vim command\n", Shell.Colors.SUCCESS)
 
     @classmethod
     def _install_dependencies(cls):
@@ -36,7 +36,7 @@ class Vim:
         for executable_name in DEPENDENT_EXECUTABLES:
             Executable.install(executable_name)
 
-        Shell.print_formatted("\nInstalled Vim dependencies\n", Shell.Colors.HEADER_1)
+        Shell.print_formatted("Installed Vim dependencies\n", Shell.Colors.SUCCESS)
 
     @classmethod
     def _configure(cls):
@@ -56,7 +56,7 @@ class Vim:
 
             Shell.link(config_file_path_src, config_file_path_tgt)
 
-        Shell.print_formatted("Configured Vim\n", Shell.Colors.HEADER_1)
+        Shell.print_formatted("Configured Vim\n", Shell.Colors.SUCCESS)
 
     @classmethod
     def _install_plugin_manager(cls):
@@ -70,12 +70,10 @@ class Vim:
                 "--create-dirs",
                 "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim",
             )
-            Shell.print_formatted("\nInstalled Vim-Plug\n", Shell.Colors.HEADER_1)
+            Shell.print_formatted("Installed Vim-Plug\n", Shell.Colors.SUCCESS)
 
         else:
-            Shell.print_formatted(
-                "\nVim-Plug already installed\n", Shell.Colors.WARNING
-            )
+            Shell.print_formatted("Vim-Plug already installed\n", Shell.Colors.WARNING)
 
     @classmethod
     def _install_plugins(cls):
@@ -86,7 +84,7 @@ class Vim:
             "python", f"{Shell.HOME_DIR}/.vim/plugged/YouCompleteMe/install.py"
         )
 
-        Shell.print_formatted("\nInstalled Vim Plugins\n", Shell.Colors.HEADER_1)
+        Shell.print_formatted("Installed Vim Plugins\n", Shell.Colors.SUCCESS)
 
     @classmethod
     def _load_snippets(cls):
@@ -104,4 +102,4 @@ class Vim:
 
         Shell.link(snippet_dir_path_src, snippet_dir_path_tgt)
 
-        Shell.print_formatted("Loaded Vim snippets\n", Shell.Colors.HEADER_1)
+        Shell.print_formatted("Loaded Vim snippets\n", Shell.Colors.SUCCESS)

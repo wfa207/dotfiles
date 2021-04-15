@@ -20,7 +20,7 @@ class Javascript:
             Executable.install(executable_name, **install_options)
 
         Shell.print_formatted(
-            "\nInstalled Javascript dependencies\n", Shell.Colors.HEADER_1
+            "Installed Javascript dependencies\n", Shell.Colors.SUCCESS
         )
 
     @classmethod
@@ -44,7 +44,7 @@ class Javascript:
         )
 
         Shell.print_formatted(
-            "\nInstalled Javascript version managers\n", Shell.Colors.HEADER_1
+            "Installed Javascript version managers\n", Shell.Colors.SUCCESS
         )
 
     @classmethod
@@ -59,6 +59,4 @@ class Javascript:
 
         Shell.execute("npm", "install", "-g", *UTILITY_LIBRARIES),
 
-        Shell.print_formatted(
-            "\nInstalled Javascript utilities\n", Shell.Colors.HEADER_1
-        )
+        Shell.print_formatted("Installed Javascript utilities\n", Shell.Colors.SUCCESS)

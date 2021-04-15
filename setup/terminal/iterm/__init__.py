@@ -33,4 +33,4 @@ class iTerm:
             tgt_file_path,
         )
 
-        Shell.print_formatted("Loaded iTerm preferences\n", Shell.Colors.HEADER_1)
+        Shell.print_formatted("Loaded iTerm preferences\n", Shell.Colors.SUCCESS)

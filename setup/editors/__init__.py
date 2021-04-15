@@ -63,4 +63,4 @@ class EditorSetup:
                 )
                 return
 
-        Shell.print_formatted("Successfully setup your editor\n", Shell.Colors.HEADER_1)
+        Shell.print_formatted("Successfully setup your editor\n", Shell.Colors.SUCCESS)

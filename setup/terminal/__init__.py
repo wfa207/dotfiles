@@ -16,5 +16,5 @@ class TerminalSetup:
         iTerm.setup()
 
         Shell.print_formatted(
-            "Successfully setup your terminal\n", Shell.Colors.HEADER_1
+            "Successfully setup your terminal\n", Shell.Colors.SUCCESS
         )

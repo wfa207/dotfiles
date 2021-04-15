@@ -1,7 +1,10 @@
 import inspect
+import itertools
 import os
 import shutil
 import subprocess
+import threading
+import time
 
 
 class Shell:
@@ -19,10 +22,47 @@ class Shell:
         END = "\033[0m"
         DEFAULT = END
 
+    class AnimationThread(threading.Thread):
+        def __init__(self):
+            super().__init__()
+            self._running = True
+
+        def terminate(self):
+            self._running = False
+            self.join()
+
+        def run(self):
+            for dot_count in itertools.cycle(range(6)):
+                Shell.print_formatted(f"Loading{dot_count * '.'}", end="\r")
+                time.sleep(0.2)
+                Shell.clear_console_line()
+                if not self._running:
+                    break
+
     # CLI ######################################################################
     @classmethod
     def execute(cls, *cmd_args):
-        subprocess.call(cmd_args)
+        loader_animation_thread = cls.AnimationThread()
+        loader_animation_thread.start()
+
+        try:
+            subprocess.run(
+                cmd_args, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+            )
+
+        except subprocess.CalledProcessError as exc:
+            cls.print_formatted(f"{exc.stderr}\n", color=cls.Colors.FAILURE)
+            cls.print_formatted(f"{exc.stdout}\n", color=cls.Colors.FAILURE)
+            cls.print_formatted(f"{exc.output}\n", color=cls.Colors.FAILURE)
+            raise
+
+        finally:
+            loader_animation_thread.terminate()
+
+    @classmethod
+    def get_loader_animation_thread(cls):
+        loader_animation_thread = threading.Thread(target=cls._loader_animation)
+        return loader_animation_thread
 
     # I/O ######################################################################
     @classmethod
@@ -35,6 +75,10 @@ class Shell:
         return user_input
 
     @classmethod
+    def clear_console_line(cls):
+        cls.print_formatted("\033[2K\033[1G", end="\r")
+
+    @classmethod
     def clean_input(cls, original_input):
         return original_input.lower()
 
@@ -44,12 +88,12 @@ class Shell:
         return user_choice_input == affirmative_choice
 
     @classmethod
-    def print_formatted(cls, msg=None, color=Colors.DEFAULT):
+    def print_formatted(cls, msg=None, color=Colors.DEFAULT, **print_kwargs):
         if msg is None:
-            print()
+            print(**print_kwargs)
 
         else:
-            print(f"{color}{msg}{cls.Colors.END}")
+            print(f"{color}{msg}{cls.Colors.END}", **print_kwargs)
 
     # Files ####################################################################
     @classmethod

@@ -22,7 +22,7 @@ class Powerline:
         Shell.delete("./fonts")
 
         Shell.print_formatted(
-            "\nFinished installing powerline fonts\n", Shell.Colors.HEADER_1
+            "Finished installing powerline fonts\n", Shell.Colors.SUCCESS
         )
 
     @classmethod
@@ -38,7 +38,7 @@ class Powerline:
             Shell.delete(dir_name)
 
         Shell.print_formatted(
-            "\nFinished installing powerline-shell\n", Shell.Colors.HEADER_1
+            "Finished installing powerline-shell\n", Shell.Colors.SUCCESS
         )
 
     @classmethod
@@ -52,7 +52,7 @@ class Powerline:
 
         if not Shell.exists(config_file_path_tgt):
             Shell.link(config_file_path_src, config_file_path_tgt)
-            Shell.print_formatted("Configured powerline-shell\n", Shell.Colors.HEADER_1)
+            Shell.print_formatted("Configured powerline-shell\n", Shell.Colors.SUCCESS)
 
         else:
             Shell.print_formatted(
