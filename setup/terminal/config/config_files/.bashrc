@@ -77,8 +77,8 @@ dev_template() {
 
 dev_vertical_half() {
 	tmux new -d ${2:+-s} ${2:-} -n wrkspace -x - -y -
-	if [ -n ${1:+x} ]; then
-		tmux send $1 C-m
+	if [[ ! -z ${1:+x} ]]; then
+		tmux send "clear; $1" C-m
 	fi
 	tmux splitw -h
 	# tmux resizep -Z -t ${2:-}${2:+:}1.0
