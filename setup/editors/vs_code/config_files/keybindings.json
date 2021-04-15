@@ -211,7 +211,8 @@
   // View ==============================================================================================================
   {
     "key": "shift+cmd+g",
-    "command": "workbench.view.scm"
+    "command": "workbench.view.scm",
+    "when": "workbench.scm.active"
   },
   {
     "key": "shift+cmd+g",
