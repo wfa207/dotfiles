@@ -18,7 +18,7 @@ class Tmux:
         Shell.print_formatted("Installing Tmux command\n", Shell.Colors.HEADER_1)
 
         # TODO: Should encapsulate installation method in case Brew unavailable
-        subprocess.call(["brew", "install", "tmux"])
+        Shell.execute("brew", "install", "tmux")
 
         Shell.print_formatted(
             "\nFinished installing Tmux command\n", Shell.Colors.HEADER_1
@@ -32,13 +32,11 @@ class Tmux:
                 "Installing Tmux plugin manager\n", Shell.Colors.HEADER_1
             )
 
-            subprocess.call(
-                [
-                    "git",
-                    "clone",
-                    "https://github.com/tmux-plugins/tpm",
-                    f"{HOME_DIR}/.tmux/plugins/tpm",
-                ]
+            Shell.execute(
+                "git",
+                "clone",
+                "https://github.com/tmux-plugins/tpm",
+                f"{HOME_DIR}/.tmux/plugins/tpm",
             )
 
             Shell.print_formatted(

@@ -25,7 +25,7 @@ class Javascript:
 
         for executable_name in DEPENDENT_EXECUTABLES:
             # TODO: Should encapsulate installation method in case Brew unavailable
-            subprocess.call(["brew", "install", executable_name])
+            Shell.execute("brew", "install", executable_name)
 
         Shell.print_formatted(
             "\nInstalled Javascript dependencies\n", Shell.Colors.HEADER_1
@@ -40,17 +40,15 @@ class Javascript:
 
         if not os.path.exists(NVM_DIR):
             if os.path.exists(f"/usr/local/Cellar/nvm"):
-                subprocess.call(["brew", "uninstall", "nvm"])
+                Shell.execute("brew", "uninstall", "nvm")
 
         os.makedirs(NVM_DIR, exist_ok=True)
-        subprocess.call(
-            [
-                "curl",
-                "-o-",
-                "https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh",
-                "|",
-                "bash",
-            ]
+        Shell.execute(
+            "curl",
+            "-o-",
+            "https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh",
+            "|",
+            "bash",
         )
 
         Shell.print_formatted(
@@ -67,7 +65,7 @@ class Javascript:
             "Installing Javascript utilities\n", Shell.Colors.HEADER_1
         )
 
-        subprocess.call(["npm", "install", "-g", *UTILITY_LIBRARIES]),
+        Shell.execute("npm", "install", "-g", *UTILITY_LIBRARIES),
 
         Shell.print_formatted(
             "\nInstalled Javascript utilities\n", Shell.Colors.HEADER_1

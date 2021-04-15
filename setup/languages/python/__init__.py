@@ -28,7 +28,7 @@ class Python:
 
         for executable_name in DEPENDENT_EXECUTABLES:
             # TODO: Should encapsulate installation method in case Brew unavailable
-            subprocess.call(["brew", "install", executable_name])
+            Shell.execute("brew", "install", executable_name)
 
         Shell.print_formatted(
             "\nInstalled Python dependencies\n", Shell.Colors.HEADER_1
@@ -52,14 +52,12 @@ class Python:
             )
 
         if not bool(shutil.which("poetry")):
-            subprocess.call(
-                [
-                    "curl",
-                    "-sSL",
-                    "https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py",
-                    "|",
-                    "python",
-                ]
+            Shell.execute(
+                "curl",
+                "-sSL",
+                "https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py",
+                "|",
+                "python",
             )
 
         Shell.print_formatted(
@@ -80,7 +78,7 @@ class Python:
         )
 
         for language_version in LANGUAGE_VERSIONS:
-            subprocess.call(["pyenv", "install", "--skip-existing", language_version])
+            Shell.execute("pyenv", "install", "--skip-existing", language_version)
 
         Shell.print_formatted(
             "\nInstalled commonly used Python versions\n", Shell.Colors.HEADER_1
@@ -95,7 +93,7 @@ class Python:
 
         Shell.print_formatted("Installing Python utilities\n", Shell.Colors.HEADER_1)
 
-        subprocess.call(["pip", "install", *UTILITY_LIBRARIES]),
+        Shell.execute("pip", "install", *UTILITY_LIBRARIES),
 
         Shell.print_formatted("\nInstalled Python utilities\n", Shell.Colors.HEADER_1)
 

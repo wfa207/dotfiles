@@ -30,14 +30,12 @@ class iTerm:
         Shell.print_formatted("Loading iTerm preferences\n", Shell.Colors.HEADER_1)
 
         curr_file_dir = os.path.dirname(os.path.abspath(__file__))
-        subprocess.call(
-            [
-                "defaults",
-                "write",
-                "com.googlecode.iterm2",
-                "PrefsCustomFolder",
-                f"{curr_file_dir}/config_files",
-            ]
+        Shell.execute(
+            "defaults",
+            "write",
+            "com.googlecode.iterm2",
+            "PrefsCustomFolder",
+            f"{curr_file_dir}/config_files",
         )
 
         Shell.print_formatted("Loaded iTerm preferences\n", Shell.Colors.HEADER_1)

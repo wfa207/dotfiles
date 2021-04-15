@@ -24,29 +24,23 @@ class VSCode:
             )
 
             # This is OS X-specific setup -----------------------------------------------
-            subprocess.call(
-                [
-                    "curl",
-                    "-L",
-                    "--create-dirs",
-                    "-o",
-                    f"{HOME_DIR}/Downloads/VSCode-temp.zip",
-                    "https://update.code.visualstudio.com/latest/darwin/stable",
-                ]
+            Shell.execute(
+                "curl",
+                "-L",
+                "--create-dirs",
+                "-o",
+                f"{HOME_DIR}/Downloads/VSCode-temp.zip",
+                "https://update.code.visualstudio.com/latest/darwin/stable",
             )
-            subprocess.call(
-                [
-                    "unzip",
-                    f"{HOME_DIR}/Downloads/VSCode-temp.zip",
-                    "-d",
-                    "/Applications",
-                ]
+            Shell.execute(
+                "unzip",
+                f"{HOME_DIR}/Downloads/VSCode-temp.zip",
+                "-d",
+                "/Applications",
             )
-            subprocess.call(
-                [
-                    "rm",
-                    f"{HOME_DIR}/Downloads/VSCode-temp.zip",
-                ]
+            Shell.execute(
+                "rm",
+                f"{HOME_DIR}/Downloads/VSCode-temp.zip",
             )
             # ---------------------------------------------------------------------------
 
@@ -117,7 +111,7 @@ class VSCode:
         Shell.print_formatted("Installing VS Code Extensions\n", Shell.Colors.HEADER_1)
 
         for extension_name in EXTENSIONS:
-            subprocess.call(["code", "--install-extension", extension_name])
+            Shell.execute("code", "--install-extension", extension_name)
 
         Shell.print_formatted("Installed VS Code Extensions\n", Shell.Colors.HEADER_1)
 
@@ -146,37 +140,31 @@ class VSCode:
                     os.unlink(config_file_path_tgt)
                     os.symlink(config_file_path_src, config_file_path_tgt)
 
-        subprocess.call(
-            [
-                "defaults",
-                "write",
-                "com.microsoft.VSCode",
-                "ApplePressAndHoldEnabled",
-                "-bool",
-                "false",
-            ]
+        Shell.execute(
+            "defaults",
+            "write",
+            "com.microsoft.VSCode",
+            "ApplePressAndHoldEnabled",
+            "-bool",
+            "false",
         )
-        subprocess.call(
-            [
-                "defaults",
-                "write",
-                "com.microsoft.VSCodeInsiders",
-                "ApplePressAndHoldEnabled",
-                "-bool",
-                "false",
-            ]
+        Shell.execute(
+            "defaults",
+            "write",
+            "com.microsoft.VSCodeInsiders",
+            "ApplePressAndHoldEnabled",
+            "-bool",
+            "false",
         )
-        subprocess.call(
-            [
-                "defaults",
-                "write",
-                "com.visualstudio.code.oss",
-                "ApplePressAndHoldEnabled",
-                "-bool",
-                "false",
-            ]
+        Shell.execute(
+            "defaults",
+            "write",
+            "com.visualstudio.code.oss",
+            "ApplePressAndHoldEnabled",
+            "-bool",
+            "false",
         )
-        subprocess.call(["defaults", "delete", "-g", "ApplePressAndHoldEnabled"])
+        Shell.execute("defaults", "delete", "-g", "ApplePressAndHoldEnabled")
 
         Shell.print_formatted("\nConfigured VS Code\n", Shell.Colors.HEADER_1)
 

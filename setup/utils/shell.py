@@ -1,3 +1,6 @@
+import subprocess
+
+
 class Shell:
     class Colors:
         HEADER_1 = "\033[1;34m"
@@ -22,3 +25,7 @@ class Shell:
 
         else:
             print(f"{color}{msg}{cls.Colors.END}")
+
+    @classmethod
+    def execute(cls, *cmd_args):
+        subprocess.call(cmd_args)

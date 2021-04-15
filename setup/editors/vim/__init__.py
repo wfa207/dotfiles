@@ -25,7 +25,7 @@ class Vim:
         Shell.print_formatted("Installing Vim command\n", Shell.Colors.HEADER_1)
 
         # TODO: Should encapsulate installation method in case Brew unavailable
-        subprocess.call(["brew", "install", "vim"])
+        Shell.execute("brew", "install", "vim")
 
         Shell.print_formatted("\nInstalled Vim command\n", Shell.Colors.HEADER_1)
 
@@ -42,7 +42,7 @@ class Vim:
 
         for executable_name in DEPENDENT_EXECUTABLES:
             # TODO: Should encapsulate installation method in case Brew unavailable
-            subprocess.call(["brew", "install", executable_name])
+            Shell.execute("brew", "install", executable_name)
 
         Shell.print_formatted("\nInstalled Vim dependencies\n", Shell.Colors.HEADER_1)
 
@@ -77,14 +77,12 @@ class Vim:
 
         already_exists = os.path.exists(f"{HOME_DIR}/.vim/autoload/plug.vim")
         if not already_exists:
-            subprocess.call(
-                [
-                    "curl",
-                    "-fLo",
-                    f"{HOME_DIR}/.vim/autoload/plug.vim",
-                    "--create-dirs",
-                    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim",
-                ]
+            Shell.execute(
+                "curl",
+                "-fLo",
+                f"{HOME_DIR}/.vim/autoload/plug.vim",
+                "--create-dirs",
+                "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim",
             )
             Shell.print_formatted("\nInstalled Vim-Plug\n", Shell.Colors.HEADER_1)
 
@@ -97,8 +95,8 @@ class Vim:
     def _install_plugins(cls):
         Shell.print_formatted("Installing Vim Plugins\n", Shell.Colors.HEADER_1)
 
-        subprocess.call(["vim", "+PlugInstall", "+PlugUpdate", "+qall"])
-        subprocess.call(["python", f"{HOME_DIR}/.vim/plugged/YouCompleteMe/install.py"])
+        Shell.execute("vim", "+PlugInstall", "+PlugUpdate", "+qall")
+        Shell.execute("python", f"{HOME_DIR}/.vim/plugged/YouCompleteMe/install.py")
 
         Shell.print_formatted("\nInstalled Vim Plugins\n", Shell.Colors.HEADER_1)
 

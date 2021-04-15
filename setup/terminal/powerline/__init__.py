@@ -19,10 +19,10 @@ class Powerline:
     def _setup_fonts(cls):
         Shell.print_formatted("Installing powerline fonts\n", Shell.Colors.HEADER_1)
 
-        subprocess.call(
-            ["git", "clone", "https://github.com/powerline/fonts.git", "--depth=1"]
+        Shell.execute(
+            "git", "clone", "https://github.com/powerline/fonts.git", "--depth=1"
         )
-        subprocess.call(["sh", "./fonts/install.sh"])
+        Shell.execute("sh", "./fonts/install.sh")
         shutil.rmtree("./fonts")
 
         Shell.print_formatted(
@@ -33,8 +33,8 @@ class Powerline:
     def _setup_shell(cls):
         Shell.print_formatted("Installing powerline-shell\n", Shell.Colors.HEADER_1)
 
-        subprocess.call(["git", "clone", "https://github.com/b-ryan/powerline-shell"])
-        subprocess.call(["python", "./powerline-shell/setup.py", "install"])
+        Shell.execute("git", "clone", "https://github.com/b-ryan/powerline-shell")
+        Shell.execute("python", "./powerline-shell/setup.py", "install")
 
         # Remove artifacts
         dirs = glob.glob("powerline[_-]shell*")
