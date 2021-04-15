@@ -1,6 +1,3 @@
-import os
-import subprocess
-
 from setup.utils import Shell
 
 
@@ -12,7 +9,7 @@ class iTerm:
 
     @classmethod
     def _verify_installation(cls):
-        if not Shell.exists(f"/Applications/iTerm.app"):
+        if not Shell.exists("/Applications/iTerm.app"):
             Shell.print_formatted(
                 "iTerm could not be found on your machine."
                 "\nPlease refer to iTerm's website https://www.iterm2.com or contact"

@@ -1,6 +1,3 @@
-import errno
-import os
-
 from setup.utils import Shell
 
 
@@ -121,18 +118,14 @@ class VSCode:
                 f"{Shell.HOME_DIR}/Library/Application Support/Code/User/{config_file}"
             )
 
-            try:
-                Shell.link(config_file_path_src, config_file_path_tgt)
-
-            except OSError as exc:
+            if Shell.exists(config_file_path_tgt):
                 Shell.print_formatted(
-                    f"Warning: Detected existing configuration at {config_file_path_tgt}\n",
+                    f"Warning: Found existing configuration at {config_file_path_tgt}\n",
                     Shell.Colors.WARNING,
                 )
+                Shell.delete(config_file_path_tgt)
 
-                if exc.errno == errno.EEXIST:
-                    os.unlink(config_file_path_tgt)
-                    Shell.link(config_file_path_src, config_file_path_tgt)
+            Shell.link(config_file_path_src, config_file_path_tgt)
 
         Shell.execute(
             "defaults",
@@ -171,17 +164,13 @@ class VSCode:
             f"{Shell.HOME_DIR}/Library/Application Support/Code/User/snippets"
         )
 
-        try:
-            Shell.link(snippet_dir_path_src, snippet_dir_path_tgt)
-
-        except OSError as exc:
+        if Shell.exists(snippet_dir_path_tgt):
             Shell.print_formatted(
-                f"Warning: Detected existing snippets at {snippet_dir_path_tgt}\n",
+                f"Warning: Found existing snippets at {snippet_dir_path_tgt}\n",
                 Shell.Colors.WARNING,
             )
+            Shell.delete(snippet_dir_path_tgt)
 
-            if exc.errno == errno.EEXIST:
-                os.unlink(snippet_dir_path_tgt)
-                Shell.link(snippet_dir_path_src, snippet_dir_path_tgt)
+        Shell.link(snippet_dir_path_src, snippet_dir_path_tgt)
 
         Shell.print_formatted("Loaded VS Code snippets\n", Shell.Colors.HEADER_1)

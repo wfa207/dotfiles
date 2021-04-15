@@ -1,8 +1,3 @@
-import errno
-import os
-import shutil
-import subprocess
-
 from setup.utils import Shell
 
 
@@ -39,18 +34,16 @@ class Python:
             "Installing Python package managers\n", Shell.Colors.HEADER_1
         )
 
-        if not bool(shutil.which("pipenv")):
-            subprocess.call(
-                [
-                    "pip",
-                    "install",
-                    "-U",
-                    "pip",
-                    "pipenv",
-                ],
+        if not Shell.executable_exists("pipenv"):
+            Shell.execute(
+                "pip",
+                "install",
+                "-U",
+                "pip",
+                "pipenv",
             )
 
-        if not bool(shutil.which("poetry")):
+        if not Shell.executable_exists("poetry"):
             Shell.execute(
                 "curl",
                 "-sSL",
@@ -104,21 +97,17 @@ class Python:
 
         utility_scripts_dir = Shell.get_abs_path("config_files")
         for utility_script in Shell.iter_file_names(utility_scripts_dir):
-            utility_script_path_src = f"{utility_scripts_dir}/{utility_script}"
             utility_script_path_tgt = f"{Shell.HOME_DIR}/{utility_script}"
 
-            try:
-                Shell.link(utility_script_path_src, utility_script_path_tgt)
-
-            except OSError as exc:
+            if Shell.exists(utility_script_path_tgt):
                 Shell.print_formatted(
-                    f"Warning: Detected existing configuration at {utility_script_path_tgt}\n",
+                    f"Warning: Found existing configuration at {utility_script_path_tgt}\n",
                     Shell.Colors.WARNING,
                 )
+                Shell.delete(utility_script_path_tgt)
 
-                if exc.errno == errno.EEXIST:
-                    os.unlink(utility_script_path_tgt)
-                    Shell.link(utility_script_path_src, utility_script_path_tgt)
+            utility_script_path_src = f"{utility_scripts_dir}/{utility_script}"
+            Shell.link(utility_script_path_src, utility_script_path_tgt)
 
         Shell.print_formatted(
             "\nInstalled Python utility scripts\n", Shell.Colors.HEADER_1

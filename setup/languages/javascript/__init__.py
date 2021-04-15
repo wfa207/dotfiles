@@ -1,5 +1,3 @@
-import os
-
 from setup.utils import Shell
 
 
@@ -40,7 +38,7 @@ class Javascript:
             if Shell.exists("/usr/local/Cellar/nvm"):
                 Shell.execute("brew", "uninstall", "nvm")
 
-        os.makedirs(NVM_DIR, exist_ok=True)
+        Shell.make_dir(NVM_DIR, exist_ok=True)
         Shell.execute(
             "curl",
             "-o-",

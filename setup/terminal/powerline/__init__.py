@@ -1,9 +1,5 @@
 import glob
-import os
-import shutil
-import subprocess
 
-from setup.constants import HOME_DIR
 from setup.utils import Shell
 
 
@@ -23,7 +19,7 @@ class Powerline:
             "git", "clone", "https://github.com/powerline/fonts.git", "--depth=1"
         )
         Shell.execute("sh", "./fonts/install.sh")
-        shutil.rmtree("./fonts")
+        Shell.delete("./fonts")
 
         Shell.print_formatted(
             "\nFinished installing powerline fonts\n", Shell.Colors.HEADER_1
@@ -39,7 +35,7 @@ class Powerline:
         # Remove artifacts
         dirs = glob.glob("powerline[_-]shell*")
         for dir_name in dirs:
-            shutil.rmtree(dir_name)
+            Shell.delete(dir_name)
 
         Shell.print_formatted(
             "\nFinished installing powerline-shell\n", Shell.Colors.HEADER_1
@@ -49,7 +45,7 @@ class Powerline:
     def _configure(cls):
         Shell.print_formatted("Configuring powerline-shell\n", Shell.Colors.HEADER_1)
 
-        os.makedirs(f"{Shell.HOME_DIR}/.config/powerline-shell", exist_ok=True)
+        Shell.make_dir(f"{Shell.HOME_DIR}/.config/powerline-shell", exist_ok=True)
 
         config_file_path_src = Shell.get_abs_path("config_files/config.json")
         config_file_path_tgt = f"{Shell.HOME_DIR}/.config/powerline-shell/config.json"
@@ -60,6 +56,6 @@ class Powerline:
 
         else:
             Shell.print_formatted(
-                f"Warning: Detected existing configuration at {config_file_path_tgt}\n",
+                f"Warning: Found existing configuration at {config_file_path_tgt}\n",
                 Shell.Colors.WARNING,
             )

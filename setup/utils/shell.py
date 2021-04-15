@@ -1,5 +1,6 @@
 import inspect
 import os
+import shutil
 import subprocess
 
 
@@ -50,8 +51,34 @@ class Shell:
 
     @classmethod
     def exists(cls, abs_file_path):
-        return os.path.exists(abs_file_path)
+        is_file_or_dir = cls._is_file_or_dir(abs_file_path)
+        is_link = cls._is_link(abs_file_path)
+        return is_file_or_dir or is_link
+
+    @classmethod
+    def executable_exists(cls, executable_name):
+        return bool(shutil.which(executable_name))
+
+    @classmethod
+    def delete(cls, abs_file_path):
+        if cls._is_link(abs_file_path):
+            os.unlink(abs_file_path)
+
+        if cls._is_file_or_dir(abs_file_path):
+            shutil.rmtree(abs_file_path)
 
     @classmethod
     def link(cls, src_path, tgt_path):
         os.symlink(src_path, tgt_path)
+
+    @classmethod
+    def make_dir(cls, abs_dir_path, exist_ok=False):
+        os.makedirs(abs_dir_path, exist_ok=exist_ok)
+
+    @classmethod
+    def _is_file_or_dir(cls, abs_file_path):
+        return os.path.exists(abs_file_path)
+
+    @classmethod
+    def _is_link(cls, abs_file_path):
+        return os.path.islink(abs_file_path)

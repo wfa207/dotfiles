@@ -58,7 +58,7 @@ class Tmux:
 
             else:
                 Shell.print_formatted(
-                    f"Warning: Detected existing configuration at {config_file_path_tgt}\n",
+                    f"Warning: Found existing configuration at {config_file_path_tgt}\n",
                     Shell.Colors.WARNING,
                 )
 
