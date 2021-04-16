@@ -211,6 +211,15 @@
           "when": "editorFocus"
         }
       ]
+    },
+    {
+      "before": ["/"],
+      "commands": [
+        {
+          "command": "actions.find",
+          "when": "editorFocus"
+        }
+      ]
     }
   ],
   "settings.cycle": [
