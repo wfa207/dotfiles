@@ -86,7 +86,8 @@
     "command": "closeReferenceSearch",
     "when": "referenceSearchVisible && !config.editor.stablePeek"
   },
-  // Refactoring =
+  // Refactoring =======================================================================================================
+  // Docs: https://code.visualstudio.com/docs/editor/refactoring
   {
     "key": "ctrl+shift+r",
     "command": "-editor.action.refactor",
@@ -98,11 +99,31 @@
     "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
   },
   {
-    "key": "cmd+shift+r e",
+    "key": "cmd+shift+r f",
     "command": "editor.action.codeAction",
     "args": {
-      "kind": "refactor.extract.function"
+      "kind": "refactor.extract.function",
+      "apply": "ifSingle"
     }
+  },
+  {
+    "key": "cmd+shift+r v",
+    "command": "editor.action.codeAction",
+    "args": {
+      "kind": "refactor.extract.constant",
+      "apply": "ifSingle"
+    }
+  },
+  // Python ------------------------------------------------------------------------------------------------------------
+  {
+    "key": "cmd+shift+r f",
+    "command": "python.refactorExtractMethod",
+    "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly && editorLangId == 'python'"
+  },
+  {
+    "key": "cmd+shift+r v",
+    "command": "python.refactorExtractVariable",
+    "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly && editorLangId == 'python'"
   },
   // General ===========================================================================================================
   {
