@@ -193,6 +193,19 @@
     "command": "search.focus.nextInputBox",
     "when": "searchInputBoxFocus && replaceActive && searchViewletFocus && searchViewletVisible"
   },
+  {
+    "key": "cmd+shift+,",
+    "command": "-editor.action.inPlaceReplace.up",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+shift+,",
+    "command": "workbench.action.openSettingsJson"
+  },
+  {
+    "key": "cmd+k shift+cmd+s",
+    "command": "workbench.action.openGlobalKeybindingsFile"
+  },
   // General ==========================================================================================================
   {
     "key": "cmd+shift+enter",
@@ -318,6 +331,16 @@
     "when": "isInDiffEditor && editorHasSelection"
   },
   {
+    "key": "cmd+k cmd+r",
+    "command": "-git.revertSelectedRanges",
+    "when": "isInDiffEditor"
+  },
+  {
+    "key": "shift+-",
+    "command": "git.revertSelectedRanges",
+    "when": "isInDiffEditor && editorHasSelection"
+  },
+  {
     "key": "shift+-",
     "command": "git.unstage",
     "when": "workbench.scm.active && editorReadonly"
@@ -431,11 +454,11 @@
   // Developer Tools ###################################################################################################
   {
     "key": "alt+cmd+i",
-    "command": "workbench.action.toggleDevTools"
+    "command": "-workbench.action.toggleDevTools",
+    "when": "isDevelopment"
   },
   {
     "key": "alt+cmd+i",
-    "command": "-workbench.action.toggleDevTools",
-    "when": "isDevelopment"
+    "command": "workbench.action.toggleDevTools"
   }
 ]
