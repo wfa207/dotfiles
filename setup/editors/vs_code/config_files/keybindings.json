@@ -193,6 +193,16 @@
   },
   // Explorer ##########################################################################################################
   {
+    "key": "o",
+    "command": "list.select",
+    "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
+  },
+  {
+    "key": "cmd+o",
+    "command": "explorer.openToSide",
+    "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
+  },
+  {
     "key": "shift+enter",
     "command": "renameFile",
     "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
@@ -230,14 +240,34 @@
     "when": "terminalFocus"
   },
   {
+    "key": "o",
+    "command": "list.select",
+    "when": "workbench.scm.active && !inputFocus"
+  },
+  {
+    "key": "shift+o",
+    "command": "git.openFile",
+    "when": "workbench.scm.active && !inputFocus"
+  },
+  {
     "key": "=",
+    "command": "git.stageSelectedRanges",
+    "when": "isInDiffEditor && editorHasSelection"
+  },
+  {
+    "key": "shift+=",
     "command": "git.stage",
-    "when": "activeViewlet == 'workbench.view.scm' && !inputFocus"
+    "when": "isInDiffEditor"
   },
   {
     "key": "-",
+    "command": "git.unstageSelectedRanges",
+    "when": "isInDiffEditor && editorHasSelection"
+  },
+  {
+    "key": "shift+-",
     "command": "git.unstage",
-    "when": "activeViewlet == 'workbench.view.scm' && !inputFocus"
+    "when": "workbench.scm.active && editorReadonly"
   },
   // General ===========================================================================================================
   {
@@ -249,16 +279,6 @@
     "key": "cmd+[",
     "command": "workbench.action.compareEditor.previousChange",
     "when": "textCompareEditorVisible"
-  },
-  {
-    "key": "=",
-    "command": "git.stageSelectedRanges",
-    "when": "editorHasSelection && isInDiffEditor"
-  },
-  {
-    "key": "-",
-    "command": "git.unstageSelectedRanges",
-    "when": "isInDiffEditor && editorHasSelection && !textInputFocus"
   },
   // Testing & Debugging ###############################################################################################
   {

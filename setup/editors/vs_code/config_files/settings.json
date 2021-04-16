@@ -234,9 +234,6 @@
   "git.enableSmartCommit": true,
   "githubPullRequests.remotes": ["origin"],
   "gitlens.blame.ignoreWhitespace": true,
-  // Explorer ##########################################################################################################
-  "explorer.confirmDragAndDrop": false,
-  "explorer.confirmDelete": false,
   "workbench.iconTheme": "material-icon-theme",
   // Search ############################################################################################################
   "search.collapseResults": "alwaysExpand",
@@ -244,7 +241,6 @@
   "search.searchOnType": false,
   "search.showLineNumbers": true,
   "workbench.list.automaticKeyboardNavigation": false,
-  "workbench.settings.enableNaturalLanguageSearch": false,
   // Terminal ##########################################################################################################
   "terminal.integrated.fontFamily": "Inconsolata for Powerline",
   "terminal.integrated.shell.osx": "/bin/bash",
@@ -311,5 +307,8 @@
   },
   // Extensions ########################################################################################################
   "extensions.ignoreRecommendations": false,
-  "tabnine.experimentalAutoImports": true
+  "tabnine.experimentalAutoImports": true,
+  "workbench.editor.wrapTabs": true,
+  "workbench.editor.enablePreviewFromQuickOpen": true,
+  "workbench.editor.enablePreviewFromCodeNavigation": true
 }
