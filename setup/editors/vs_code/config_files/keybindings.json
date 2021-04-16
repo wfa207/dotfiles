@@ -1,4 +1,8 @@
 // Place your key bindings in this file to override the defaultsauto[]
+// "when" clause contexts: https://code.visualstudio.com/api/references/when-clause-contexts#available-contexts
+// "when" clause conditional operators: https://code.visualstudio.com/api/references/when-clause-contexts#conditional-operators
+// "when" clause context keys: https://code.visualstudio.com/api/references/when-clause-contexts#inspect-context-keys-utility
+// Execute "Developer: Toggle Keyboard Shortcuts Troubleshooting" in Command Palette (cmd+shift+p) to debug keybindings
 [
   // Text Editing ######################################################################################################
   // Formatting ========================================================================================================
@@ -62,22 +66,45 @@
     "command": "-cursorLineStart",
     "when": "textInputFocus"
   },
-  // General ===========================================================================================================
+  {
+    "key": "ctrl+c",
+    "command": "extension.vim_escape",
+    "when": "editorTextFocus && vim.active && !inDebugRepl"
+  },
   {
     "key": "ctrl+c",
     "command": "editor.cancelOperation",
     "when": "cancellableOperation"
   },
   {
-    "key": "shift+cmd+r",
-    "command": "editor.action.refactor",
-    "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+    "key": "ctrl+c",
+    "command": "closeFindWidget",
+    "when": "editorFocus && findWidgetVisible"
   },
+  {
+    "key": "ctrl+c",
+    "command": "closeReferenceSearch",
+    "when": "referenceSearchVisible && !config.editor.stablePeek"
+  },
+  // Refactoring =
   {
     "key": "ctrl+shift+r",
     "command": "-editor.action.refactor",
     "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
   },
+  {
+    "key": "cmd+shift+r r",
+    "command": "editor.action.refactor",
+    "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+shift+r e",
+    "command": "editor.action.codeAction",
+    "args": {
+      "kind": "refactor.extract.function"
+    }
+  },
+  // General ===========================================================================================================
   {
     "key": "ctrl+cmd+t",
     "command": "editor.action.rename",
@@ -89,12 +116,7 @@
     "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
   },
   {
-    "key": "ctrl+c",
-    "command": "closeFindWidget",
-    "when": "editorFocus && findWidgetVisible"
-  },
-  {
-    "key": "shift+cmd+enter",
+    "key": "cmd+shift+enter",
     "command": "editor.action.replaceAll",
     "when": "editorFocus && findWidgetVisible"
   },
@@ -123,11 +145,6 @@
     "command": "-goToPreviousReference",
     "when": "referenceSearchVisible"
   },
-  {
-    "key": "ctrl+c",
-    "command": "closeReferenceSearch",
-    "when": "referenceSearchVisible && !config.editor.stablePeek"
-  },
   // Search ############################################################################################################
   // Navigation ========================================================================================================
   {
@@ -136,12 +153,12 @@
     "when": "inputBoxFocus && searchViewletFocus && searchViewletVisible"
   },
   {
-    "key": "shift+cmd+f",
+    "key": "cmd+shift+f",
     "command": "search.action.focusSearchList",
     "when": "hasSearchResult && editorTextFocus && searchViewletVisible"
   },
   {
-    "key": "shift+cmd+h",
+    "key": "cmd+shift+h",
     "command": "search.action.focusSearchList",
     "when": "hasSearchResult && editorTextFocus && searchViewletVisible"
   },
@@ -157,7 +174,7 @@
   },
   // General ==========================================================================================================
   {
-    "key": "shift+cmd+enter",
+    "key": "cmd+shift+enter",
     "command": "search.action.replaceAll",
     "when": "replaceActive && searchViewletVisible && !findWidgetVisible"
   },
@@ -167,17 +184,17 @@
     "when": "replaceActive && searchViewletVisible && !findWidgetVisible"
   },
   {
-    "key": "shift+cmd+1",
+    "key": "cmd+shift+1",
     "command": "-search.action.replaceAllInFile",
     "when": "fileMatchFocus && replaceActive && searchViewletVisible"
   },
   {
-    "key": "shift+cmd+1",
+    "key": "cmd+shift+1",
     "command": "-search.action.replaceAllInFolder",
     "when": "folderMatchFocus && replaceActive && searchViewletVisible"
   },
   {
-    "key": "shift+cmd+1",
+    "key": "cmd+shift+1",
     "command": "closeFindWidget",
     "when": "editorFocus && findWidgetVisible && replaceActive"
   },
@@ -203,6 +220,16 @@
     "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
   },
   {
+    "key": "enter",
+    "command": "-renameFile",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "enter",
+    "command": "list.select",
+    "when": "listFocus && listSupportsKeyboardNavigation && inputFocus"
+  },
+  {
     "key": "cmd+o",
     "command": "explorer.openToSide",
     "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
@@ -225,22 +252,22 @@
   // Source Control ####################################################################################################
   // View ==============================================================================================================
   {
-    "key": "shift+cmd+g",
+    "key": "cmd+shift+g",
     "command": "workbench.view.scm",
     "when": "workbench.scm.active"
   },
   {
-    "key": "shift+cmd+g",
+    "key": "cmd+shift+g",
     "command": "-editor.action.previousMatchFindAction",
     "when": "editorFocus"
   },
   {
-    "key": "shift+cmd+g",
+    "key": "cmd+shift+g",
     "command": "-workbench.action.terminal.findPrevious",
     "when": "terminalFindWidgetFocused"
   },
   {
-    "key": "shift+cmd+g",
+    "key": "cmd+shift+g",
     "command": "-workbench.action.terminal.findPreviousTerminalFocus",
     "when": "terminalFocus"
   },
@@ -287,7 +314,7 @@
   },
   // Testing & Debugging ###############################################################################################
   {
-    "key": "shift+cmd+j",
+    "key": "cmd+shift+j",
     "when": "panelFocus && !inSearchEditor && !searchViewletFocus",
     "command": "workbench.action.toggleMaximizedPanel"
   },
@@ -302,11 +329,11 @@
     "when": "editorTextFocus"
   },
   {
-    "key": "shift+cmd+t",
+    "key": "cmd+shift+t",
     "command": "-workbench.action.reopenClosedEditor"
   },
   {
-    "key": "shift+cmd+t",
+    "key": "cmd+shift+t",
     "command": "workbench.view.extension.test"
   },
   {
@@ -356,22 +383,22 @@
   },
   // Terminal ##########################################################################################################
   {
-    "key": "shift+cmd+\\",
+    "key": "cmd+shift+\\",
     "command": "-editor.action.jumpToBracket",
     "when": "editorTextFocus"
   },
   {
-    "key": "shift+cmd+\\",
+    "key": "cmd+shift+\\",
     "command": "workbench.action.terminal.split",
     "when": "terminalFocus"
   },
   {
-    "key": "shift+cmd+[",
+    "key": "cmd+shift+[",
     "command": "workbench.action.terminal.focusPrevious",
     "when": "terminalFocus"
   },
   {
-    "key": "shift+cmd+]",
+    "key": "cmd+shift+]",
     "command": "workbench.action.terminal.focusNext",
     "when": "terminalFocus"
   },

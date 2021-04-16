@@ -27,7 +27,7 @@
   "vim.leader": ",",
   "vim.surround": true,
   "vim.useSystemClipboard": true,
-  "vim.debug.loggingLevelForConsole": "debug",
+  // "vim.debug.loggingLevelForConsole": "debug",
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["<C-l>"], // Navigate Right
@@ -142,7 +142,6 @@
     },
     {
       "before": ["<C-c>"],
-      "after": ["<Esc>"],
       "commands": [
         {
           "command": ":nohl",
