@@ -91,6 +91,7 @@ class VSCode:
             "tht13.python",  # Decent snippets collection
             "ms-pyright.pyright",
             "ms-python.python",
+            "ms-toolsai.jupyter"
             # Javascript =======================================================
             "esbenp.prettier-vscode",
             "xabikos.JavaScriptSnippets",
