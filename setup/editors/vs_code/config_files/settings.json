@@ -25,6 +25,8 @@
   },
   "vim.textwidth": 120,
   "vim.leader": ",",
+  "vim.camelCaseMotion.enable": true,
+  "vim.smartRelativeLine": true,
   "vim.surround": true,
   "vim.useSystemClipboard": true,
   // "vim.debug.loggingLevelForConsole": "debug",
@@ -146,6 +148,18 @@
         {
           "command": ":nohl",
           "when": "textInputFocus"
+        },
+        {
+          "command": "editor.cancelOperation",
+          "when": "cancellableOperation"
+        },
+        {
+          "command": "closeFindWidget",
+          "when": "editorFocus && findWidgetVisible"
+        },
+        {
+          "command": "extension.vim_escape",
+          "when": "editorFocus && findWidgetVisible"
         }
       ]
     },
@@ -175,6 +189,27 @@
     }
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-c>"],
+      "commands": [
+        {
+          "command": ":nohl",
+          "when": "textInputFocus"
+        },
+        {
+          "command": "editor.cancelOperation",
+          "when": "cancellableOperation"
+        },
+        {
+          "command": "closeFindWidget",
+          "when": "editorFocus && findWidgetVisible"
+        },
+        {
+          "command": "extension.vim_escape",
+          "when": "editorFocus && findWidgetVisible"
+        }
+      ]
+    },
     {
       "before": ["n"],
       "commands": [

@@ -68,18 +68,8 @@
   },
   {
     "key": "ctrl+c",
-    "command": "extension.vim_escape",
-    "when": "editorTextFocus && vim.active && !inDebugRepl"
-  },
-  {
-    "key": "ctrl+c",
     "command": "editor.cancelOperation",
     "when": "cancellableOperation"
-  },
-  {
-    "key": "ctrl+c",
-    "command": "closeFindWidget",
-    "when": "editorFocus && findWidgetVisible"
   },
   {
     "key": "ctrl+c",
