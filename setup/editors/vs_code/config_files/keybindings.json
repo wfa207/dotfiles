@@ -4,7 +4,7 @@
 // "when" clause context keys: https://code.visualstudio.com/api/references/when-clause-contexts#inspect-context-keys-utility
 // Execute "Developer: Toggle Keyboard Shortcuts Troubleshooting" in Command Palette (cmd+shift+p) to debug keybindings
 [
-  // Text Editing ######################################################################################################
+  // Editor ############################################################################################################
   // Formatting ========================================================================================================
   {
     "key": "cmd+k cmd+n",
@@ -165,6 +165,11 @@
     "key": "shift+f4",
     "command": "-goToPreviousReference",
     "when": "referenceSearchVisible"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.output.action.clearOutput",
+    "when": "workbench.panel.output.visible"
   },
   // Search ############################################################################################################
   // Navigation ========================================================================================================
