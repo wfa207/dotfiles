@@ -309,6 +309,5 @@
   "extensions.ignoreRecommendations": false,
   "tabnine.experimentalAutoImports": true,
   "workbench.editor.wrapTabs": true,
-  "workbench.editor.enablePreviewFromQuickOpen": true,
   "workbench.editor.enablePreviewFromCodeNavigation": true
 }

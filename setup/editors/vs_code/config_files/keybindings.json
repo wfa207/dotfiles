@@ -193,6 +193,11 @@
   },
   // Explorer ##########################################################################################################
   {
+    "key": "cmd+shift+e",
+    "command": "workbench.explorer.fileView.focus",
+    "when": "explorerViewletVisible && !filesExplorerFocus"
+  },
+  {
     "key": "o",
     "command": "list.select",
     "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
