@@ -310,6 +310,7 @@
   "python.terminal.activateEnvInCurrentTerminal": true,
   "python.testing.pytestArgs": ["-v"],
   "jupyter.debugJustMyCode": false,
+  "pyright.disableLanguageServices": true, // Prevent dupe results in def / ref searches
   "python.analysis.typeCheckingMode": "off",
   "workbench.editorAssociations": [
     {

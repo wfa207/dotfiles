@@ -76,6 +76,11 @@
     "command": "closeReferenceSearch",
     "when": "referenceSearchVisible && !config.editor.stablePeek"
   },
+  {
+    "key": "cmd+enter",
+    "command": "openReferenceToSide",
+    "when": "listFocus && referenceSearchVisible && !inputFocus"
+  },
   // Refactoring =======================================================================================================
   // Docs: https://code.visualstudio.com/docs/editor/refactoring
   {
@@ -104,6 +109,11 @@
       "apply": "ifSingle"
     }
   },
+  {
+    "key": "cmd+shift+r t",
+    "command": "editor.action.rename",
+    "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+  },
   // Python ------------------------------------------------------------------------------------------------------------
   {
     "key": "cmd+shift+r f",
@@ -116,16 +126,6 @@
     "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly && editorLangId == 'python'"
   },
   // General ===========================================================================================================
-  {
-    "key": "ctrl+cmd+t",
-    "command": "editor.action.rename",
-    "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "f2",
-    "command": "-editor.action.rename",
-    "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
-  },
   {
     "key": "cmd+shift+enter",
     "command": "editor.action.replaceAll",
