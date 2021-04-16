@@ -340,6 +340,11 @@
     "command": "git.unstage",
     "when": "workbench.scm.active && editorReadonly"
   },
+  {
+    "key": "cmd+backspace",
+    "command": "git.clean",
+    "when": "isInDiffEditor"
+  },
   // General ===========================================================================================================
   {
     "key": "cmd+]",
