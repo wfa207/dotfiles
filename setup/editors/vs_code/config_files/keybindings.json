@@ -306,9 +306,9 @@
     "when": "workbench.scm.active && !inputFocus"
   },
   {
-    "key": "shift+o",
+    "key": "cmd+k o",
     "command": "git.openFile",
-    "when": "workbench.scm.active && !inputFocus"
+    "when": "isInDiffEditor"
   },
   {
     "key": "=",
