@@ -69,7 +69,7 @@ dev_vertical_half() {
 	tmux -2 attach -t ${2:-}${2:+:}1.0
 }
 
-alias dev="dev_vertical_half"
+alias dev-v="dev_vertical_half"
 
 dev_dot() {
 	cd ~/dotfiles
@@ -143,7 +143,7 @@ alias gstls="clear; git stash list"
 alias gstap="clear; git stash apply"
 
 # General Aliases ##############################################################
-alias .b=". ~/.bashrc"
+alias .b=". ~/.bash_profile"
 alias cl="clear"
 alias ls="ls -AGFl"
 
