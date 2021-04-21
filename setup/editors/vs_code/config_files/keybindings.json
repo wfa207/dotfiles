@@ -1,5 +1,6 @@
 // Place your key bindings in this file to override the defaultsauto[]
 // "when" clause contexts: https://code.visualstudio.com/api/references/when-clause-contexts#available-contexts
+// Execute "Developer: Inspect Context Keys" in Command Palette (cmd+shift+p) to debug "when" clause contexts
 // "when" clause conditional operators: https://code.visualstudio.com/api/references/when-clause-contexts#conditional-operators
 // "when" clause context keys: https://code.visualstudio.com/api/references/when-clause-contexts#inspect-context-keys-utility
 // Execute "Developer: Toggle Keyboard Shortcuts Troubleshooting" in Command Palette (cmd+shift+p) to debug keybindings
@@ -70,6 +71,11 @@
     "key": "ctrl+c",
     "command": "editor.cancelOperation",
     "when": "cancellableOperation"
+  },
+  {
+    "key": "ctrl+c",
+    "command": "closeFindWidget",
+    "when": "editorFocus && findWidgetVisible && findWidgetVisible"
   },
   {
     "key": "ctrl+c",

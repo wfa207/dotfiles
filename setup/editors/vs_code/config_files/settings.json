@@ -10,6 +10,8 @@
   "editor.wordWrapColumn": 120,
   "editor.largeFileOptimizations": false,
   "editor.renderControlCharacters": false,
+  "workbench.editor.wrapTabs": true,
+  "workbench.editor.enablePreviewFromCodeNavigation": true,
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
@@ -352,6 +354,4 @@
   // Extensions ########################################################################################################
   "extensions.ignoreRecommendations": false,
   "tabnine.experimentalAutoImports": true,
-  "workbench.editor.wrapTabs": true,
-  "workbench.editor.enablePreviewFromCodeNavigation": true
 }
