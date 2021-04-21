@@ -10,8 +10,6 @@
   "editor.wordWrapColumn": 120,
   "editor.largeFileOptimizations": false,
   "editor.renderControlCharacters": false,
-  "workbench.editor.wrapTabs": true,
-  "workbench.editor.enablePreviewFromCodeNavigation": true,
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
@@ -20,6 +18,9 @@
   "synthwave84.brightness": 0.35,
   "workbench.colorTheme": "SynthWave '84",
   "workbench.activityBar.visible": false,
+  "workbench.editor.focusRecentEditorAfterClose": false,
+  "workbench.editor.tabSizing": "shrink",
+  "workbench.editor.enablePreviewFromCodeNavigation": true,
   // Vim ===============================================================================================================
   "vim.handleKeys": {
     "<C-o>": false,
@@ -353,5 +354,5 @@
   },
   // Extensions ########################################################################################################
   "extensions.ignoreRecommendations": false,
-  "tabnine.experimentalAutoImports": true,
+  "tabnine.experimentalAutoImports": true
 }
