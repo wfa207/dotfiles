@@ -69,22 +69,38 @@ dev_vertical_half() {
 	tmux -2 attach -t ${2:-}${2:+:}1.0
 }
 
+connect_to_existing_session() {
+	if tmux has-session -t $1; then
+		tmux attach-session -t $1
+		return 0
+	else
+		return 1
+	fi
+}
+
 alias dev-v="dev_vertical_half"
 
 dev_dot() {
-	cd ~/dotfiles
-	dev_vertical_half '' dot
+	SESSION_NAME=dot
+	if ! connect_to_existing_session ${SESSION_NAME}; then
+		cd ~/dotfiles
+		dev_vertical_half '' ${SESSION_NAME}
+	fi
+	unset SESSION_NAME
 }
 
 alias dev-dot="dev_dot"
 
 dev_penny() {
 	SESSION_NAME=pennyworth
-	cd ~/Development/pennyworth
-	tmux new-session -d -s ${SESSION_NAME} -n wrkspace -x - -y -
-	tmux splitw -h
-	tmux new-window -t ${SESSION_NAME}:2 -n bg_procs
-	tmux -2 attach -t ${SESSION_NAME}:1
+	if ! connect_to_existing_session ${SESSION_NAME}; then
+		cd ~/Development/pennyworth
+		tmux new-session -d -s ${SESSION_NAME} -n wrkspace -x - -y -
+		tmux splitw -h
+		tmux new-window -t ${SESSION_NAME}:2 -n bg_procs
+		tmux -2 attach -t ${SESSION_NAME}:1
+	fi
+	unset SESSION_NAME
 }
 
 alias dev-penny="dev_penny"
@@ -92,9 +108,14 @@ alias dev-penny="dev_penny"
 # Open an instance of Chrome that opens up a remote debug port
 chrome_debug() {
 	SESSION_NAME=chrome_debug
-	tmux new-session -d -s ${SESSION_NAME} -n wrkspace -x - -y -
-	tmux send-keys -t ${SESSION_NAME}:1.0 '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9229' C-m
+	if ! connect_to_existing_session ${SESSION_NAME}; then
+		tmux new-session -d -s ${SESSION_NAME} -n wrkspace -x - -y -
+		tmux send-keys -t ${SESSION_NAME}:1.0 \
+			'/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9229' C-m
+	fi
+	unset SESSION_NAME
 }
+
 alias chrome-debug=chrome_debug
 
 # Config Variables #############################################################
@@ -121,26 +142,26 @@ alias ....='cd ../../..'
 alias bk='cd -'
 
 # Git Aliases ##################################################################
-alias gls="clear; git log"
-alias gtree="clear; git log --graph --all"
-alias ga="clear; git add -A"
-alias gap="clear; git add -Ap"
-alias gm="clear; git commit -m"
-alias gb="clear; git branch"
-alias gd="clear; git diff"
-alias gdc="clear; git diff --cached"
-alias gco="clear; git checkout"
-alias gc="clear; git clone"
-alias gr="clear; git remote -v"
-alias gp="clear; git push"
-alias gpu="clear; git pull"
-alias gs="clear; git status"
-alias gst="clear; git stash"
-alias gmbase="clear; git merge-base"
-alias grbase="clear; git rebase -i"
-alias gstd="clear; git stash drop"
-alias gstls="clear; git stash list"
-alias gstap="clear; git stash apply"
+alias gls="git log"
+alias gtree="git log --graph --all"
+alias ga="git add -A"
+alias gap="git add -Ap"
+alias gm="git commit -m"
+alias gb="git branch"
+alias gd="git diff"
+alias gdc="git diff --cached"
+alias gco="git checkout"
+alias gc="git clone"
+alias gr="git remote -v"
+alias gp="git push"
+alias gpu="git pull"
+alias gs="git status"
+alias gst="git stash"
+alias gmbase="git merge-base"
+alias grbase="git rebase -i"
+alias gstd="git stash drop"
+alias gstls="git stash list"
+alias gstap="git stash apply"
 
 # General Aliases ##############################################################
 alias .b=". ~/.bash_profile"

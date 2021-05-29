@@ -14,7 +14,6 @@
     "javascript": "javascriptreact"
   },
   "emmet.triggerExpansionOnTab": true,
-  "window.zoomLevel": -1,
   "synthwave84.brightness": 0.35,
   "workbench.colorTheme": "SynthWave '84",
   "workbench.activityBar.visible": false,
@@ -64,6 +63,19 @@
         {
           "command": "editor.action.referenceSearch.trigger",
           "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+        }
+      ]
+    },
+    {
+      "before": ["g", "R"],
+      "commands": [
+        {
+          "command": "references-view.findReferences",
+          "when": "!references-view.tree.visible && editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+        },
+        {
+          "command": "references-view.tree.focus",
+          "when": "references-view.tree.visible && editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
         }
       ]
     },
@@ -275,7 +287,6 @@
   ],
   // Source Control ####################################################################################################
   "diffEditor.ignoreTrimWhitespace": false,
-  "diffEditor.renderSideBySide": false,
   "git.autofetch": true,
   "git.enableSmartCommit": true,
   "githubPullRequests.remotes": ["origin"],
@@ -313,7 +324,6 @@
   "python.terminal.activateEnvInCurrentTerminal": true,
   "python.testing.pytestArgs": ["-v"],
   "jupyter.debugJustMyCode": false,
-  "pyright.disableLanguageServices": true, // Prevent dupe results in def / ref searches
   "python.analysis.typeCheckingMode": "off",
   "workbench.editorAssociations": [
     {
@@ -338,7 +348,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -354,5 +364,8 @@
   },
   // Extensions ########################################################################################################
   "extensions.ignoreRecommendations": false,
-  "tabnine.experimentalAutoImports": true
+  "tabnine.experimentalAutoImports": true,
+  "workbench.editor.tabCloseButton": "left",
+  "python.languageServer": "Jedi",
+  "window.zoomLevel": -1
 }

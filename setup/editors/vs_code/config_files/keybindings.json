@@ -165,7 +165,7 @@
   {
     "key": "ctrl+k",
     "command": "workbench.output.action.clearOutput",
-    "when": "workbench.panel.output.visible"
+    "when": "view.workbench.panel.output.visible"
   },
   // Search ############################################################################################################
   // Navigation ========================================================================================================
@@ -329,7 +329,7 @@
   {
     "key": "-",
     "command": "git.unstageSelectedRanges",
-    "when": "isInDiffEditor && editorHasSelection"
+    "when": "editorReadonly && editorHasSelection"
   },
   {
     "key": "cmd+k cmd+r",
@@ -337,19 +337,19 @@
     "when": "isInDiffEditor"
   },
   {
-    "key": "shift+-",
+    "key": "-",
     "command": "git.revertSelectedRanges",
     "when": "isInDiffEditor && editorHasSelection"
   },
   {
     "key": "shift+-",
-    "command": "git.unstage",
-    "when": "workbench.scm.active && editorReadonly"
+    "command": "git.clean",
+    "when": "isInDiffEditor && !editorHasSelection && !findInputFocussed"
   },
   {
-    "key": "cmd+backspace",
-    "command": "git.clean",
-    "when": "isInDiffEditor"
+    "key": "shift+-",
+    "command": "git.unstage",
+    "when": "workbench.scm.active && editorReadonly && !findInputFocussed"
   },
   // General ===========================================================================================================
   {
