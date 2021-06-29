@@ -359,7 +359,6 @@
   },
   // Extensions ########################################################################################################
   "extensions.ignoreRecommendations": false,
-  "tabnine.experimentalAutoImports": true,
   "workbench.editor.tabCloseButton": "left",
   "python.languageServer": "Jedi",
   "window.zoomLevel": -1,
