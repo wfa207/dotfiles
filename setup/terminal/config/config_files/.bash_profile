@@ -9,13 +9,18 @@
 [ -f `brew --prefix`/etc/bash_completion ] && . `brew --prefix`/etc/bash_completion
 
 # Python #######################################################################
-# Initialize pyenv when a new shell spawns
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
 # Modify path for Python's poetry dependency management system
 export PATH="$HOME/.poetry/bin:$PATH"
+
+# Add pyenv executable to PATH and
+# enable shims
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  # Initialize pyenv when a new shell spawns
+  eval "$(pyenv init --path)"
+fi
 
 # Node / React #################################################################
 export NVM_DIR=${NVM_DIR:=$HOME/.nvm}
