@@ -33,7 +33,7 @@ fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Helper Functions #############################################################
-dev_template() {
+dev-template() {
 	# Sets up two windows:
 	# .. 1: 3 panes with a primary pain and 2 secondary panes underneath
 	# .. 2: 4 panes with a "tiled" layout
@@ -59,7 +59,7 @@ dev_template() {
 	unset SESSION_NAME
 }
 
-dev_vertical_half() {
+dev-vertical-half() {
 	tmux new -d ${2:+-s} ${2:-} -n wrkspace -x - -y -
 	if [[ ! -z ${1:+x} ]]; then
 		tmux send "clear; $1" C-m
@@ -69,7 +69,9 @@ dev_vertical_half() {
 	tmux -2 attach -t ${2:-}${2:+:}1.0
 }
 
-connect_to_existing_session() {
+alias dev-v=dev-vertical-half
+
+connect-to-existing-session() {
 	if tmux has-session -t $1; then
 		tmux attach-session -t $1
 		return 0
@@ -78,22 +80,18 @@ connect_to_existing_session() {
 	fi
 }
 
-alias dev-v="dev_vertical_half"
-
-dev_dot() {
+dev-dot() {
 	SESSION_NAME=dot
-	if ! connect_to_existing_session ${SESSION_NAME}; then
+	if ! connect-to-existing-session ${SESSION_NAME}; then
 		cd ~/dotfiles
-		dev_vertical_half '' ${SESSION_NAME}
+		dev-vertical-half '' ${SESSION_NAME}
 	fi
 	unset SESSION_NAME
 }
 
-alias dev-dot="dev_dot"
-
-dev_penny() {
+dev-penny() {
 	SESSION_NAME=pennyworth
-	if ! connect_to_existing_session ${SESSION_NAME}; then
+	if ! connect-to-existing-session ${SESSION_NAME}; then
 		cd ~/Development/pennyworth
 		tmux new-session -d -s ${SESSION_NAME} -n wrkspace -x - -y -
 		tmux splitw -h
@@ -103,12 +101,10 @@ dev_penny() {
 	unset SESSION_NAME
 }
 
-alias dev-penny="dev_penny"
-
 # Open an instance of Chrome that opens up a remote debug port
-chrome_debug() {
-	SESSION_NAME=chrome_debug
-	if ! connect_to_existing_session ${SESSION_NAME}; then
+chrome-debug() {
+	SESSION_NAME=chrome-debug
+	if ! connect-to-existing-session ${SESSION_NAME}; then
 		tmux new-session -d -s ${SESSION_NAME} -n wrkspace -x - -y -
 		tmux send-keys -t ${SESSION_NAME}:1.0 \
 			'/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9229' C-m
@@ -116,7 +112,9 @@ chrome_debug() {
 	unset SESSION_NAME
 }
 
-alias chrome-debug=chrome_debug
+map-network() {
+	ifconfig | grep broadcast | arp -a
+}
 
 # Config Variables #############################################################
 # Private config variables sourced externally
@@ -183,6 +181,6 @@ flip() {
 }
 
 # Edit Commands ################################################################
-set -o vi
-set editing-mode vi
-set keymap vi-command
+# set -o vi
+# set editing-mode vi
+# set keymap vi-command
