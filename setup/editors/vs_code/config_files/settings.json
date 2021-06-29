@@ -285,8 +285,6 @@
       ]
     }
   ],
-  // Source Control ####################################################################################################
-  "diffEditor.ignoreTrimWhitespace": false,
   "git.autofetch": true,
   "git.enableSmartCommit": true,
   "githubPullRequests.remotes": ["origin"],
@@ -325,12 +323,9 @@
   "python.testing.pytestArgs": ["-v"],
   "jupyter.debugJustMyCode": false,
   "python.analysis.typeCheckingMode": "off",
-  "workbench.editorAssociations": [
-    {
-      "viewType": "jupyter.notebook.ipynb",
-      "filenamePattern": "*.ipynb"
-    }
-  ],
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
   "python.sortImports.args": [
     "--profile",
     "black",
@@ -367,5 +362,6 @@
   "tabnine.experimentalAutoImports": true,
   "workbench.editor.tabCloseButton": "left",
   "python.languageServer": "Jedi",
-  "window.zoomLevel": -1
+  "window.zoomLevel": -1,
+  "diffEditor.renderSideBySide": false
 }
