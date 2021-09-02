@@ -22,6 +22,9 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init --path)"
 fi
 
+# Postgres #####################################################################
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+
 # Node / React #################################################################
 export NVM_DIR=${NVM_DIR:=$HOME/.nvm}
 

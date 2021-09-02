@@ -116,6 +116,18 @@ map-network() {
 	ifconfig | grep broadcast | arp -a
 }
 
+commit-wip() {
+	git add -A && git commit -m "[WIP]" -n
+}
+
+branch-backup() {
+	CURR_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+	git branch -D ${CURR_BRANCH}-BACKUP
+	git checkout -b ${CURR_BRANCH}-BACKUP
+	git checkout -
+	unset CURR_BRANCH
+}
+
 # Config Variables #############################################################
 # Private config variables sourced externally
 [ -f ~/.configvar.sh ] && . ~/.configvar.sh
@@ -140,7 +152,7 @@ alias ....='cd ../../..'
 alias bk='cd -'
 
 # Git Aliases ##################################################################
-alias gls="git log"
+alias gls="git log --oneline --graph"
 alias gtree="git log --graph --all"
 alias ga="git add -A"
 alias gap="git add -Ap"

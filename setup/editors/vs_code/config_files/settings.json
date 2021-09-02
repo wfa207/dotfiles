@@ -324,7 +324,7 @@
   "jupyter.debugJustMyCode": false,
   "python.analysis.typeCheckingMode": "off",
   "workbench.editorAssociations": {
-    "*.ipynb": "jupyter.notebook.ipynb"
+    "*.ipynb": "jupyter-notebook"
   },
   "python.sortImports.args": [
     "--profile",
@@ -361,6 +361,20 @@
   "extensions.ignoreRecommendations": false,
   "workbench.editor.tabCloseButton": "left",
   "python.languageServer": "Jedi",
-  "window.zoomLevel": -1,
-  "diffEditor.renderSideBySide": false
+  "diffEditor.renderSideBySide": false,
+  "window.zoomLevel": -2,
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "todo-tree.general.tags": [
+    "BUG",
+    "HACK",
+    "FIXME",
+    "TODO",
+    "XXX",
+    "[ ]",
+    "[x]"
+  ],
+  "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)"
 }
