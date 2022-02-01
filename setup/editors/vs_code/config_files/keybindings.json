@@ -466,5 +466,9 @@
   {
     "key": "alt+cmd+i",
     "command": "workbench.action.toggleDevTools"
+  },
+  {
+    "key": "shift+cmd+l",
+    "command": "pr:github.focus"
   }
 ]

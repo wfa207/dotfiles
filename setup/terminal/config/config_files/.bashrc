@@ -116,8 +116,8 @@ map-network() {
 	ifconfig | grep broadcast | arp -a
 }
 
-commit-wip() {
-	git add -A && git commit -m "[WIP]" -n
+gm-wip() {
+	git add -A && git commit -m "[WIP] ${1:-Reset Branch when resuming work}" -n
 }
 
 branch-backup() {
