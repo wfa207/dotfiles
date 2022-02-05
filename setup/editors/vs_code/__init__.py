@@ -74,31 +74,29 @@ class VSCode:
     def _install_extensions(cls):
         EXTENSIONS = [
             # Navigation #######################################################
+            "hoovercj.vscode-settings-cycler",
             "vscodevim.vim",
-            "hoovercj.vscode-settings-cycler",  # Helps with line number toggle
             # Source Control ###################################################
             "eamodio.gitlens",
             "GitHub.vscode-pull-request-github",
             # Display ##########################################################
-            "RobbOwen.synthwave-vscode",
+            "EditorConfig.EditorConfig",
+            "Gruntfuggly.todo-tree",
             "PKief.material-icon-theme",
+            "RobbOwen.synthwave-vscode",
             # Debugging ########################################################
-            "msjsdiag.debugger-for-chrome",
             # Languages ########################################################
             # Python ===========================================================
-            "njpwerner.autodocstring",
-            "lextudio.restructuredtext",
-            "tht13.python",  # Decent snippets collection
-            "ms-pyright.pyright",
             "ms-python.python",
-            "ms-toolsai.jupyter"
+            "njpwerner.autodocstring",
             # Javascript =======================================================
+            "dbaeumer.vscode-eslint",
             "esbenp.prettier-vscode",
             "xabikos.JavaScriptSnippets",
-            # Misc #############################################################
-            "ms-azuretools.vscode-docker",
-            "ms-vscode-remote.remote-containers",
-            "TabNine.tabnine-vscode",
+            # Restructured Text ================================================
+            "lextudio.restructuredtext",
+            # Markdown =========================================================
+            "shd101wyy.markdown-preview-enhanced",
         ]
 
         Shell.print_formatted("Installing VS Code Extensions\n", Shell.Colors.HEADER_1)

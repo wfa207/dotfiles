@@ -20,7 +20,7 @@
         "default": "right",
         "jupyter-notebook": "left"
     },
-    "synthwave84.brightness": 0.35,
+    "synthwave84.brightness": 0.45,
     "window.zoomLevel": -2,
     "workbench.colorTheme": "SynthWave '84",
     "workbench.activityBar.visible": false,
@@ -486,5 +486,6 @@
     "markdown-preview-enhanced.mermaidTheme": "dark",
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
     "editor.unicodeHighlight.invisibleCharacters": false,
-    "editor.unicodeHighlight.ambiguousCharacters": false
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "diffEditor.ignoreTrimWhitespace": false
 }
