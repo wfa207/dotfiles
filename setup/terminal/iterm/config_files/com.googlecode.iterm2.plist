@@ -5,7 +5,7 @@
 	<key>AllowClipboardAccess</key>
 	<true/>
 	<key>Command</key>
-	<string>/bin/bash</string>
+	<string></string>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>Snow Dark</key>
@@ -563,13 +563,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.24313725531101227</real>
+				<real>0.47174692153930664</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.22745098173618317</real>
+				<real>0.44819682659635873</real>
 				<key>Red Component</key>
-				<real>0.21176470816135406</real>
+				<real>0.42464673165341082</real>
 			</dict>
 			<key>Ansi 9 Color</key>
 			<dict>
@@ -1313,5 +1313,9 @@
 	<false/>
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
+	<key>kCPKSelectionViewPreferredModeKey</key>
+	<integer>0</integer>
+	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
+	<false/>
 </dict>
 </plist>

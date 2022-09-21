@@ -168,7 +168,7 @@ alias gpu="git pull"
 alias gs="git status"
 alias gst="git stash"
 alias gmbase="git merge-base"
-alias grbase="git rebase -i"
+alias grbase="git rebase -i --committer-date-is-author-date --keep-empty --autosquash"
 alias gstd="git stash drop"
 alias gstls="git stash list"
 alias gstap="git stash apply"
@@ -201,9 +201,9 @@ flip() {
 # enable shims by adding the following
 # to ~/.profile:
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init --path)"
 
 # If your ~/.profile sources ~/.bashrc,
 # the lines need to be inserted before the part
@@ -216,7 +216,7 @@ eval "$(pyenv init --path)"
 # Load pyenv into the shell by adding
 # the following to ~/.bashrc:
 
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 
 # Make sure to restart your entire logon session
 # for changes to profile files to take effect.
