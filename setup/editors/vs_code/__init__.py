@@ -81,9 +81,13 @@ class VSCode:
             "GitHub.vscode-pull-request-github",
             # Display ##########################################################
             "EditorConfig.EditorConfig",
-            "Gruntfuggly.todo-tree",
             "PKief.material-icon-theme",
             "RobbOwen.synthwave-vscode",
+            "be5invis.vscode-custom-css",
+            "lehni.vscode-fix-checksums",
+            # Note-taking ######################################################
+            "dendron.dendron",
+            "dendron.dendron-paste-image",
             # Debugging ########################################################
             # Languages ########################################################
             # Python ===========================================================
@@ -93,10 +97,12 @@ class VSCode:
             "dbaeumer.vscode-eslint",
             "esbenp.prettier-vscode",
             "xabikos.JavaScriptSnippets",
+            "dsznajder.es7-react-js-snippets",
             # Restructured Text ================================================
             "lextudio.restructuredtext",
             # Markdown =========================================================
             "shd101wyy.markdown-preview-enhanced",
+            "silvenon.mdx",
         ]
 
         Shell.print_formatted("Installing VS Code Extensions\n", Shell.Colors.HEADER_1)
