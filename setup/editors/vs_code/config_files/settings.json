@@ -25,12 +25,16 @@
     "vscode_custom_css.imports": [
         "file:///Users/wes.auyeung/.vscode/extensions/robbowen.synthwave-vscode-0.1.10/synthwave84.css"
     ],
-    "workbench.colorTheme": "SynthWave '84",
     "workbench.activityBar.visible": false,
     "workbench.editor.focusRecentEditorAfterClose": false,
     "workbench.editor.tabSizing": "shrink",
     "workbench.editor.enablePreviewFromCodeNavigation": true,
     "workbench.editor.tabCloseButton": "left",
+    "workbench.colorCustomizations": {
+        "[Nord]": {
+            "editorLineNumber.foreground": "#B48EAD"
+        }
+    },
     // Vim ===============================================================================================================
     "vim.handleKeys": {
         "<C-o>": false,
@@ -490,11 +494,16 @@
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
     "editor.unicodeHighlight.invisibleCharacters": false,
     "editor.unicodeHighlight.ambiguousCharacters": false,
-    "diffEditor.ignoreTrimWhitespace": false,
     "typescript.updateImportsOnFileMove.enabled": "always",
     "editor.showFoldingControls": "always",
     "gitlens.advanced.repositorySearchDepth": 1,
     "extensions.autoUpdate": false,
-    "window.zoomLevel": -1,
-    "githubPullRequests.pullBranch": "never"
+    "githubPullRequests.pullBranch": "never",
+    "todohighlight.isEnable": true,
+    "workbench.colorTheme": "Nord",
+    "[less]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "go.toolsManagement.autoUpdate": true
 }
