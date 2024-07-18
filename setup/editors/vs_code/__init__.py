@@ -74,17 +74,13 @@ class VSCode:
     def _install_extensions(cls):
         EXTENSIONS = [
             # Navigation #######################################################
-            "hoovercj.vscode-settings-cycler",
             "vscodevim.vim",
             # Source Control ###################################################
             "eamodio.gitlens",
-            "GitHub.vscode-pull-request-github",
             # Display ##########################################################
             "EditorConfig.EditorConfig",
             "PKief.material-icon-theme",
             "RobbOwen.synthwave-vscode",
-            "be5invis.vscode-custom-css",
-            "lehni.vscode-fix-checksums",
             # Note-taking ######################################################
             "dendron.dendron",
             "dendron.dendron-paste-image",
@@ -96,13 +92,6 @@ class VSCode:
             # Javascript =======================================================
             "dbaeumer.vscode-eslint",
             "esbenp.prettier-vscode",
-            "xabikos.JavaScriptSnippets",
-            "dsznajder.es7-react-js-snippets",
-            # Restructured Text ================================================
-            "lextudio.restructuredtext",
-            # Markdown =========================================================
-            "shd101wyy.markdown-preview-enhanced",
-            "silvenon.mdx",
         ]
 
         Shell.print_formatted("Installing VS Code Extensions\n", Shell.Colors.HEADER_1)

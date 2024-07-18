@@ -22,10 +22,6 @@
     },
     "synthwave84.brightness": 0.45,
     "update.mode": "none",
-    "vscode_custom_css.imports": [
-        "file:///Users/wes.auyeung/.vscode/extensions/robbowen.synthwave-vscode-0.1.10/synthwave84.css"
-    ],
-    "workbench.activityBar.visible": false,
     "workbench.editor.focusRecentEditorAfterClose": false,
     "workbench.editor.tabSizing": "shrink",
     "workbench.editor.enablePreviewFromCodeNavigation": true,
@@ -415,7 +411,7 @@
     "pyright.disableOrganizeImports": true,
     "[python]": {
         "editor.codeActionsOnSave": {
-            "source.organizeImports": true
+            "source.organizeImports": "explicit"
         }
     },
     "python.diagnostics.sourceMapsEnabled": false,
@@ -500,10 +496,12 @@
     "extensions.autoUpdate": false,
     "githubPullRequests.pullBranch": "never",
     "todohighlight.isEnable": true,
-    "workbench.colorTheme": "Nord",
+    "workbench.colorTheme": "SynthWave '84",
     "[less]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "javascript.updateImportsOnFileMove.enabled": "always",
-    "go.toolsManagement.autoUpdate": true
+    "go.toolsManagement.autoUpdate": true,
+    "workbench.activityBar.location": "hidden",
+    "workbench.editor.tabActionLocation": "left"
 }
