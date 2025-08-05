@@ -40,6 +40,8 @@ iTerm settings should be updated automatically via the setup script. If for what
 
 Powerline helps format the terminal prompt to provide more information on repo status, working directory, etc.
 
+**Note**: When switching between Python versions with `pyenv`, you can re-run the `powerline-shell` [installation script](https://github.com/b-ryan/powerline-shell?tab=readme-ov-file#setup) with the active Python version
+
 ## Tmux
 
 Tmux is a powerful tool that essentially splits a single terminal window into as many panes and windows as you want. It also persists "sessions" even after you close the window (unless the Tmux session is explicitly destroyed).

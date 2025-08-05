@@ -255,11 +255,6 @@
         "when": "explorerViewletVisible && !filesExplorerFocus"
     },
     {
-        "key": "o",
-        "command": "list.select",
-        "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
-    },
-    {
         "key": "enter",
         "command": "-renameFile",
         "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
@@ -310,11 +305,6 @@
         "key": "cmd+shift+g",
         "command": "-workbench.action.terminal.findPreviousTerminalFocus",
         "when": "terminalFocus"
-    },
-    {
-        "key": "o",
-        "command": "list.select",
-        "when": "workbench.scm.active && !inputFocus"
     },
     {
         "key": "cmd+k o",
@@ -480,5 +470,19 @@
         "key": "shift+cmd+b",
         "command": "workbench.action.tasks.runTask",
         "args": "Run web-ui tests"
+    },
+    {
+        "key": "shift+cmd+l",
+        "command": "reactSnippets.search",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+cmd+r",
+        "command": "-reactSnippets.search",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+i",
+        "command": "composerMode.agent"
     }
 ]

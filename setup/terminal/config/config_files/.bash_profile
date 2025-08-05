@@ -3,7 +3,7 @@
 
 # Setup ########################################################################
 # Load bashrc if one exists
-[ -f ~/.bashrc ] && . ~/.bashrc
+# [ -f ~/.bashrc ] && . ~/.bashrc
 
 # Load bash completion
 [ -f `brew --prefix`/etc/bash_completion ] && . `brew --prefix`/etc/bash_completion
@@ -35,3 +35,8 @@ export NVM_DIR=${NVM_DIR:=$HOME/.nvm}
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
+# BEGIN ANSIBLE MANAGED BLOCK
+if [ -r ~/.bashrc ]; then
+   source ~/.bashrc
+fi
+# END ANSIBLE MANAGED BLOCK

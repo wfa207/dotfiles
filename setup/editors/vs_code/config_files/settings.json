@@ -4,7 +4,6 @@
     "editor.find.seedSearchStringFromSelection": "never",
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true,
-    "editor.foldingImportsByDefault": true,
     "editor.fontLigatures": true,
     "editor.lineNumbers": "relative",
     "editor.largeFileOptimizations": false,
@@ -473,7 +472,7 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     // Extensions ########################################################################################################
-    "extensions.ignoreRecommendations": false,
+    "extensions.ignoreRecommendations": true,
     "todo-tree.general.tags": [
         "BUG",
         "HACK",
@@ -496,12 +495,27 @@
     "extensions.autoUpdate": false,
     "githubPullRequests.pullBranch": "never",
     "todohighlight.isEnable": true,
-    "workbench.colorTheme": "SynthWave '84",
+    "workbench.colorTheme": "Nord",
     "[less]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "javascript.updateImportsOnFileMove.enabled": "always",
     "go.toolsManagement.autoUpdate": true,
     "workbench.activityBar.location": "hidden",
-    "workbench.editor.tabActionLocation": "left"
+    "workbench.editor.tabActionLocation": "left",
+    "datadog.telemetry.setup.enableTelemetry": "enabled",
+    "explorer.confirmDragAndDrop": false,
+    "javascript.preferGoToSourceDefinition": true,
+    "javascript.preferences.importModuleSpecifier": "non-relative",
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "javascript.experimental.updateImportsOnPaste": true,
+    "typescript.experimental.updateImportsOnPaste": true,
+    "window.restoreWindows": "none",
+    "cSpell.enableFiletypes": [
+        "!javascript",
+        "!typescript"
+    ],
+    "reactComponentGenerator.createStoriesFile": false,
+    "reactComponentGenerator.useIndexFile": true,
+    "security.workspace.trust.untrustedFiles": "open",
 }
